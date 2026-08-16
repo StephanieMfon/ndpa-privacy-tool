@@ -4,3 +4,5 @@ __pycache__/
 .env
 data/evidence/
 .pytest_cache/
+notes.md
+.DS_Store

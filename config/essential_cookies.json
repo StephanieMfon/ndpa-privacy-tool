@@ -1,0 +1,26 @@
+{
+  "_comment": "Fixed Decisions Register v1, Section 1. Do not edit per-site — only bump this file's version and log the reason, same rule as the Annotation Rulebook.",
+  "cmp_cookies": [
+    "OptanonConsent",
+    "OptanonAlertBoxClosed",
+    "CookieConsent",
+    "euconsent-v2",
+    "cookieyes-consent",
+    "osano_consentmanager"
+  ],
+  "cmp_cookie_prefixes": [
+    "IABTCF_"
+  ],
+  "session_security_cookies": [
+    "PHPSESSID",
+    "JSESSIONID",
+    "ASP.NET_SessionId",
+    "connect.sid",
+    "csrftoken",
+    "XSRF-TOKEN",
+    "AWSALB",
+    "AWSALBCORS",
+    "__cf_bm",
+    "__cfduid"
+  ]
+}

@@ -6,3 +6,4 @@ data/evidence/
 .pytest_cache/
 notes.md
 .DS_Store
+main.py

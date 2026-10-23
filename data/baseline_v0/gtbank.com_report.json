@@ -1,0 +1,302 @@
+{
+  "url": "https://gtbank.com",
+  "generated_at": "2026-10-23T08:45:32.411970+00:00",
+  "score": {
+    "overall": {
+      "compliant": 5,
+      "non_compliant": 9,
+      "not_applicable": 14,
+      "unable_to_determine": 1,
+      "score": 0.3571
+    },
+    "by_category": {
+      "consent": {
+        "compliant": 0,
+        "non_compliant": 2,
+        "not_applicable": 5,
+        "unable_to_determine": 0,
+        "score": 0.0
+      },
+      "cookies": {
+        "compliant": 5,
+        "non_compliant": 1,
+        "not_applicable": 3,
+        "unable_to_determine": 1,
+        "score": 0.8333
+      },
+      "privacy_policy": {
+        "compliant": 0,
+        "non_compliant": 6,
+        "not_applicable": 0,
+        "unable_to_determine": 0,
+        "score": 0.0
+      },
+      "script_behaviour": {
+        "compliant": 0,
+        "non_compliant": 0,
+        "not_applicable": 5,
+        "unable_to_determine": 0,
+        "score": null
+      },
+      "trackers": {
+        "compliant": 0,
+        "non_compliant": 0,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": null
+      }
+    }
+  },
+  "results": [
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "visid_incap_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "visid_incap_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "visid_incap_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Unable to Determine",
+      "evidence": {
+        "cookie_name": "visid_incap_1308357",
+        "cookie_domain": ".gtbank.com",
+        "pending_policy_crossref": true
+      },
+      "notes": "Exceeds 6-month threshold (365 days). Policy justification not yet checked \u2014 pending Module 6 (privacy_policy), or the policy page could not be reached for this site."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "visid_incap_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "incap_ses_572_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "incap_ses_572_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "incap_ses_572_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "incap_ses_572_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": "Session cookie."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "incap_ses_572_1308357",
+        "cookie_domain": ".gtbank.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CN-01",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No consent banner detected on first load."
+    },
+    {
+      "rule_id": "CN-02",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected \u2014 evaluated separately under CN-01."
+    },
+    {
+      "rule_id": "CN-03",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-04",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-05",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-06",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-07",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No footer/settings control found to revisit consent choice."
+    },
+    {
+      "rule_id": "TR-01",
+      "category": "trackers",
+      "label": "Not Applicable",
+      "evidence": {
+        "detected_trackers": []
+      },
+      "notes": "Descriptive detection only, per Rulebook Section C \u2014 not itself scored. Evidence base for CN-02, SB-03, and TR-02."
+    },
+    {
+      "rule_id": "SB-02",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected \u2014 evaluated separately under CN-01."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {
+        "api": "navigator.plugins",
+        "call_timestamp": 1.2223
+      },
+      "notes": "navigator.plugins called; no correlated outbound transmission observed."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {
+        "api": "navigator.plugins",
+        "call_timestamp": 1.2232
+      },
+      "notes": "navigator.plugins called; no correlated outbound transmission observed."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {
+        "api": "navigator.plugins",
+        "call_timestamp": 1.227
+      },
+      "notes": "navigator.plugins called; no correlated outbound transmission observed."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {
+        "api": "navigator.plugins",
+        "call_timestamp": 1.2273
+      },
+      "notes": "navigator.plugins called; no correlated outbound transmission observed."
+    },
+    {
+      "rule_id": "PP-01",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No Privacy Policy reachable from the homepage in one click. Worth a manual click-through before treating as a confirmed finding."
+    },
+    {
+      "rule_id": "PP-02",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_mentions": 0
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-03",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No policy text available to check."
+    },
+    {
+      "rule_id": "PP-04",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No policy text available to check."
+    },
+    {
+      "rule_id": "PP-05",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No policy text available to check."
+    },
+    {
+      "rule_id": "PP-06",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No policy text available to check."
+    }
+  ]
+}

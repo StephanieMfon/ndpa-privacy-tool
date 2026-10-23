@@ -1,0 +1,1504 @@
+{
+  "url": "https://punchng.com",
+  "generated_at": "2026-10-23T08:49:38.597473+00:00",
+  "score": {
+    "overall": {
+      "compliant": 54,
+      "non_compliant": 69,
+      "not_applicable": 22,
+      "unable_to_determine": 0,
+      "score": 0.439
+    },
+    "by_category": {
+      "consent": {
+        "compliant": 0,
+        "non_compliant": 2,
+        "not_applicable": 5,
+        "unable_to_determine": 0,
+        "score": 0.0
+      },
+      "cookies": {
+        "compliant": 51,
+        "non_compliant": 54,
+        "not_applicable": 15,
+        "unable_to_determine": 0,
+        "score": 0.4857
+      },
+      "privacy_policy": {
+        "compliant": 3,
+        "non_compliant": 3,
+        "not_applicable": 0,
+        "unable_to_determine": 0,
+        "score": 0.5
+      },
+      "script_behaviour": {
+        "compliant": 0,
+        "non_compliant": 7,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": 0.0
+      },
+      "trackers": {
+        "compliant": 0,
+        "non_compliant": 3,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": 0.0
+      }
+    }
+  },
+  "results": [
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "taboola_session_id",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "taboola_session_id",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "taboola_session_id",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "taboola_session_id",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Session cookie."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "taboola_session_id",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cfuvid",
+        "cookie_domain": ".prcdn.co"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cfuvid",
+        "cookie_domain": ".prcdn.co"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cfuvid",
+        "cookie_domain": ".prcdn.co"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_cfuvid",
+        "cookie_domain": ".prcdn.co"
+      },
+      "notes": "Session cookie."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cfuvid",
+        "cookie_domain": ".prcdn.co"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".onesignal.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".onesignal.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".onesignal.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".onesignal.com"
+      },
+      "notes": "Expiry within 6-month threshold (0 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".onesignal.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "abLdr",
+        "cookie_domain": "cdn.taboola.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "abLdr",
+        "cookie_domain": "cdn.taboola.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "abLdr",
+        "cookie_domain": "cdn.taboola.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "abLdr",
+        "cookie_domain": "cdn.taboola.com"
+      },
+      "notes": "Expiry within 6-month threshold (0 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "abLdr",
+        "cookie_domain": "cdn.taboola.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "uid",
+        "cookie_domain": ".criteo.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "uid",
+        "cookie_domain": ".criteo.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "uid",
+        "cookie_domain": ".criteo.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "uid",
+        "cookie_domain": ".criteo.com"
+      },
+      "notes": "Exceeds 6-month threshold (390 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "uid",
+        "cookie_domain": ".criteo.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ga",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ga",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ga",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ga",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (400 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_ga",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ain_uid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ain_uid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ain_uid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ain_uid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (180 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_ain_uid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ain_cid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ain_cid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ain_cid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ain_cid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "Expiry within 6-month threshold (0 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_ain_cid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__gads",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__gads",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__gads",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__gads",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (390 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "__gads",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__gpi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__gpi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__gpi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__gpi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (390 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "__gpi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__eoi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__eoi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__eoi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "__eoi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (180 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "__eoi",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "IDE",
+        "cookie_domain": ".doubleclick.net"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "IDE",
+        "cookie_domain": ".doubleclick.net"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "IDE",
+        "cookie_domain": ".doubleclick.net"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "IDE",
+        "cookie_domain": ".doubleclick.net"
+      },
+      "notes": "Exceeds 6-month threshold but policy provides justification."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "IDE",
+        "cookie_domain": ".doubleclick.net"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "t_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "t_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "t_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "t_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Exceeds 6-month threshold (365 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "t_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "t_pt_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "t_pt_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "t_pt_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "t_pt_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Exceeds 6-month threshold (365 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "t_pt_gid",
+        "cookie_domain": ".taboola.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "iuid",
+        "cookie_domain": ".mygaru.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "iuid",
+        "cookie_domain": ".mygaru.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "iuid",
+        "cookie_domain": ".mygaru.com"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "iuid",
+        "cookie_domain": ".mygaru.com"
+      },
+      "notes": "Expiry within 6-month threshold (93 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "iuid",
+        "cookie_domain": ".mygaru.com"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "FCCDCF",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "FCCDCF",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "FCCDCF",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "FCCDCF",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (390 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "FCCDCF",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_pubcid",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_pubcid",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_pubcid",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_pubcid",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (270 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_pubcid",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "FCNEC",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "FCNEC",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "FCNEC",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "FCNEC",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (365 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "FCNEC",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ga_FVB64ZCDTL",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ga_FVB64ZCDTL",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_ga_FVB64ZCDTL",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_ga_FVB64ZCDTL",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (400 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_ga_FVB64ZCDTL",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "nvq_hid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "nvq_hid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "nvq_hid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "nvq_hid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "Expiry within 6-month threshold (0 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "nvq_hid",
+        "cookie_domain": "punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cc_dc",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_dc",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cc_dc",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_dc",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "Exceeds 6-month threshold (270 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_dc",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "Exceeds 6-month threshold (270 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".crwdcntrl.net"
+      },
+      "notes": "Third-party origin not named anywhere in policy."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Exceeds 6-month threshold (270 days), no policy justification found."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "_cc_id",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "panoramaId_expiry",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "panoramaId_expiry",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "panoramaId_expiry",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "panoramaId_expiry",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "Expiry within 6-month threshold (1 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "panoramaId_expiry",
+        "cookie_domain": ".punchng.com"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CN-01",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No consent banner detected on first load."
+    },
+    {
+      "rule_id": "CN-02",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected \u2014 evaluated separately under CN-01."
+    },
+    {
+      "rule_id": "CN-03",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-04",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-05",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-06",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-07",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No footer/settings control found to revisit consent choice."
+    },
+    {
+      "rule_id": "TR-01",
+      "category": "trackers",
+      "label": "Not Applicable",
+      "evidence": {
+        "detected_trackers": [
+          {
+            "vendor": "Google Analytics",
+            "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-FVB64ZCDTL",
+            "first_seen_timestamp": 0.7731,
+            "request_count": 3
+          },
+          {
+            "vendor": "Google Tag Manager",
+            "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-FVB64ZCDTL",
+            "first_seen_timestamp": 0.7731,
+            "request_count": 1
+          },
+          {
+            "vendor": "Google Ads / DoubleClick",
+            "matched_url": "https://googleads.g.doubleclick.net/pagead/html/r20261020/r20190131/zrt_lookup.html",
+            "first_seen_timestamp": 2.5011,
+            "request_count": 14
+          }
+        ]
+      },
+      "notes": "Descriptive detection only, per Rulebook Section C \u2014 not itself scored. Evidence base for CN-02, SB-03, and TR-02."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Analytics",
+        "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-FVB64ZCDTL"
+      },
+      "notes": "Google Analytics not named anywhere in policy."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Tag Manager",
+        "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-FVB64ZCDTL"
+      },
+      "notes": "Google Tag Manager not named anywhere in policy."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Ads / DoubleClick",
+        "matched_url": "https://googleads.g.doubleclick.net/pagead/html/r20261020/r20190131/zrt_lookup.html"
+      },
+      "notes": "Google Ads / DoubleClick not named anywhere in policy."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Analytics",
+        "first_seen_timestamp": 0.7731,
+        "consent_click_timestamp": null
+      },
+      "notes": "Google Analytics script first observed before the Accept click."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Tag Manager",
+        "first_seen_timestamp": 0.7731,
+        "consent_click_timestamp": null
+      },
+      "notes": "Google Tag Manager script first observed before the Accept click."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Ads / DoubleClick",
+        "first_seen_timestamp": 2.5011,
+        "consent_click_timestamp": null
+      },
+      "notes": "Google Ads / DoubleClick script first observed before the Accept click."
+    },
+    {
+      "rule_id": "SB-02",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected \u2014 evaluated separately under CN-01."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Analytics",
+        "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-FVB64ZCDTL",
+        "first_seen_timestamp": 0.7731,
+        "consent_click_timestamp": null
+      },
+      "notes": "Request to Google Analytics occurred before the Accept click."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Tag Manager",
+        "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-FVB64ZCDTL",
+        "first_seen_timestamp": 0.7731,
+        "consent_click_timestamp": null
+      },
+      "notes": "Request to Google Tag Manager occurred before the Accept click."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Ads / DoubleClick",
+        "matched_url": "https://googleads.g.doubleclick.net/pagead/html/r20261020/r20190131/zrt_lookup.html",
+        "first_seen_timestamp": 2.5011,
+        "consent_click_timestamp": null
+      },
+      "notes": "Request to Google Ads / DoubleClick occurred before the Accept click."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "api": "measureText",
+        "call_count": 406,
+        "matched_request": "https://cm.g.doubleclick.net/partnerpixels?gdpr=0&us_privacy=1---&gpp_sid=-1&url=https%3A%2F%2Fpunchng.com%2F",
+        "confidence": "weak"
+      },
+      "notes": "measureText called 406 times (font-fingerprinting pattern), followed by a correlated tracker request. Manual verification recommended."
+    },
+    {
+      "rule_id": "PP-01",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "url": "https://punchng.com/privacy-policy/"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-02",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_mentions": 5,
+        "standalone": false,
+        "detection": "mention_count_fallback"
+      },
+      "notes": "No cookie-related HTML heading found; used as fallback proxy since HTML structure was unavailable or inconclusive."
+    },
+    {
+      "rule_id": "PP-03",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "email_found": true,
+        "dpo_mentioned": false
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-04",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No purpose statement found adjacent to a named data category (fixed adequacy bar)."
+    },
+    {
+      "rule_id": "PP-05",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No retention period or clear criterion found in policy text."
+    },
+    {
+      "rule_id": "PP-06",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {
+        "rights_found": [
+          "access"
+        ],
+        "found_count": 1,
+        "complaint_to_ndpc_disclosed": false
+      },
+      "notes": "Only 1/7 core rights terms found (threshold: 5)."
+    }
+  ]
+}

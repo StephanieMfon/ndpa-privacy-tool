@@ -1,0 +1,242 @@
+{
+  "url": "https://jumia.com.ng",
+  "generated_at": "2026-10-23T08:47:52.343417+00:00",
+  "score": {
+    "overall": {
+      "compliant": 10,
+      "non_compliant": 2,
+      "not_applicable": 9,
+      "unable_to_determine": 0,
+      "score": 0.8333
+    },
+    "by_category": {
+      "consent": {
+        "compliant": 0,
+        "non_compliant": 2,
+        "not_applicable": 5,
+        "unable_to_determine": 0,
+        "score": 0.0
+      },
+      "cookies": {
+        "compliant": 4,
+        "non_compliant": 0,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": 1.0
+      },
+      "privacy_policy": {
+        "compliant": 6,
+        "non_compliant": 0,
+        "not_applicable": 0,
+        "unable_to_determine": 0,
+        "score": 1.0
+      },
+      "script_behaviour": {
+        "compliant": 0,
+        "non_compliant": 0,
+        "not_applicable": 2,
+        "unable_to_determine": 0,
+        "score": null
+      },
+      "trackers": {
+        "compliant": 0,
+        "non_compliant": 0,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": null
+      }
+    }
+  },
+  "results": [
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".jumia.com.ng"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".jumia.com.ng"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".jumia.com.ng"
+      },
+      "notes": "SameSite=None with Secure \u2014 treated as a documented cross-site purpose (e.g. embedded payment widget)."
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".jumia.com.ng"
+      },
+      "notes": "Expiry within 6-month threshold (0 days)."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "__cf_bm",
+        "cookie_domain": ".jumia.com.ng"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CN-01",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No consent banner detected on first load."
+    },
+    {
+      "rule_id": "CN-02",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected \u2014 evaluated separately under CN-01."
+    },
+    {
+      "rule_id": "CN-03",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-04",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-05",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-06",
+      "category": "consent",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected."
+    },
+    {
+      "rule_id": "CN-07",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No footer/settings control found to revisit consent choice."
+    },
+    {
+      "rule_id": "TR-01",
+      "category": "trackers",
+      "label": "Not Applicable",
+      "evidence": {
+        "detected_trackers": []
+      },
+      "notes": "Descriptive detection only, per Rulebook Section C \u2014 not itself scored. Evidence base for CN-02, SB-03, and TR-02."
+    },
+    {
+      "rule_id": "SB-02",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "No banner detected \u2014 evaluated separately under CN-01."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "None of the six fixed fingerprinting-indicative APIs were called."
+    },
+    {
+      "rule_id": "PP-01",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "url": "https://www.cloudflare.com/privacypolicy/"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-02",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_mentions": 16,
+        "standalone": false,
+        "detection": "mention_count_fallback"
+      },
+      "notes": "No cookie-related HTML heading found; used as fallback proxy since HTML structure was unavailable or inconclusive."
+    },
+    {
+      "rule_id": "PP-03",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "email_found": true,
+        "dpo_mentioned": true
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-04",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "matched_phrase": "for the purpose of"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-05",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "has_duration": true,
+        "has_trigger_criterion": false
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-06",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "rights_found": [
+          "access",
+          "rectification",
+          "erasure",
+          "restriction",
+          "portability",
+          "objection",
+          "complaint"
+        ],
+        "found_count": 7,
+        "complaint_to_ndpc_disclosed": true
+      },
+      "notes": null
+    }
+  ]
+}

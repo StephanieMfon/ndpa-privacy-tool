@@ -1,0 +1,447 @@
+{
+  "url": "https://mtn.ng",
+  "generated_at": "2026-10-23T08:46:44.031168+00:00",
+  "score": {
+    "overall": {
+      "compliant": 13,
+      "non_compliant": 19,
+      "not_applicable": 6,
+      "unable_to_determine": 0,
+      "score": 0.4062
+    },
+    "by_category": {
+      "consent": {
+        "compliant": 5,
+        "non_compliant": 2,
+        "not_applicable": 0,
+        "unable_to_determine": 0,
+        "score": 0.7143
+      },
+      "cookies": {
+        "compliant": 2,
+        "non_compliant": 4,
+        "not_applicable": 4,
+        "unable_to_determine": 0,
+        "score": 0.3333
+      },
+      "privacy_policy": {
+        "compliant": 2,
+        "non_compliant": 4,
+        "not_applicable": 0,
+        "unable_to_determine": 0,
+        "score": 0.3333
+      },
+      "script_behaviour": {
+        "compliant": 4,
+        "non_compliant": 5,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": 0.4444
+      },
+      "trackers": {
+        "compliant": 0,
+        "non_compliant": 4,
+        "not_applicable": 1,
+        "unable_to_determine": 0,
+        "score": 0.0
+      }
+    }
+  },
+  "results": [
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "TS01f227f0",
+        "cookie_domain": ".www.mtn.ng"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "TS01f227f0",
+        "cookie_domain": ".www.mtn.ng"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "TS01f227f0",
+        "cookie_domain": ".www.mtn.ng"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "TS01f227f0",
+        "cookie_domain": ".www.mtn.ng"
+      },
+      "notes": "Session cookie."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "TS01f227f0",
+        "cookie_domain": ".www.mtn.ng"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CK-01",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "TS2a0f174f027",
+        "cookie_domain": "www.mtn.ng"
+      },
+      "notes": "Cookie set without Secure attribute."
+    },
+    {
+      "rule_id": "CK-02",
+      "category": "cookies",
+      "label": "Non-Compliant",
+      "evidence": {
+        "cookie_name": "TS2a0f174f027",
+        "cookie_domain": "www.mtn.ng"
+      },
+      "notes": "Cookie set without HttpOnly attribute."
+    },
+    {
+      "rule_id": "CK-03",
+      "category": "cookies",
+      "label": "Compliant",
+      "evidence": {
+        "cookie_name": "TS2a0f174f027",
+        "cookie_domain": "www.mtn.ng"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CK-04",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "TS2a0f174f027",
+        "cookie_domain": "www.mtn.ng"
+      },
+      "notes": "Session cookie."
+    },
+    {
+      "rule_id": "CK-05",
+      "category": "cookies",
+      "label": "Not Applicable",
+      "evidence": {
+        "cookie_name": "TS2a0f174f027",
+        "cookie_domain": "www.mtn.ng"
+      },
+      "notes": "First-party cookie."
+    },
+    {
+      "rule_id": "CN-01",
+      "category": "consent",
+      "label": "Compliant",
+      "evidence": {
+        "top_ratio": 0.6497395833333334
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "CN-02",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {
+        "non_essential_cookies_before_consent": [
+          "TS2a0f174f027",
+          "TS01f227f0"
+        ]
+      },
+      "notes": "Non-essential cookie(s) present before the Accept click."
+    },
+    {
+      "rule_id": "CN-03",
+      "category": "consent",
+      "label": "Compliant",
+      "evidence": {},
+      "notes": null
+    },
+    {
+      "rule_id": "CN-04",
+      "category": "consent",
+      "label": "Compliant",
+      "evidence": {},
+      "notes": null
+    },
+    {
+      "rule_id": "CN-05",
+      "category": "consent",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "All non-essential cookies bundled into a single accept/reject choice."
+    },
+    {
+      "rule_id": "CN-06",
+      "category": "consent",
+      "label": "Compliant",
+      "evidence": {},
+      "notes": null
+    },
+    {
+      "rule_id": "CN-07",
+      "category": "consent",
+      "label": "Compliant",
+      "evidence": {
+        "mechanism_text": "save cookie settings"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "TR-01",
+      "category": "trackers",
+      "label": "Not Applicable",
+      "evidence": {
+        "detected_trackers": [
+          {
+            "vendor": "Google Analytics",
+            "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-YWQ5FX4GZX&cx=c&gtm=4e6al1",
+            "first_seen_timestamp": 1.4123,
+            "request_count": 4
+          },
+          {
+            "vendor": "Google Tag Manager",
+            "matched_url": "https://www.googletagmanager.com/gtm.js?id=GTM-K72NJ8",
+            "first_seen_timestamp": 0.4575,
+            "request_count": 4
+          },
+          {
+            "vendor": "Google Ads / DoubleClick",
+            "matched_url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-YWQ5FX4GZX&cid=2111697489.1792745190&gtm=45je6al1v873395768za20gzb71548379zd71548379xf1&rcb=14&aip=1&dma=0&gcs=G111&gcd=13r3r3r3r5l1&npa=0&frm=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412527~120469145~120469153~121246026~121246034",
+            "first_seen_timestamp": 7.8451,
+            "request_count": 1
+          },
+          {
+            "vendor": "LinkedIn Insight",
+            "matched_url": "https://snap.licdn.com/li.lms-analytics/insight.min.js",
+            "first_seen_timestamp": 7.8484,
+            "request_count": 2
+          }
+        ]
+      },
+      "notes": "Descriptive detection only, per Rulebook Section C \u2014 not itself scored. Evidence base for CN-02, SB-03, and TR-02."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Analytics",
+        "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-YWQ5FX4GZX&cx=c&gtm=4e6al1"
+      },
+      "notes": "Google Analytics not named anywhere in policy."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Tag Manager",
+        "matched_url": "https://www.googletagmanager.com/gtm.js?id=GTM-K72NJ8"
+      },
+      "notes": "Google Tag Manager not named anywhere in policy."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Ads / DoubleClick",
+        "matched_url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-YWQ5FX4GZX&cid=2111697489.1792745190&gtm=45je6al1v873395768za20gzb71548379zd71548379xf1&rcb=14&aip=1&dma=0&gcs=G111&gcd=13r3r3r3r5l1&npa=0&frm=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412527~120469145~120469153~121246026~121246034"
+      },
+      "notes": "Google Ads / DoubleClick not named anywhere in policy."
+    },
+    {
+      "rule_id": "TR-02",
+      "category": "trackers",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "LinkedIn Insight",
+        "matched_url": "https://snap.licdn.com/li.lms-analytics/insight.min.js"
+      },
+      "notes": "LinkedIn Insight not named anywhere in policy."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Analytics",
+        "first_seen_timestamp": 1.4123,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Google Analytics script first observed before the Accept click."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Tag Manager",
+        "first_seen_timestamp": 0.4575,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Google Tag Manager script first observed before the Accept click."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Compliant",
+      "evidence": {
+        "vendor": "Google Ads / DoubleClick",
+        "first_seen_timestamp": 7.8451,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Google Ads / DoubleClick script first observed after the Accept click."
+    },
+    {
+      "rule_id": "SB-01",
+      "category": "script_behaviour",
+      "label": "Compliant",
+      "evidence": {
+        "vendor": "LinkedIn Insight",
+        "first_seen_timestamp": 7.8484,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "LinkedIn Insight script first observed after the Accept click."
+    },
+    {
+      "rule_id": "SB-02",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "non_essential_cookies_before_consent": [
+          "TS2a0f174f027",
+          "TS01f227f0"
+        ],
+        "note": "Script-to-cookie attribution not implemented \u2014 timing proxy only."
+      },
+      "notes": "Non-essential cookie(s) present before consent (causal script not individually identified)."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Analytics",
+        "matched_url": "https://www.googletagmanager.com/gtag/js?id=G-YWQ5FX4GZX&cx=c&gtm=4e6al1",
+        "first_seen_timestamp": 1.4123,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Request to Google Analytics occurred before the Accept click."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Non-Compliant",
+      "evidence": {
+        "vendor": "Google Tag Manager",
+        "matched_url": "https://www.googletagmanager.com/gtm.js?id=GTM-K72NJ8",
+        "first_seen_timestamp": 0.4575,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Request to Google Tag Manager occurred before the Accept click."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Compliant",
+      "evidence": {
+        "vendor": "Google Ads / DoubleClick",
+        "matched_url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-YWQ5FX4GZX&cid=2111697489.1792745190&gtm=45je6al1v873395768za20gzb71548379zd71548379xf1&rcb=14&aip=1&dma=0&gcs=G111&gcd=13r3r3r3r5l1&npa=0&frm=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412527~120469145~120469153~121246026~121246034",
+        "first_seen_timestamp": 7.8451,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Request to Google Ads / DoubleClick occurred after the Accept click."
+    },
+    {
+      "rule_id": "SB-03",
+      "category": "script_behaviour",
+      "label": "Compliant",
+      "evidence": {
+        "vendor": "LinkedIn Insight",
+        "matched_url": "https://snap.licdn.com/li.lms-analytics/insight.min.js",
+        "first_seen_timestamp": 7.8484,
+        "consent_click_timestamp": 7.6399
+      },
+      "notes": "Request to LinkedIn Insight occurred after the Accept click."
+    },
+    {
+      "rule_id": "SB-04",
+      "category": "script_behaviour",
+      "label": "Not Applicable",
+      "evidence": {},
+      "notes": "None of the six fixed fingerprinting-indicative APIs were called."
+    },
+    {
+      "rule_id": "PP-01",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "url": "https://www.mtn.ng/legal/privacy-and-data-protection-policy/"
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-02",
+      "category": "privacy_policy",
+      "label": "Compliant",
+      "evidence": {
+        "url": "https://www.mtn.ng/cookie-policy/",
+        "standalone": true
+      },
+      "notes": null
+    },
+    {
+      "rule_id": "PP-03",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No privacy-specific contact channel (email or DPO mention) found."
+    },
+    {
+      "rule_id": "PP-04",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No purpose statement found adjacent to a named data category (fixed adequacy bar)."
+    },
+    {
+      "rule_id": "PP-05",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {},
+      "notes": "No retention period or clear criterion found in policy text."
+    },
+    {
+      "rule_id": "PP-06",
+      "category": "privacy_policy",
+      "label": "Non-Compliant",
+      "evidence": {
+        "rights_found": [],
+        "found_count": 0,
+        "complaint_to_ndpc_disclosed": false
+      },
+      "notes": "Only 0/7 core rights terms found (threshold: 5)."
+    }
+  ]
+}

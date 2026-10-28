@@ -1,0 +1,812 @@
+# rulebook/rules.v2.yaml  (DRAFT, batch 1 of 3: Critical tier)
+meta:
+  version: "2.0.0-draft1"
+  frozen: false
+  outcomes: [compliant, non_compliant, not_applicable, unable_to_determine]
+  tier_weights: { critical: 3, major: 2, minor: 1 }
+  citation_status:
+    carried_v1: "From Rulebook v1; not re-checked against the Act text"
+    unverified: "New; must be verified against the Act/GAID text in Phase 1"
+
+definitions:
+  pre_consent: "t_ms < consent_click_ms in the same run. The No-action run has no click, so all of it is pre-consent."
+  item: "cookie, localStorage key, sessionStorage key or IndexedDB database (names and hashes only)"
+  non_essential: "Not strictly necessary (GAID Art 19(6)): not in the essential list or essential_overrides.yaml. Unclassified counts as non-essential."
+  tracker: "Third-party domain in the tracker blocklist (registrable domain plus its URL rules), category not in essential_overrides"
+  script_set: "Item set via document.cookie or a storage setter (stack trace), or via Set-Cookie on a response to a script-initiated request"
+  beacon: "Request to a tracker domain that is not a script/stylesheet/font load: resourceType xhr, fetch, ping or image, or method POST, or URL matches a curated collect path"
+
+rules:
+  - id: CN-02
+    name: Consent before non-essential cookies and storage
+    category: consent
+    tier: critical
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(2)-(3)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 18(1)", status: carried_v1 }
+    applies_when: "At least one non-essential item or tracker request is observed in any run (D-33)"
+    requires: [scan_not_blocked, no_action_run_ok]
+    decision:
+      non_compliant: "At least one non-essential item is created pre-consent in any run. A missing banner does not exempt the site (D-07)."
+      compliant: "Rule applies and no non-essential item is created pre-consent"
+      not_applicable: "No non-essential items or trackers in any run (D-33)"
+      unable_to_determine: "Scan blocked or No-action run failed"
+    instance_unit: item
+    evidence: [item_name, domain, item_type, t_ms, vendor, run]
+    edge_cases:
+      - "CMP placeholder or consent-state items are essential and never counted"
+    remediation:
+      fix: "Set the CMP to block non-essential tags until consent (prior-blocking mode). Remove any hard-coded analytics or ad tags from page templates."
+      clause: "GAID Art 19(2)-(3)"
+
+  - id: CN-08
+    name: Reject choice is honoured
+    category: consent
+    tier: critical
+    interpretive: true
+    legal:
+      - { ref: "GAID 2025 Art 19(2)-(3), 19(6)", status: unverified }
+    applies_when: "A reject control exists and was clicked in the Reject run"
+    requires: [scan_not_blocked, reject_clicked]
+    decision:
+      non_compliant: "After the reject click (t_ms >= consent_click_ms, including after reload), at least one non-essential item is created or one tracker beacon is sent"
+      compliant: "Reject clicked and none of the above"
+      not_applicable: "No banner, or no reject control exists (CN-03 handles it)"
+      unable_to_determine: "Reject control found but the click failed or was ambiguous, or the Reject run failed"
+    instance_unit: item_or_request
+    evidence: [item_or_request, domain, t_ms, vendor, diff_vs_no_action]
+    edge_cases:
+      - "Items created BEFORE the click belong to CN-02"
+      - "Pre-existing items that survive the reject are recorded as evidence only, not scored"
+    remediation:
+      fix: "Make the CMP reject action actually suppress or revoke all non-essential tags. Test by rejecting and checking cookies and network calls."
+      clause: "GAID Art 19(2)-(3), 19(6)"
+
+  - id: SB-01
+    name: Tracker script loaded before consent
+    category: script_behaviour
+    tier: critical
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(2)-(3)", status: carried_v1 }
+    applies_when: "Always"
+    requires: [scan_not_blocked, no_action_run_ok]
+    decision:
+      non_compliant: "At least one script request (resourceType script) to a tracker domain pre-consent in any run"
+      compliant: "No such request"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked or No-action run failed"
+    instance_unit: tracker_vendor
+    evidence: [script_url_host, vendor, category, t_ms, run]
+    edge_cases:
+      - "Resolves the v1 'loaded vs transmitting' question (D-12): loaded = SB-01, transmitting = SB-03"
+      - "A tag-manager loader counts as a tracker script (conservative). Revisit in the calibration pilot."
+    remediation:
+      fix: "Load tracker scripts only after consent: gate the tag in the tag manager or CMP on the matching consent category."
+      clause: "GAID Art 19(2)-(3)"
+
+  - id: SB-02
+    name: Script sets non-essential item before consent
+    category: script_behaviour
+    tier: critical
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(2)-(3)", status: carried_v1 }
+    applies_when: "At least one non-essential item is observed pre-consent (D-33)"
+    requires: [scan_not_blocked, attribution_available]
+    decision:
+      non_compliant: "At least one non-essential item pre-consent is script_set by an attributed script"
+      compliant: "Non-essential items exist but none is script_set (e.g. all set by server response headers, which CN-02 covers)"
+      not_applicable: "No non-essential items observed in any run (D-33)"
+      unable_to_determine: "Non-essential items exist but attribution is 'unattributed' for all of them"
+    instance_unit: script_origin
+    evidence: [item_name, setting_script_url, setter_type, t_ms, vendor]
+    edge_cases:
+      - "Differs from CN-02: CN-02 says an item exists, SB-02 names the script that set it"
+    remediation:
+      fix: "Remove or gate the named script until consent. If it is a CMP-managed tag, move it to the correct consent category."
+      clause: "GAID Art 19(2)-(3)"
+
+  - id: SB-03
+    name: Tracker beacon sent before consent
+    category: script_behaviour
+    tier: critical
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(8)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 26(2)(d)", status: carried_v1 }
+    applies_when: "Always"
+    requires: [scan_not_blocked, no_action_run_ok]
+    decision:
+      non_compliant: "At least one beacon (see definitions) to a tracker domain pre-consent in any run"
+      compliant: "No such request"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked or No-action run failed"
+    instance_unit: tracker_vendor
+    evidence:
+      [
+        request_host,
+        method,
+        resource_type,
+        payload_key_names,
+        payload_size,
+        identifier_bearing,
+        t_ms,
+      ]
+    edge_cases:
+      - "Never store raw bodies (D-22): key names, sizes and hashes only"
+      - "First-party CDN or infrastructure domains are not trackers"
+    remediation:
+      fix: "Stop the tag from firing before consent by gating it on consent. Confirm with a No-action run that no request leaves for the vendor."
+      clause: "GAID Art 19(8), 26(2)(d)"
+
+  - id: SB-04
+    name: Fingerprinting call plus transmission before consent
+    category: script_behaviour
+    tier: critical
+    interpretive: true
+    legal:
+      - { ref: "GAID 2025 Art 19(8)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 41", status: carried_v1 }
+    applies_when: "Always"
+    requires: [scan_not_blocked, instrumentation_active]
+    thresholds:
+      link_window_ms: 5000 # PROVISIONAL: finalise against the two fingerprint fixtures in Phase 2
+      api_list_version: "v1" # PROVISIONAL list, frozen before annotation
+      api_list:
+        - "HTMLCanvasElement.toDataURL / toBlob"
+        - "CanvasRenderingContext2D.getImageData"
+        - "WebGLRenderingContext.getParameter with UNMASKED_VENDOR/RENDERER_WEBGL"
+        - "OfflineAudioContext.startRendering / AnalyserNode.getFloatFrequencyData"
+        - "navigator.plugins / navigator.mimeTypes enumeration"
+        - "navigator.mediaDevices.enumerateDevices"
+    decision:
+      non_compliant: "A listed API is called pre-consent AND the same script (or its initiated request) sends a request to a third party within link_window_ms"
+      compliant: "No listed API call pre-consent"
+      not_applicable: "Listed API called but no outbound transmission linked to it (call alone is not tracking)"
+      unable_to_determine: "Instrumentation failed or scan blocked"
+    instance_unit: script_origin
+    evidence:
+      [api_name, calling_script_url, linked_request_host, delta_ms, t_ms]
+    edge_cases:
+      - "The API list is fixed in advance and never expanded per site"
+    remediation:
+      fix: "Remove the fingerprinting script or load it only after consent. If it is a fraud-prevention vendor, disclose it and gate it behind a legitimate-interest assessment."
+      clause: "GAID Art 19(8), Art 41"
+
+  - id: PP-08
+    name: Policy does not contradict observed behaviour
+    category: privacy_policy
+    tier: critical
+    interpretive: true
+    legal:
+      - {
+          ref: "NDPA 2023 s.24 fairness/transparency principle",
+          status: unverified,
+        }
+      - { ref: "GAID 2025 Art 41-42", status: unverified }
+    applies_when: "Policy text is available and contains at least one matched negative claim"
+    requires: [scan_not_blocked, policy_text_available]
+    claim_patterns: # fixed and pre-registered; spaCy Matcher; no LLM in the score
+      PC-1: "we do not use cookies"
+      PC-2: "we do not use advertising / marketing / tracking cookies or trackers"
+      PC-3: "we do not share / sell / disclose your data with third parties"
+    contradicted_by:
+      PC-1: "any cookie set in any run"
+      PC-2: "tracker with an advertising/marketing category, or an advertising cookie, in any run"
+      PC-3: "tracker beacon with identifier_bearing = true in any run"
+    decision:
+      non_compliant: "A matched claim is contradicted by its observation"
+      compliant: "At least one claim matched and none contradicted"
+      not_applicable: "Policy exhaustively absent, or it makes no matched negative claim"
+      unable_to_determine: "Policy discovery uncertain (block, timeout, JS-rendered), or text unreadable"
+    instance_unit: claim
+    evidence: [claim_type, quote_short, observed_item_or_request, run]
+    remediation:
+      fix: "Correct the policy to describe the cookies and trackers actually used, or remove the tracker so the statement is true."
+      clause: "NDPA s.24 / GAID Art 41-42 (to be verified)"
+  # ---------- BATCH 2: MAJOR TIER (append below PP-08) ----------
+  - id: CN-01
+    name: Consent banner present and conspicuous
+    category: consent
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 7(l)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 19(4), 19(7)(a)", status: carried_v1 }
+    applies_when: "At least one non-essential item or tracker request in any run (D-33)"
+    requires: [scan_not_blocked, no_action_run_ok]
+    thresholds: # PROVISIONAL: confirm in the calibration pilot
+      banner_visible_by_ms: 5000 # in viewport, no scroll or click, within this time after load
+      bottom_band_start: 0.66 # banner top edge at or below 66% of viewport height = bottom-placed
+    decision:
+      non_compliant: "No banner visible in the No-action run by the time limit, OR the banner is bottom-placed"
+      compliant: "Banner visible in time and not bottom-placed"
+      not_applicable: "No non-essential items or trackers in any run (D-33)"
+      unable_to_determine: "Scan blocked, or banner container found but its position cannot be measured"
+    instance_unit: site
+    evidence: [screenshot, banner_bbox, viewport, visible_at_ms]
+    edge_cases:
+      - "Banner appearing only after scroll or click is non-compliant (Art 19(7)(a))"
+      - "Desktop viewport is scored; the mobile pass is annotated for CN-01 only (D-18)"
+    remediation:
+      fix: "Show the banner on first paint, centred or at the left or right edge, never as a bottom strip. Check the CMP banner position setting."
+      clause: "GAID Art 7(l), 19(4), 19(7)(a)"
+
+  - id: CN-03
+    name: Reject option available
+    category: consent
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(6)", status: carried_v1 }
+    applies_when: "At least one non-essential item or tracker request in any run (D-33)"
+    requires: [scan_not_blocked, no_action_run_ok]
+    thresholds:
+      reject_lexicon:
+        [
+          "reject",
+          "decline",
+          "deny",
+          "refuse",
+          "necessary only",
+          "only necessary",
+          "essential only",
+        ]
+      max_panel_clicks: 1 # one click into a preferences panel opened from the banner
+    decision:
+      non_compliant: "Banner present but no reject control at the first layer or one panel click away"
+      compliant: "Reject control found within the banner flow"
+      not_applicable: "No non-essential items or trackers in any run (D-33)"
+      unable_to_determine: "Scan blocked, or controls unreadable (shadow DOM or iframe)"
+    on_no_banner: "Non-Compliant, tagged 'root cause: CN-01' (no banner means no reject option)"
+    instance_unit: site
+    evidence: [screenshot, control_label, panel_clicks]
+    edge_cases:
+      - "Reject inside the banner flow passes here; how easy it is gets scored in CN-04"
+    remediation:
+      fix: "Add a Reject (or Decline) button at the first layer of the banner, with the same step count as Accept."
+      clause: "GAID Art 19(6)"
+
+  - id: CN-04
+    name: Reject as easy as Accept
+    category: consent
+    tier: major
+    interpretive: true
+    legal:
+      - { ref: "GAID 2025 Art 17(7)(b) by analogy", status: carried_v1 }
+      - { ref: "NDPA 2023 s.36", status: carried_v1 }
+      - { ref: "GAID 2025 Art 19(3), 41-42", status: carried_v1 }
+    applies_when: "A banner with both an accept and a reject control exists"
+    requires: [scan_not_blocked, controls_measurable]
+    thresholds: # PROVISIONAL (D-14), frozen before annotation
+      area_ratio_min: 0.5 # reject button area / accept button area
+      reject_contrast_min: 3.0 # WCAG contrast of reject label against its own background
+      max_extra_clicks: 0 # reject may not need more clicks than accept
+    decision:
+      non_compliant: "ANY of: reject needs more clicks than accept; area ratio below minimum; reject contrast below minimum; accept is a filled button while reject is plain text"
+      compliant: "None of the four conditions"
+      not_applicable: "No banner, or no reject control (CN-03 covers it)"
+      unable_to_determine: "Scan blocked, or controls not measurable"
+    instance_unit: site
+    evidence:
+      [
+        click_depth_accept,
+        click_depth_reject,
+        area_ratio,
+        reject_contrast,
+        fill_style_accept,
+        fill_style_reject,
+        screenshot,
+      ]
+    edge_cases:
+      - "Click depth = clicks from the first layer to finish the action, including any 'Save' click"
+      - "Interpretive extension: must be stated in the methodology chapter"
+    remediation:
+      fix: "Give Reject the same style, size and click count as Accept (filled button, same size, one click)."
+      clause: "GAID Art 19(3), 17(7)(b) by analogy"
+
+  - id: CN-07
+    name: Consent can be withdrawn in-site
+    category: consent
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.35", status: carried_v1 }
+      - { ref: "GAID 2025 Art 17(7)(b), 19(7)(e)", status: carried_v1 }
+    applies_when: "At least one non-essential item or tracker request in any run (D-33)"
+    requires: [scan_not_blocked, accept_run_ok]
+    thresholds:
+      reopen_lexicon:
+        [
+          "cookie settings",
+          "cookie preferences",
+          "manage cookies",
+          "privacy settings",
+          "consent settings",
+          "manage consent",
+          "your privacy choices",
+        ]
+      also_accept: "A floating reopen widget listed in cmp_signatures.yaml"
+    decision:
+      non_compliant: "After consent and reload, no in-site control from the lexicon or CMP widget list is found"
+      compliant: "Such a control is found"
+      not_applicable: "No non-essential items or trackers in any run (D-33)"
+      unable_to_determine: "Scan blocked or Accept run failed"
+    on_no_banner: "Non-Compliant, tagged 'root cause: CN-01'"
+    instance_unit: site
+    evidence: [control_label, location, screenshot, click_path]
+    edge_cases:
+      - "Clearing browser cookies manually is not a mechanism (v1 rule)"
+    remediation:
+      fix: "Add a persistent 'Cookie settings' link in the footer or enable the CMP's floating reopen button."
+      clause: "NDPA s.35; GAID Art 17(7)(b), 19(7)(e)"
+
+  - id: CK-05
+    name: Third-party cookie recipient disclosed
+    category: cookies
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(7)(d), 27(3)", status: carried_v1 }
+    applies_when: "At least one third-party cookie (registrable domain differs from the site's) in any run"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds:
+      match: "Cookie owner name (from vendors.yaml or blocklist owner) or its registrable domain appears in the policy text, case-insensitive"
+    decision:
+      non_compliant: "At least one third-party cookie whose owner is not named in the policy"
+      compliant: "Every third-party cookie owner is named"
+      not_applicable: "No third-party cookies in any run"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: cookie_owner
+    evidence: [cookie_name, cookie_domain, owner, matched_text_or_none]
+    edge_cases:
+      - "A domain owned by the site's own organisation (per vendors.yaml) is not third-party"
+    remediation:
+      fix: "Name each third-party cookie provider and its purpose in the cookie policy, or remove the cookie."
+      clause: "GAID Art 19(7)(d), 27(3)"
+
+  - id: TR-02
+    name: Tracker disclosed in policy
+    category: trackers
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(7)(c)-(d)", status: carried_v1 }
+    applies_when: "At least one tracker detected in any run"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds:
+      match: "Vendor or owner name, or the tracker's registrable domain, appears in the policy text. A generic phrase such as 'we use analytics' does NOT count (decided in advance)."
+    decision:
+      non_compliant: "At least one detected tracker not named in the policy"
+      compliant: "Every detected tracker is named"
+      not_applicable: "No trackers in any run"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: tracker_vendor
+    evidence: [vendor, domain, category, matched_text_or_none]
+    remediation:
+      fix: "List every tracking vendor by name with its purpose in the cookie policy, or remove the tracker."
+      clause: "GAID Art 19(7)(c)-(d)"
+
+  - id: PP-01
+    name: Privacy policy reachable within two clicks
+    category: privacy_policy
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 7(j)-(k)", status: carried_v1 }
+      - { ref: "NDPA 2023 s.27", status: carried_v1 }
+    applies_when: "Always"
+    requires: [scan_not_blocked]
+    thresholds:
+      max_clicks: 2
+      min_text_chars: 500 # shorter pages are treated as placeholders
+      link_keywords:
+        [
+          "privacy policy",
+          "privacy notice",
+          "privacy",
+          "data protection",
+          "ndpa",
+        ]
+      common_paths:
+        [
+          "/privacy",
+          "/privacy-policy",
+          "/privacy-notice",
+          "/data-protection",
+          "/legal/privacy",
+          "/cookie-policy",
+        ]
+    discovery_status:
+      found_linked: "Reached by links within two clicks of the homepage"
+      found_unlinked: "Found only by common-path probing"
+      exhaustive_negative: "Homepage, depth-2 links and all common paths done with no policy, no block, no timeout"
+      uncertain: "Block, timeout or JS-rendered page with too little text"
+    decision:
+      non_compliant: "found_unlinked or exhaustive_negative"
+      compliant: "found_linked"
+      not_applicable: "never"
+      unable_to_determine: "uncertain, or scan blocked"
+    instance_unit: site
+    evidence: [policy_url, click_path, discovery_status, screenshot]
+    edge_cases:
+      - "A policy inside the Terms page counts as present if it has its own heading containing 'privacy' or 'data protection' (decided in advance)"
+      - "found_unlinked still supplies policy text for PP-02, 04, 06 and PP-08"
+    remediation:
+      fix: "Add a 'Privacy Policy' link to the footer of every page, with a working URL."
+      clause: "GAID Art 7(j)-(k); NDPA s.27"
+
+  - id: PP-02
+    name: Cookie policy present
+    category: privacy_policy
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(7)(b)-(c)", status: carried_v1 }
+    applies_when: "A policy was found, or exhaustively not found"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds:
+      min_section_chars: 200 # PROVISIONAL
+    decision:
+      non_compliant: "No standalone cookie page, and no heading containing 'cookie' with a section of at least min_section_chars"
+      compliant: "Standalone cookie page, or a headed cookie section of sufficient length"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: site
+    evidence: [url_or_heading, standalone_or_embedded, section_length]
+    edge_cases:
+      - "A passing mention of 'cookies' in a sentence, with no heading, does not count"
+    remediation:
+      fix: "Publish a cookie policy, or add a headed 'Cookies' section to the privacy policy covering what is set, why, and for how long."
+      clause: "GAID Art 19(7)(b)-(c)"
+
+  - id: PP-04
+    name: Purpose of collection disclosed
+    category: privacy_policy
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.27", status: carried_v1 }
+      - { ref: "GAID 2025 Art 27(3)(d)", status: carried_v1 }
+    applies_when: "A policy was found, or exhaustively not found"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds: # minimum bar fixed in advance; lexicons finalised in Phase 2 and frozen before annotation
+      min_bar: "At least one sentence naming a data category AND a specific use"
+      vague_only_does_not_count:
+        [
+          "to improve our services",
+          "for business purposes",
+          "for other purposes",
+        ]
+    decision:
+      non_compliant: "No sentence meets the minimum bar"
+      compliant: "At least one sentence meets the minimum bar"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: site
+    evidence: [quote_short, data_category, stated_use]
+    remediation:
+      fix: "For each type of data you collect, state the specific reason, e.g. 'email address: to send order confirmations'."
+      clause: "NDPA s.27; GAID Art 27(3)(d)"
+
+  - id: PP-06
+    name: Data subject rights disclosed
+    category: privacy_policy
+    tier: major
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.34", status: carried_v1 }
+      - { ref: "GAID 2025 Art 27(3)(h)", status: carried_v1 }
+    applies_when: "A policy was found, or exhaustively not found"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds: # methodological, not statutory; confirm against the s.34 list during citation verification
+      core_rights:
+        [access, rectification, erasure, restriction, portability, objection]
+      min_rights: 4
+    decision:
+      non_compliant: "Fewer than min_rights of the core rights are disclosed"
+      compliant: "At least min_rights disclosed"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: site
+    evidence: [rights_found, rights_missing, ndpc_complaint_mentioned]
+    edge_cases:
+      - "Missing right to complain to the NDPC is a sub-finding, recorded but not scored"
+    remediation:
+      fix: "Add a 'Your rights' section listing access, correction, deletion, restriction, portability and objection, plus how to complain to the NDPC."
+      clause: "NDPA s.34; GAID Art 27(3)(h)"
+  # ---------- BATCH 3: MINOR TIER + TR-01 (append below PP-06) ----------
+  - id: CK-01
+    name: Secure attribute on cookies
+    category: cookies
+    tier: minor
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.24(1)(f)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 29(2)", status: carried_v1 }
+      - { ref: "RFC 6265 s.4.1.2.5", status: carried_v1 }
+    applies_when: "Site served over HTTPS and at least one non-exempt cookie in any run"
+    requires: [scan_not_blocked]
+    thresholds:
+      exempt_names: "config/essential_cookies.json exempt list, fixed before annotation"
+    decision:
+      non_compliant: "At least one non-exempt cookie set without Secure"
+      compliant: "All non-exempt cookies have Secure"
+      not_applicable: "HTTP-only site, or no non-exempt cookies"
+      unable_to_determine: "Scan blocked"
+    instance_unit: cookie
+    evidence: [cookie_name, domain, secure, samesite, expires]
+    remediation:
+      fix: "Set the Secure attribute on the cookie in the server or framework cookie settings."
+      clause: "NDPA s.24(1)(f); GAID Art 29(2)"
+
+  - id: CK-02
+    name: HttpOnly on session and authentication cookies
+    category: cookies
+    tier: minor
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.24(1)(f)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 29(2)", status: carried_v1 }
+      - { ref: "RFC 6265 s.4.1.2.6", status: carried_v1 }
+    applies_when: "At least one cookie whose name matches session_name_patterns"
+    requires: [scan_not_blocked]
+    thresholds: # PROVISIONAL: pattern list frozen before annotation
+      session_name_patterns:
+        [
+          "sessionid",
+          "sid",
+          "phpsessid",
+          "jsessionid",
+          "asp.net_sessionid",
+          "session",
+          "auth",
+          "token",
+          "jwt",
+        ]
+      js_readable_exempt: "Names listed in cmp_signatures.yaml as CMP state flags"
+    decision:
+      non_compliant: "A session or auth cookie lacks HttpOnly"
+      compliant: "All matching cookies have HttpOnly"
+      not_applicable: "No matching cookies, or all are CMP-flag exempt"
+      unable_to_determine: "Scan blocked"
+    instance_unit: cookie
+    evidence: [cookie_name, domain, httponly]
+    remediation:
+      fix: "Set HttpOnly on session and authentication cookies so scripts cannot read them."
+      clause: "NDPA s.24(1)(f); GAID Art 29(2)"
+
+  - id: CK-03
+    name: SameSite attribute
+    category: cookies
+    tier: minor
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.24(1)(f)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 29(2)", status: carried_v1 }
+      - { ref: "RFC 6265bis", status: carried_v1 }
+    applies_when: "At least one cookie in any run"
+    requires: [scan_not_blocked]
+    decision:
+      non_compliant: "SameSite=None without Secure, OR SameSite absent on a third-party tracking cookie"
+      compliant: "No cookie meets either failing condition"
+      not_applicable: "No cookies"
+      unable_to_determine: "Scan blocked"
+    instance_unit: cookie
+    evidence: [cookie_name, domain, samesite, secure, third_party]
+    edge_cases:
+      - "Record 'absent' as absent; never assume the browser default of Lax"
+    remediation:
+      fix: "Set SameSite=Lax or Strict. Use None only with Secure and a documented cross-site purpose."
+      clause: "NDPA s.24(1)(f); GAID Art 29(2)"
+
+  - id: CK-04
+    name: Persistent cookie lifespan proportionate
+    category: cookies
+    tier: minor
+    interpretive: true
+    legal:
+      - { ref: "NDPA 2023 s.24(1)(d)", status: carried_v1 }
+      - { ref: "GAID 2025 Art 49(3) as reference point", status: carried_v1 }
+    applies_when: "At least one persistent cookie in any run"
+    requires: [scan_not_blocked]
+    thresholds: # methodological, not statutory (D-15)
+      max_days: 183
+      justification: "Cookie name appears in the policy in a sentence that also states a duration"
+    decision:
+      non_compliant: "A persistent cookie exceeds max_days and has no justification in the policy (a policy exhaustively absent counts as no justification)"
+      compliant: "No persistent cookie exceeds max_days, or each one that does is justified"
+      not_applicable: "No persistent cookies"
+      unable_to_determine: "Scan blocked, or a cookie exceeds max_days while policy status is uncertain"
+    instance_unit: cookie
+    evidence: [cookie_name, lifespan_days, matched_text_or_none]
+    edge_cases:
+      - "Threshold stated in the methodology chapter as a researcher choice, applied uniformly"
+    remediation:
+      fix: "Shorten the cookie lifetime to 6 months or less, or state its retention period in the cookie policy."
+      clause: "NDPA s.24(1)(d); GAID Art 49(3)"
+
+  - id: CN-05
+    name: Granular consent choice
+    category: consent
+    tier: minor
+    interpretive: true
+    legal:
+      - { ref: "GAID 2025 Art 19(3) ('specific')", status: carried_v1 }
+    applies_when: "A banner exists and at least 2 non-essential categories are observed (analytics, advertising, other)"
+    requires: [scan_not_blocked, no_action_run_ok]
+    decision:
+      non_compliant: "No category-level toggles at the first layer or one panel click away"
+      compliant: "Category-level toggles found"
+      not_applicable: "No banner, or fewer than 2 non-essential categories"
+      unable_to_determine: "Scan blocked, or controls unreadable"
+    instance_unit: site
+    evidence: [screenshot, toggles_found, categories_observed]
+    remediation:
+      fix: "Enable category toggles (analytics, marketing) in the CMP, off by default."
+      clause: "GAID Art 19(3)"
+
+  - id: CN-06
+    name: Consent choice is recorded
+    category: consent
+    tier: minor
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 17(6)", status: carried_v1 }
+    applies_when: "At least one non-essential item or tracker request in any run (D-33)"
+    requires: [scan_not_blocked, accept_run_ok]
+    thresholds: # PROVISIONAL
+      record_window_ms: 2000
+    decision:
+      non_compliant: "After Accept and reload, the banner reappears or no new persistent item or CMP logging request appears within record_window_ms of the click"
+      compliant: "Banner does not reappear and a persistent item or CMP logging request appears"
+      not_applicable: "No non-essential items or trackers in any run (D-33)"
+      unable_to_determine: "Scan blocked or Accept run failed"
+    on_no_banner: "Non-Compliant, tagged 'root cause: CN-01'"
+    instance_unit: site
+    evidence: [item_or_request, t_ms, banner_after_reload]
+    edge_cases:
+      - "Only client-observable evidence. Reports say 'no observable record', never 'no record kept'."
+    remediation:
+      fix: "Make the CMP store the consent choice (cookie or storage key) and log it to its endpoint."
+      clause: "GAID Art 17(6)"
+
+  - id: PP-03
+    name: Privacy contact provided
+    category: privacy_policy
+    tier: minor
+    interpretive: false
+    legal:
+      - { ref: "NDPA 2023 s.27", status: carried_v1 }
+      - { ref: "GAID 2025 Art 11-12, 27(3)(i)", status: carried_v1 }
+    applies_when: "A policy was found, or exhaustively not found"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds:
+      match: "An email address or contact form link within 200 characters of 'privacy', 'data protection', 'DPO' or 'data subject'. A general 'Contact us' alone does not count."
+    decision:
+      non_compliant: "No match"
+      compliant: "Match found"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: site
+    evidence: [contact_type, quote_short]
+    remediation:
+      fix: "Add a privacy contact (e.g. dpo@yourdomain) to the policy, labelled for data protection queries."
+      clause: "NDPA s.27; GAID Art 11-12, 27(3)(i)"
+
+  - id: PP-05
+    name: Retention period or criterion disclosed
+    category: privacy_policy
+    tier: minor
+    interpretive: false
+    legal:
+      - {
+          ref: "NDPA 2023 s.27 (basis UNVERIFIED against the Act text)",
+          status: unverified,
+        }
+      - { ref: "GAID 2025 Art 49(3) as benchmark", status: carried_v1 }
+    applies_when: "A policy was found, or exhaustively not found"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds:
+      match: "A retention word (retain, retention, keep, stored) within one sentence of a duration (number plus time unit) or an end-trigger ('until you withdraw', 'for the duration of your account')"
+    decision:
+      non_compliant: "No match"
+      compliant: "Match found"
+      not_applicable: "never"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: site
+    evidence: [quote_short, duration_or_trigger]
+    remediation:
+      fix: "State how long each data category is kept, or the event that ends retention."
+      clause: "NDPA s.27 (to be verified); GAID Art 49(3)"
+
+  - id: PP-07
+    name: International transfer disclosed
+    category: privacy_policy
+    tier: minor
+    interpretive: true
+    legal:
+      - { ref: "NDPA 2023 ss.41-43", status: unverified }
+      - { ref: "GAID 2025 Art 45 / Schedule 5", status: unverified }
+    applies_when: "At least one identifier-bearing beacon to a recipient whose vendor legal home (evidence tier 1) is outside Nigeria"
+    requires: [scan_not_blocked, policy_text_available]
+    on_policy_missing:
+      exhaustive_negative: "Non-Compliant, tagged 'root cause: PP-01'"
+      uncertain: "Unable to Determine"
+    thresholds:
+      match: "Policy contains one of: 'outside Nigeria', 'other countries', 'international transfer', 'cross-border', 'overseas', 'transfer ... abroad'"
+    decision:
+      non_compliant: "Applies and no match"
+      compliant: "Applies and match found"
+      not_applicable: "No such recipient (IP country and hostname hints alone never trigger this rule)"
+      unable_to_determine: "Scan blocked, or policy status is uncertain"
+    instance_unit: recipient
+    evidence:
+      [
+        recipient_domain,
+        vendor,
+        vendor_country,
+        identifier_bearing,
+        ip_country_supporting,
+      ]
+    edge_cases:
+      - "Anycast recipients are flagged and cannot trigger the rule on IP evidence"
+    remediation:
+      fix: "State that data is transferred outside Nigeria, to which countries or vendors, and the safeguard used."
+      clause: "NDPA ss.41-43 (to be verified)"
+
+  - id: TR-01
+    name: Known tracking technologies present (descriptive)
+    category: trackers
+    tier: unscored
+    interpretive: false
+    legal:
+      - { ref: "GAID 2025 Art 19(8)", status: carried_v1 }
+    applies_when: "Always"
+    decision:
+      outcome: "Never scored. Produces the tracker list that feeds SB-01, SB-03, TR-02, CN-02 and PP-08."
+    evidence: [vendor, domain, category, first_seen_ms, run]
+    edge_cases:
+      - "Trackers missing from the frozen blocklist version are a stated limit, not a claim of exhaustive detection"
+
+# ---------- Top-level blocks (new keys, column 0) ----------
+scoring:
+  expected_total_weight: 50
+  formula: "sum(w_i * c_i) / sum(w_i) * 100 over rules with outcome compliant or non_compliant"
+  risk_band:
+    high: "Any critical rule non_compliant"
+    moderate: "No critical failure, at least one major rule non_compliant"
+    low: "Only minor failures, or none"
+  coverage:
+    definition: "determined weight / 50 (not_applicable counts as determined; unable_to_determine does not)"
+    hide_score_below: 0.70
+  blocked: "Scan status 'blocked' gives no score and no rule outcomes"
+  category_axes: [cookies, consent, trackers, script_behaviour, privacy_policy]
+  empty_category: "No applicable rule: plot at 100, hollow marker, label 'Nothing to assess'"
+
+registries:
+  essential_candidate_categories: ["Content Delivery"] # PROVISIONAL: finalise from the tds.json category list in Phase 2
+  unclassified_tracker: "non-essential, shown as such"

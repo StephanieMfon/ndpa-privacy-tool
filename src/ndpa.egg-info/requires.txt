@@ -1,0 +1,8 @@
+pydantic>=2
+pyyaml
+tldextract
+playwright
+
+[dev]
+pytest
+ruff

@@ -1,0 +1,44 @@
+version: "draft1"
+note: >
+  Starter list for register R1. Names are from general knowledge of common
+  CMPs and infrastructure and must be confirmed in the pilot. Match names
+  case-insensitively; * means any characters. A cookie not matched here is
+  non-necessary unless its documented purpose shows otherwise (then flag
+  'purpose unknown'). A session cookie on a homepage, before login, is
+  Necessary. If a cookie on a banking or health site holds financial or
+  sensitive data (GAID Art 19(5)), tell the researcher.
+patterns:
+  consent_state:
+    - OptanonConsent
+    - OptanonAlertBoxClosed
+    - CookieConsent
+    - CookieScriptConsent
+    - cookieyes-consent
+    - cmplz_*
+    - borlabs-cookie
+    - moove_gdpr_popup
+    - cookie_notice_accepted
+    - viewed_cookie_policy
+    - euconsent-v2
+  security:
+    - __cf_bm
+    - cf_clearance
+    - csrftoken
+    - XSRF-TOKEN
+    - _csrf
+    - incap_ses_*
+    - visid_incap_*
+    - nlbi_*
+    - ak_bmsc
+    - bm_sz
+  load_balancing:
+    - AWSALB
+    - AWSALBCORS
+    - BIGipServer*
+    - SERVERID
+    - ARRAffinity
+    - ARRAffinitySameSite
+  session:
+    - PHPSESSID
+    - JSESSIONID
+    - ASP.NET_SessionId

@@ -1,0 +1,1002 @@
+domain,owner,categories,default,fingerprinting,prevalence,has_url_rules
+1rx.io,RhythmOne,Ad Fraud; Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,ignore,0,0.0546,yes
+2020mustang.com,ICF,no-category,ignore,2,4.11e-05,yes
+2mdn.net,Google,Ad Fraud; Ad Motivated Tracking; Advertising,block,1,0.0616,yes
+33across.com,33Across,Action Pixels; Ad Motivated Tracking; Advertising; Analytics,block,1,0.0686,no
+360yield.com,Improve Digital,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.0467,no
+3lift.com,TripleLift,Ad Motivated Tracking; Advertising,block,1,0.0752,no
+4dex.io,Adagio,no-category,block,1,0.0152,no
+4dsply.com,AdSupply,no-category,ignore,3,0.000308,yes
+64ce7c22c5.com,64ce7c22c5.com,no-category,ignore,3,0.00112,yes
+6sc.co,6 Sense Insights,no-category,ignore,1,0.00208,yes
+9gtb.com,9gtb.com,no-category,ignore,1,0.00523,yes
+a-mo.net,Monet Engine,no-category,block,0,0.0474,no
+a-mx.com,Monet Engine,no-category,ignore,0,0.0266,yes
+abtasty.com,AB Tasty,Analytics; Session Replay; Third-Party Analytics Marketing,block,3,0.00342,no
+acint.net,Poshibalov Evgeny Vasilyevich,no-category,ignore,2,0.000692,yes
+acsbapp.com,accessiBe,no-category,block,2,0.00997,no
+acscdn.com,acscdn.com,no-category,ignore,3,0.00109,yes
+acuityplatform.com,AcuityAds,Ad Motivated Tracking; Advertising,block,0,0.00769,no
+ad-company.example,Ad Company Example,no-category,block,2,0.1,no
+ad-company.site,Ad Company,no-category,block,2,0.1,no
+ad-delivery.net,easyAd Deutschland GmbH,no-category,ignore,0,0.0236,yes
+ad-score.com,Adscore,no-category,ignore,3,0.00237,yes
+ad.gt,Audigent,no-category,block,1,0.0235,no
+adalyser.com,OneSoon,no-category,ignore,1,0.000329,yes
+adapf.com,Maverick,no-category,ignore,1,4.11e-05,yes
+adara.com,Adara,no-category,ignore,1,0.000445,yes
+addtoany.com,AddToAny,Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Social - Share; Third-Party Analytics Marketing,block,1,0.0101,yes
+adelixir.com,NetElixir,no-category,ignore,2,0.000158,yes
+adentifi.com,AdTheorent,Ad Fraud; Ad Motivated Tracking; Advertising,block,0,0.0242,no
+adform.net,Adform,Ad Fraud; Ad Motivated Tracking; Advertising; Audience Measurement,block,2,0.06,no
+adgrx.com,AdGear,Ad Fraud; Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,0,0.00705,no
+adhese.com,Doggybites bvba,no-category,ignore,2,0.000233,yes
+adhigh.net,GetIntent,Ad Motivated Tracking; Advertising,ignore,1,0.00103,yes
+adition.com,Virtual Minds,Ad Motivated Tracking; Advertising,block,1,0.00618,no
+aditude.cloud,aditude.cloud,no-category,block,1,0.00323,no
+aditude.io,aditude.io,no-category,block,3,0.00409,no
+adkernel.com,Adkernel,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,0,0.0348,no
+adlightning.com,Ad Lightning,Ad Motivated Tracking; Advertising,block,3,0.00427,no
+adlooxtracking.com,Adloox,no-category,ignore,1,0.00227,yes
+admanmedia.com,ADman Media,no-category,block,0,0.0453,no
+admaster.cc,admaster.cc,no-category,block,0,0.00509,no
+admatrix.jp,fullspeed,no-category,ignore,1,4.11e-05,yes
+admd.ink,admd.ink,no-category,ignore,3,0.00103,yes
+admedo.com,Admedo,Ad Motivated Tracking; Advertising,ignore,3,0.000144,yes
+admin.ch,Bundesamt für Informatik und Telekommunikation BIT,no-category,ignore,2,0.00171,yes
+admixer.net,Admixer,Ad Motivated Tracking; Advertising,ignore,2,0.00112,yes
+adnami.io,Adnami,no-category,block,2,0.00252,yes
+adnxs.com,Microsoft,Ad Motivated Tracking; Advertising,block,1,0.146,yes
+adobedc.net,Adobe,no-category,block,0,0.00696,yes
+adobedtm.com,Adobe,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Tag Manager; Third-Party Analytics Marketing,block,3,0.0259,yes
+adocean.pl,Gemius,no-category,ignore,2,0.000363,yes
+adotmob.com,A.Mob,Ad Motivated Tracking; Advertising,ignore,0,0.00427,yes
+adpone.com,Adpone,no-category,ignore,3,0.000144,yes
+adpushup.com,CacheNetworks,no-category,ignore,3,0.00103,yes
+adroll.com,AdRoll,Ad Motivated Tracking; Advertising,block,1,0.0168,no
+ads-twitter.com,Twitter,Action Pixels; Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,ignore,3,0.023,yes
+adsafeprotected.com,Integral Ad Science,Ad Fraud; Ad Motivated Tracking; Advertising,block,3,0.017,yes
+adsco.re,Adscore,Ad Fraud; Ad Motivated Tracking; Analytics; Audience Measurement,block,3,0.00253,no
+adspeed.net,ADSPEED.COM,no-category,ignore,3,0.000137,yes
+adsrvr.org,The Trade Desk,Ad Motivated Tracking; Advertising,block,1,0.145,no
+adtarget.biz,adtarget.biz,no-category,block,0,0.00314,no
+adtarget.com.tr,AdTarget Medya A.Ş.,no-category,block,0,0.00447,no
+adtelligent.com,Adtelligent,no-category,block,1,0.0057,no
+adthrive.com,AdThrive,Advertising,block,2,0.0233,no
+adtng.com,Aylo,no-category,ignore,3,0.000911,yes
+adtrafficquality.google,Google,no-category,block,2,0.136,no
+adultfriendfinder.com,FriendFinder Networks,no-category,ignore,1,9.59e-05,yes
+adventive.com,Adventive,no-category,ignore,2,0.000199,yes
+advolve.io,advolve.io,no-category,ignore,0,0.0101,yes
+adyen.com,Adyen,no-category,ignore,3,0.000356,yes
+aegpresents.com,Anschutz Entertainment Group,no-category,ignore,2,0.00011,yes
+affirm.com,Affirm,no-category,ignore,2,0.00414,yes
+agilone.com,Agilone,no-category,ignore,1,0.000171,yes
+agkn.com,TransUnion,Ad Motivated Tracking; Advertising,block,0,0.0347,no
+agoda.com,Booking Holdings,no-category,ignore,1,5.48e-05,yes
+ahrefs.com,Ahrefs,no-category,block,2,0.0112,no
+aidata.io,Aidata,Ad Motivated Tracking; Analytics; Audience Measurement; Third-Party Analytics Marketing,ignore,3,0.000685,yes
+aimbase.com,Avala Marketing Group,no-category,ignore,1,0.000192,yes
+akstat.io,Akamai,no-category,ignore,0,0.01,no
+albacross.com,Albacross Nordic,no-category,ignore,2,8.22e-05,yes
+alcmpn.com,ALC,Ad Motivated Tracking; Analytics; Audience Measurement,ignore,1,0.00087,yes
+alia-prod.com,alia-prod.com,no-category,ignore,2,0.00249,yes
+alicdn.com,Alibaba,Content Delivery,ignore,3,0.000712,yes
+alocdn.com,TowerData,no-category,block,1,0.00638,no
+amazon-adsystem.com,Amazon.com,Ad Motivated Tracking; Advertising,block,2,0.107,yes
+amazon.com,Amazon.com,Ad Motivated Tracking; Analytics; Embedded Content; Online Payment; SSO; Third-Party Analytics Marketing,ignore,3,0.000877,yes
+amplitude.com,Amplitude,Analytics,block,2,0.00909,no
+ampproject.org,Google,Advertising; Content Delivery,ignore,3,0.00347,yes
+amspbs.com,amspbs.com,no-category,block,0,0.00266,no
+amx1.net,amx1.net,no-category,block,0,0.00572,no
+amxrtb.com,Monet Engine,no-category,ignore,1,0.0193,yes
+analytics-egain.com,eGain,Support Chat Widget,ignore,2,0.000164,no
+aniview.com,ANIVIEW,no-category,block,2,0.0155,no
+anonm.io,anonm.io,no-category,ignore,1,0.00357,yes
+anonymised.io,anonymised.io,no-category,block,2,0.00414,no
+anymind360.com,AnyMind,no-category,ignore,2,0.000842,yes
+anyrtb.com,anyrtb.com,no-category,ignore,0,0.0111,yes
+ap-southeast-2.amazonaws.com,Amazon.com,Content Delivery,ignore,2,0.00814,yes
+api.no,Amedia Utvikling,no-category,ignore,2,0.00513,yes
+apicit.net,KLOIS,no-category,ignore,1,0.000302,yes
+app-us1.com,ActiveCampaign,no-category,block,1,0.00361,no
+appboycdn.com,Braze,no-category,block,2,0.00366,no
+appier.net,Appier,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.0107,no
+apple-mapkit.com,Apple,no-category,ignore,2,0.000281,yes
+applovin.com,AppLovin,no-category,block,1,0.00988,no
+asapp.com,ASAPP,no-category,ignore,2,0.00013,no
+aswpsdkus.com,Urban Airship,no-category,ignore,2,0.000986,yes
+atlassian.com,Atlassian,no-category,ignore,2,5.48e-05,yes
+atmtd.com,atmtd.com,no-category,ignore,2,0.00202,yes
+attentivemobile.com,Attentive Mobile,no-category,ignore,0,0.00536,yes
+attn.tv,Attentive Mobile,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,2,0.0102,no
+attntags.com,attntags.com,no-category,block,2,0.00482,no
+au.edgekey.net,Akamai,no-category,ignore,3,0.000267,yes
+audioeye.com,AudioEye,no-category,block,2,0.00656,no
+auswaertiges-amt.de,Auswärtiges Amt,no-category,ignore,2,1.37e-05,yes
+automizely-analytics.com,automizely-analytics.com,no-category,ignore,1,0.0014,yes
+aweber.com,AWEBER SYSTEMS,no-category,ignore,1,0.000692,yes
+awswaf.com,Amazon.com,no-category,ignore,3,0.00634,no
+axon.ai,Axon Enterprise,no-category,ignore,3,0.00371,yes
+ay.delivery,Assertive Yield,no-category,block,2,0.0236,no
+ayads.co,Sublime Skinz Labs,no-category,ignore,2,0.000466,yes
+azure.com,Microsoft,no-category,ignore,2,0.00995,no
+azurefd.net,Microsoft,Content Delivery,ignore,3,0.00859,yes
+b2c.com,b2c.com,no-category,ignore,3,0.00235,yes
+bad.third-party.site,Bad Third Party Site,no-category,block,3,0.1,no
+bannerflow.net,BannerFlow,no-category,ignore,3,9.59e-05,yes
+basis.net,Centro,Action Pixels; Ad Motivated Tracking; Advertising; Analytics,block,1,0.00388,no
+batch.com,IMEDIAPP,no-category,ignore,2,0.000281,yes
+bc0a.com,BrightEdge,no-category,block,2,0.00357,yes
+beehiiv.com,beehiiv.com,no-category,ignore,2,0.00138,yes
+betweendigital.com,SSP Network,Ad Motivated Tracking; Advertising,block,1,0.00642,no
+bfmio.com,Beachfront Media,Action Pixels; Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,0,0.0094,no
+bidr.io,Beeswax,Ad Motivated Tracking; Advertising,block,0,0.0619,no
+bids.ws,bids.ws,no-category,ignore,1,0.00205,yes
+bidswitch.net,IPONWEB,Ad Fraud; Ad Motivated Tracking; Advertising,block,0,0.0746,no
+bidtheatre.com,BidTheatre,no-category,block,0,0.00383,no
+bing.com,Microsoft,Action Pixels; Ad Fraud; Ad Motivated Tracking; Advertising; Embedded Content,block,2,0.116,no
+bizrate.com,Synapse Group,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.000294,yes
+bkcdn.net,bkcdn.net,no-category,ignore,0,0.00919,yes
+blackcrow.ai,Black Crow AI,no-category,ignore,2,0.000952,yes
+blis.com,Blis,no-category,ignore,1,0.000336,yes
+blismedia.com,Blis,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,0,0.0532,no
+blogherads.com,BlogHer,no-category,ignore,2,0.000746,yes
+bloomreach.com,Bloomreach,no-category,ignore,2,0.000719,yes
+bluecava.com,ALC,Ad Fraud; Ad Motivated Tracking; Analytics; Audience Measurement,ignore,2,0.000911,yes
+blueconic.net,BlueConic,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.00318,yes
+boomtrain.com,Zeta Global,no-category,ignore,1,0.00246,yes
+bootstrapcdn.com,StackPath,Content Delivery,ignore,1,0.0267,no
+bounceexchange.com,Bounce Exchange,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,3,0.00505,no
+bqstreamer.com,bqstreamer.com,no-category,ignore,3,0.00211,yes
+brainlyads.com,Next Millennium,no-category,ignore,2,0.00115,yes
+branch.io,Branch Metrics,Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,ignore,2,0.0024,yes
+brand-display.com,Knorex,no-category,ignore,3,0.000322,yes
+brandmetrics.com,Brandmetrics,no-category,block,1,0.00266,no
+brealtime.com,EMX Digital,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,ignore,1,4.11e-05,yes
+broken.third-party.site,Broken Third Party Site,no-category,ignore,3,0.1,no
+browser-update.org,Browser Update,Badge; Embedded Content,ignore,2,0.00127,yes
+browsiprod.com,Browsi Mobile LLC,no-category,block,2,0.00351,no
+btloader.com,Blockthrough,no-category,block,2,0.0252,no
+bttrack.com,Bidtellect,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Embedded Content,block,1,0.0107,no
+btttag.com,Blue Triangle,no-category,ignore,2,0.000836,yes
+buysellads.net,BuySellAds,no-category,ignore,3,0.000363,yes
+buzzoola.com,Buzzoola,no-category,ignore,1,0.000883,yes
+byspotify.com,Spotify,no-category,ignore,2,0.00597,yes
+cachefly.net,CacheNetworks,Content Delivery,ignore,2,0.000527,yes
+cafemedia.com,cafemedia.com,no-category,ignore,0,0.00596,yes
+callrail.com,CallRail,no-category,block,1,0.00312,no
+campaigner.com,J2 Global,no-category,ignore,1,8.22e-05,yes
+canva.com,Canva,no-category,ignore,3,0.00013,yes
+captcha-delivery.com,DataDome,no-category,block,3,0.00485,no
+cartstack.com,10fold Solutions,no-category,ignore,1,0.000281,yes
+casalemedia.com,Index Exchange,Ad Motivated Tracking; Advertising; Analytics,block,1,0.111,no
+ccgateway.net,Clicksco FZ,no-category,block,1,0.0258,no
+cdn-net.com,American Express Company,no-category,ignore,3,0.000116,yes
+cdnwidget.com,CDNWIDGET.COM,Obscure Ownership; Unknown High Risk Behavior,block,0,0.00285,no
+center.io,Avenue 81,no-category,ignore,2,0.000116,yes
+channeladvisor.com,CommerceHub,no-category,ignore,1,0.000377,yes
+chartbeat.com,Chartbeat,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,2,0.0119,yes
+chartbeat.net,Chartbeat,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,ignore,0,0.0116,yes
+chaseherbalpasty.com,Clickadu,no-category,ignore,3,0.000486,yes
+chatango.com,Chatango,no-category,ignore,2,5.48e-05,yes
+chatra.io,Roger Wilco,no-category,ignore,3,0.000178,yes
+chaturbate.com,Chaturbate,Ad Motivated Tracking; Advertising; Embedded Content,ignore,1,0.00246,yes
+cheqzone.com,CHEQ,no-category,ignore,3,0.00013,yes
+chocolateplatform.com,Vdopia,no-category,ignore,0,0.015,yes
+ck-ie.com,ck-ie.com,no-category,block,0,0.00771,no
+claritas.com,claritas.com,no-category,ignore,0,0.00494,yes
+clarity.ms,Microsoft,no-category,block,3,0.0894,no
+cleantalk.org,cleantalk.org,no-category,ignore,3,0.00203,yes
+clearbit.com,APIHub,no-category,ignore,1,0.000349,yes
+clickagy.com,Clickagy,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.00451,no
+clicktripz.com,Clicktripz,no-category,ignore,3,0.000685,yes
+clientgear.com,Easy Click Worldwide,no-category,ignore,2,0.000568,yes
+cloudflare.com,Cloudflare,Analytics; Content Delivery; Embedded Content,ignore,2,0.238,no
+cloudflareinsights.com,Cloudflare,no-category,block,1,0.221,no
+cloudinary.com,Cloudinary,Content Delivery,ignore,1,0.00764,yes
+cnevids.com,"Sabin, Bermant & Gould LLP",no-category,ignore,2,0.000288,no
+cnn.com,Warner Bros. Discovery,Embedded Content,ignore,2,0.000123,yes
+cnt.my,INTER CITY ADS (MALAYSIA) SDN,no-category,ignore,3,4.79e-05,yes
+cnzz.com,Alibaba,no-category,ignore,1,0.00013,yes
+codedrink.com,codedrink.com,no-category,ignore,1,0.00169,yes
+cognitivlabs.com,Cognitiv,no-category,block,0,0.0173,no
+collegenet.com,CollegeNET,no-category,ignore,1,0.00011,yes
+com-v1.edgekey.net,Akamai,no-category,ignore,3,0.000911,yes
+com-v2.edgekey.net,Akamai,no-category,ignore,3,0.000402,yes
+comm100.com,Comm100 Network,no-category,ignore,2,0.000171,yes
+company-target.com,Demandbase,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Obscure Ownership; Third-Party Analytics Marketing,block,0,0.0092,no
+condenastdigital.com,Conde Nast Publications,no-category,ignore,2,0.000226,yes
+confiant-integrations.net,Confiant,no-category,block,1,0.0131,no
+config-security.com,config-security.com,no-category,block,1,0.00603,no
+connatix.com,Connatix,no-category,block,2,0.0243,yes
+connectad.io,ConnectAd,no-category,block,1,0.00941,no
+consentmo.com,consentmo.com,no-category,block,1,0.00264,no
+contentabc.com,Aylo,Advertising; Obscure Ownership; Unknown High Risk Behavior,ignore,3,0.00013,yes
+contentpass.net,Content Pass,no-category,ignore,3,0.00197,yes
+contentsquare.net,ContentSquare,Action Pixels; Analytics; Audience Measurement; Session Replay; Third-Party Analytics Marketing,block,2,0.00736,no
+contextweb.com,Pulsepoint,Ad Fraud; Ad Motivated Tracking; Advertising; Audience Measurement,block,1,0.0481,no
+convertexperiments.com,Convert Insights,no-category,block,3,0.00419,no
+cookie-script.com,cookie-script.com,no-category,block,2,0.00278,no
+cookieyes.com,cookieyes.com,no-category,ignore,0,0.00927,yes
+coosync.com,coosync.com,no-category,ignore,0,0.00692,yes
+cootlogix.com,Vidazoo,no-category,block,0,0.0247,no
+copper6.com,copper6.com,no-category,block,1,0.0113,no
+cordial.io,Bandfarm,no-category,ignore,1,3.42e-05,yes
+coveo.com,Coveo Solutions,no-category,ignore,2,0.00201,no
+cquotient.com,Salesforce.com,Analytics,block,1,0.0049,no
+crazyegg.com,Crazy Egg,Analytics; Audience Measurement; Session Replay; Third-Party Analytics Marketing,block,2,0.0112,no
+crcldu.com,crcldu.com,no-category,ignore,3,0.00353,yes
+createsend1.com,CM Group,no-category,ignore,1,0.00251,yes
+creative-serving.com,Platform161,Action Pixels; Ad Motivated Tracking; Advertising,block,0,0.00696,no
+creativecdn.com,RTB House,Ad Motivated Tracking; Advertising,block,1,0.0724,no
+crisp.chat,Crisp IM,Support Chat Widget,ignore,3,0.00105,no
+criteo.com,Criteo,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.108,no
+criteo.net,Criteo,Ad Motivated Tracking; Advertising; Analytics,block,1,0.0438,yes
+crwdcntrl.net,Lotame Solutions,Ad Motivated Tracking; Advertising; Audience Measurement,block,1,0.0972,yes
+ctctcdn.com,Constant Contact,no-category,ignore,1,0.00236,yes
+ctnsnet.com,Crimtan Holdings,Ad Motivated Tracking; Advertising,block,1,0.0121,no
+cxense.com,Piano Software,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,2,0.00399,no
+d.sni.global.fastly.net,Fastly,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Content Delivery; Embedded Content; Session Replay; Third-Party Analytics Marketing,ignore,3,0.000164,yes
+d14jnfavjicsbe.cloudfront.net,Amazon.com,Content Delivery,ignore,1,2.74e-05,yes
+d1af033869koo7.cloudfront.net,Amazon.com,Content Delivery,ignore,3,7.53e-05,yes
+d1j0xlutvd326g.cloudfront.net,Amazon.com,Content Delivery,ignore,3,4.11e-05,yes
+d1p5cqqchvbqmy.cloudfront.net,Amazon.com,Content Delivery,ignore,3,2.74e-05,yes
+d1vg5xiq7qffdj.cloudfront.net,Amazon.com,Content Delivery,ignore,3,0.00026,yes
+d1x4rwm1kh8pnu.cloudfront.net,Amazon.com,Content Delivery,ignore,3,6.16e-05,yes
+d21gpk1vhmjuf5.cloudfront.net,Amazon.com,Content Delivery,ignore,2,0.000349,yes
+d2638j3z8ek976.cloudfront.net,Amazon.com,Content Delivery,ignore,3,0.000502,yes
+d2trly8m2h0e8p.cloudfront.net,Amazon.com,Content Delivery,ignore,3,4.11e-05,yes
+d38xvr37kwwhcm.cloudfront.net,Amazon.com,Content Delivery,ignore,3,0.00105,yes
+d3fukwxve5r8zf.cloudfront.net,Amazon.com,Content Delivery,ignore,3,4.11e-05,yes
+d6tizftlrpuof.cloudfront.net,Amazon.com,Content Delivery,ignore,3,0.000671,yes
+da-services.ch,Tamedia,no-category,ignore,2,0.000704,yes
+dailymotion.com,Dailymotion,Content Delivery; Embedded Content,ignore,1,0.000705,no
+datadoghq-browser-agent.com,Datadog,no-category,block,2,0.00923,no
+datagrail.io,datagrail.io,no-category,ignore,2,0.00105,yes
+datatrac.net,Datatrac,no-category,ignore,2,7.53e-05,yes
+de.edgekey.net,Akamai,no-category,ignore,3,0.000637,yes
+deadlinefunnel.com,Cash Cow Marketing,no-category,ignore,1,0.000151,yes
+dealerinspire.com,The Endurance International Group,no-category,ignore,2,9.59e-05,yes
+deepintent.com,DeepIntent,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,0,0.0397,no
+delivra.com,Delivra,no-category,ignore,1,9.59e-05,yes
+demandbase.com,Demandbase,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,ignore,1,0.00192,yes
+demdex.net,Adobe,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.088,no
+dhs.gov,Department of Homeland Security,no-category,ignore,3,0.000151,yes
+dianomi.com,Dianomi,no-category,ignore,1,0.000349,yes
+digitalaudience.io,Social Audience,no-category,ignore,0,0.0152,yes
+digitalgov.gov,U.S. General Services Administration,no-category,ignore,0,0.00462,yes
+digitaloceanspaces.com,DigitalOcean,Content Delivery,ignore,2,0.00471,yes
+digitaltarget.ru,AmberData,no-category,ignore,3,0.000555,yes
+dimelochat.com,dimelo,no-category,ignore,2,4.79e-05,yes
+discover.com,DFS Services,no-category,ignore,3,2.05e-05,yes
+disqus.com,Disqus,Embedded Content; Federated Login; Social - Comment,ignore,2,0.0296,no
+dm2q9qfzyjfox.cloudfront.net,Amazon.com,Content Delivery,ignore,2,4.79e-05,yes
+do-not-tracker.org,EFF Test Trackers,no-category,block,3,0.1,no
+docaccess.com,docaccess.com,no-category,block,1,0.00449,no
+dotmetrics.net,Dotmetrics,no-category,ignore,2,0.00239,yes
+dotomi.com,Conversant,Ad Motivated Tracking; Advertising,block,1,0.0583,no
+doubleclick.net,Google Ads (Google),Ad Motivated Tracking; Advertising,block,3,0.446,yes
+doubleverify.com,DoubleVerify,Ad Fraud; Ad Motivated Tracking; Advertising,block,3,0.0161,no
+dpgmedia.nl,Ringier,no-category,ignore,1,0.000178,yes
+driftt.com,Drift.com,Analytics; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.000377,yes
+dsh7ky7308k4b.cloudfront.net,Amazon.com,Content Delivery,ignore,3,0.000178,yes
+dtscdn.com,DTS,no-category,ignore,0,0.00601,yes
+dtscout.com,DTS,Ad Motivated Tracking; Advertising; Analytics,block,2,0.00665,no
+duube1y6ojsji.cloudfront.net,Amazon.com,Content Delivery,ignore,3,2.05e-05,no
+dv.tech,dv.tech,no-category,block,3,0.00746,no
+dvagh3p3rk8xj.cloudfront.net,Amazon.com,Content Delivery,ignore,2,5.48e-05,yes
+dwin1.com,Awin,Ad Motivated Tracking; Advertising; Analytics,block,1,0.00618,no
+dxtech.ai,dxtech.ai,no-category,block,1,0.00607,no
+dynatrace.com,Dynatrace,no-category,block,2,0.00401,no
+e-planning.net,Teroa,Ad Motivated Tracking; Advertising,ignore,1,0.00174,yes
+earmuffpostnasalrisotto.com,earmuffpostnasalrisotto.com,no-category,ignore,3,0.00109,yes
+ebaystatic.com,eBay,Content Delivery,ignore,3,0.00013,yes
+ebxcdn.com,ebxcdn.com,no-category,block,1,0.00423,no
+eccmp.com,Cheetah Digital,no-category,ignore,1,0.000151,yes
+elfsight.com,Vladimir Fedotov,no-category,ignore,2,0.00312,no
+eloqua.com,Oracle,Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.00253,no
+empowerlocal.co,empowerlocal.co,no-category,ignore,2,0.0011,yes
+emxdgt.com,Engine USA,Ad Motivated Tracking; Advertising; Analytics,block,0,0.0186,no
+en25.com,Oracle,Ad Motivated Tracking; Advertising,ignore,1,0.00276,yes
+ensighten.com,Ensighten,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,ignore,3,0.00234,yes
+epichosted.com,Epic,no-category,ignore,2,8.22e-05,yes
+eskimi.com,eskimi.com,no-category,block,1,0.0195,no
+esm1.net,Dealer Dot Com,no-category,ignore,1,0.000144,yes
+eulerian.net,Eulerian,no-category,ignore,2,5.48e-05,yes
+everestjs.net,Adobe,Ad Motivated Tracking,ignore,1,0.00152,yes
+everesttech.net,Adobe,Ad Motivated Tracking; Third-Party Analytics Marketing,block,0,0.0612,no
+evergage.com,Salesforce.com,no-category,block,1,0.00321,no
+evgnet.com,Salesforce.com,no-category,block,2,0.00421,no
+eviltracker.net,EFF Test Trackers,no-category,block,3,0.1,no
+exdynsrv.com,ExoClick,Ad Motivated Tracking; Advertising,ignore,2,0.00013,yes
+exelator.com,The Nielsen Company,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,1,0.0174,no
+exoclick.com,ExoClick,Ad Motivated Tracking; Advertising,ignore,1,0.00186,yes
+exosrv.com,ExoClick,Ad Motivated Tracking; Advertising,ignore,2,0.00061,yes
+exponea.com,Bloomreach,no-category,ignore,2,0.000836,yes
+exponential.com,Exponential Interactive,Action Pixels; Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Session Replay,ignore,3,0.000233,yes
+extole.com,Extole,no-category,ignore,1,3.42e-05,yes
+extole.io,Extole,no-category,ignore,1,0.000856,yes
+eyeota.net,eyeota,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.0305,no
+ezodn.com,Ezoic,no-category,block,2,0.00847,no
+ezoic.net,Ezoic,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Session Replay; Third-Party Analytics Marketing,block,2,0.00939,no
+ezoicanalytics.com,ezoicanalytics.com,no-category,ignore,1,0.00467,yes
+ezojs.com,ezojs.com,Content Delivery,ignore,3,0.00943,yes
+facebook.com,Facebook,Action Pixels; Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Badge; Embedded Content; Federated Login; Social - Comment; Social - Share; Social Network,ignore,0,0.209,yes
+facebook.net,Facebook,Action Pixels; Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Badge; Embedded Content; Federated Login; Social - Comment; Social - Share; Social Network,ignore,2,0.183,yes
+fastclick.net,Conversant,no-category,block,1,0.0312,no
+feefo.com,Feefo Holdings Limited,no-category,ignore,2,0.000377,yes
+five9.com,Five9,Support Chat Widget,ignore,2,0.000356,no
+flashtalking.com,Mediaocean,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; Session Replay; Third-Party Analytics Marketing,block,3,0.0102,no
+flippback.com,flippback.com,no-category,ignore,3,0.00101,yes
+flixcdn.com,flixcdn.com,no-category,ignore,3,0.00242,yes
+flodesk.com,Flodesk,no-category,ignore,2,0.00234,yes
+flowplayer.org,Flowplayer,Content Delivery; Embedded Content,ignore,3,6.16e-05,yes
+fomo.com,Fomo,no-category,ignore,1,0.000274,yes
+fontawesome.com,Fonticons,Content Delivery,ignore,1,0.0392,no
+fonts.googleapis.com,Google Ads (Google),Content Delivery; Embedded Content,ignore,0,0.369,no
+fonts.net,Monotype Imaging,Action Pixels; Content Delivery,ignore,1,0.00388,no
+foresee.com,ForeSee Results,Action Pixels; Analytics; Audience Measurement; Session Replay,ignore,2,0.000541,yes
+fouanalytics.com,Marketing Science Consulting Group,no-category,ignore,3,0.000788,yes
+fout.jp,FreakOut Holdings,no-category,ignore,1,0.00121,yes
+fr.edgekey.net,Akamai,no-category,ignore,3,0.000171,yes
+framasoft.org,Alexis Kauffmann,no-category,ignore,2,0.000504,yes
+freshworks.com,Freshworks,no-category,ignore,2,0.000746,no
+fsrv.io,fsrv.io,no-category,block,0,0.00464,no
+ftstatic.com,Mediaocean,no-category,block,2,0.00261,no
+fullstory.com,FullStory,Analytics; Session Replay,block,2,0.00469,no
+fuseplatform.net,fuseplatform.net,no-category,block,3,0.0025,no
+fwmrm.net,FreeWheel,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.0439,yes
+g2.com,g2.com,no-category,ignore,3,0.00123,yes
+gammaplatform.com,gammaplatform.com,no-category,ignore,3,0.0113,yes
+gamoshi.io,gamoshi.io,no-category,ignore,0,0.00453,yes
+gaug.es,gaug.es,no-category,ignore,2,0.00101,yes
+gbqofs.com,Glassbox,no-category,ignore,2,0.000918,yes
+gcprivacy.net,gcprivacy.net,no-category,ignore,1,0.00266,yes
+gemius.pl,Gemius,Ad Motivated Tracking; Advertising; Audience Measurement,ignore,2,0.00212,yes
+geoedge.be,Five Media,no-category,block,1,0.00263,no
+getcandid.com,FIVEACES,no-category,ignore,1,2.05e-05,yes
+getclicky.com,Roxr Software,Ad Fraud; Analytics,ignore,0,0.00457,yes
+getdrip.com,Avenue 81,no-category,ignore,1,0.000562,yes
+getelevar.com,getelevar.com,no-category,block,1,0.0047,no
+getflowbox.com,cyon,no-category,ignore,1,0.000294,yes
+getlasso.co,Lasso Analytics,no-category,ignore,1,0.000253,yes
+getrockerbox.com,Rockerbox,no-category,block,1,0.00284,no
+getsitecontrol.com,GetWebCraft,Ad Motivated Tracking; Analytics; Audience Measurement; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.00166,yes
+go-mpulse.net,Akamai,Analytics,block,3,0.0191,no
+go-vip.net,go-vip.net,no-category,ignore,1,0.00124,yes
+godaddy.com,GoDaddy,no-category,ignore,1,0.000746,yes
+google-analytics.com,Google Analytics (Google),Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.349,yes
+google.com,Google,Ad Motivated Tracking; Advertising; Content Delivery; Online Payment,ignore,3,0.453,yes
+googleadservices.com,Google Ads (Google),Ad Motivated Tracking; Advertising,block,1,0.051,yes
+googlehosted.com,Google,no-category,ignore,1,0.00244,yes
+googlesyndication.com,Google Ads (Google),Ad Motivated Tracking; Advertising,block,3,0.212,yes
+googletagmanager.com,Google Ads (Google),Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Tag Manager; Third-Party Analytics Marketing,block,2,0.575,yes
+googletagservices.com,Google Ads (Google),Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.0297,yes
+gorgias.chat,gorgias.chat,Support Chat Widget,ignore,2,0.0067,no
+gotolstoy.com,gotolstoy.com,no-category,ignore,3,0.00113,yes
+gov.bc.ca,Government of the Province of British Columbia,no-category,ignore,2,2.74e-05,yes
+granicus.com,Granicus,no-category,ignore,2,0.000151,yes
+greylabeldelivery.com,greylabeldelivery.com,no-category,ignore,2,0.00121,yes
+groovehq.com,Groove Networks,Support Chat Widget,ignore,2,5.48e-05,no
+grow.me,Mediavine,no-category,block,2,0.0347,no
+growplow.events,growplow.events,no-category,ignore,0,0.0228,yes
+grsm.io,GrowSumo,no-category,ignore,1,0.000473,yes
+grv.media,GRV Media,no-category,ignore,3,9.59e-05,yes
+gsitrix.com,GP One,no-category,ignore,3,9.59e-05,yes
+gstatic.com,Google,Content Delivery; Embedded Content,ignore,3,0.401,yes
+gtranslate.net,gtranslate.net,no-category,ignore,1,0.00431,no
+guarantee-cdn.com,buySAFE,no-category,ignore,1,0.000336,yes
+gumgum.com,GumGum,Ad Motivated Tracking; Advertising,block,2,0.0522,no
+hadronid.net,hadronid.net,no-category,ignore,1,0.0209,yes
+hatena.ne.jp,Hatena,no-category,ignore,1,0.000377,yes
+hbrd.io,Hybrid Adtech,no-category,ignore,2,0.000185,yes
+hearst-hdm.map.fastly.net,Fastly,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Content Delivery; Embedded Content; Session Replay; Third-Party Analytics Marketing,ignore,1,0.000671,yes
+heatmap.com,heatmap.com,no-category,ignore,2,0.00135,yes
+histats.com,wisecode,Analytics; Audience Measurement,block,2,0.00643,no
+hlx.page,hlx.page,no-category,block,1,0.00507,no
+hotjar.com,Hotjar,Analytics; Audience Measurement; Session Replay,block,2,0.0308,no
+hotjar.io,Hotjar,no-category,ignore,0,0.0108,yes
+hrzn-nxt.com,Horizon Media,no-category,ignore,2,0.000425,yes
+hs-analytics.net,HubSpot,Action Pixels; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,3,0.0176,no
+hs-banner.com,HubSpot,no-category,block,1,0.0176,no
+hs-scripts.com,HubSpot,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Content Delivery; Third-Party Analytics Marketing,ignore,0,0.0173,no
+hsadspixel.net,HubSpot,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,ignore,0,0.00985,yes
+hsappstatic.net,HubSpot,no-category,block,2,0.00281,no
+hscta.net,HubSpot,no-category,ignore,1,0.000192,yes
+htlbid.com,htlbid.com,no-category,block,2,0.00381,yes
+html-load.cc,html-load.cc,no-category,ignore,3,0.00216,yes
+html-load.com,html-load.com,no-category,block,3,0.00318,no
+hubspot.com,HubSpot,Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Third-Party Analytics Marketing,block,2,0.0172,yes
+hubspotfeedback.com,HubSpot,no-category,ignore,1,0.00063,yes
+hybrid.ai,Hybrid Adtech,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,ignore,3,0.00109,yes
+iadvize.com,iAdvize,no-category,ignore,2,0.000356,yes
+id5-sync.com,ID5,Ad Motivated Tracking; Advertising,block,2,0.0979,no
+idio.co,idio,no-category,ignore,1,6.16e-05,yes
+igodigital.com,Salesforce.com,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.00307,no
+ihg.edgekey.net,Akamai,no-category,ignore,3,4.11e-05,yes
+iljmp.com,Awio Web Services,no-category,ignore,2,2.05e-05,yes
+im-apps.net,Intimate Merger,no-category,block,2,0.00981,no
+imasdk.googleapis.com,Google Ads (Google),Content Delivery; Embedded Content,ignore,2,0.0189,no
+impact-ad.jp,Digital Advertising Consortium,no-category,ignore,2,0.00201,yes
+impact.com,Impact,no-category,ignore,0,0.00309,yes
+impactcdn.com,Impact,no-category,block,1,0.00677,no
+impactradius-event.com,Impact,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.00285,no
+impervadns.net,impervadns.net,no-category,ignore,3,0.00123,yes
+improvedcontactform.com,Awio Web Services,no-category,ignore,1,4.79e-05,yes
+improvedigital.com,Improve Digital,no-category,ignore,2,5.48e-05,yes
+imrworldwide.com,The Nielsen Company,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.025,yes
+increasingly.co,Increasingly,no-category,ignore,1,4.11e-05,yes
+indexww.com,Index Exchange,Advertising; Analytics,block,1,0.0246,no
+infolinks.com,Infolink Media,no-category,block,2,0.00598,no
+infusionsoft.app,Infusion Software,no-category,ignore,2,0.00013,yes
+infusionsoft.com,Infusion Software,no-category,ignore,2,0.000123,yes
+ingage.tech,Insticator,no-category,block,1,0.029,no
+inmobi-choice.io,inmobi-choice.io,no-category,ignore,0,0.00624,yes
+inmobi.com,InMobi,no-category,block,1,0.0417,no
+inq.com,TouchCommerce,no-category,ignore,2,0.000137,yes
+inside-graph.com,Michael Browitt,no-category,ignore,3,0.000349,yes
+instagram.com,Instagram (Facebook),Ad Motivated Tracking; Advertising; Embedded Content; Social - Share; Social Network,ignore,1,0.00516,yes
+instana.io,Instana,no-category,ignore,2,0.000322,yes
+intelligems.io,intelligems.io,no-category,block,2,0.00329,yes
+intentiq.com,Almondnet Group,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.0337,no
+intergi.com,Intergi Entertainment,no-category,block,2,0.00255,no
+intergient.com,Intergi Entertainment,no-category,block,3,0.00279,no
+intuit.com,Intuit,no-category,block,1,0.00368,no
+investingchannel.com,InvestingChannel,no-category,ignore,2,0.000185,yes
+invocacdn.com,Invoca,no-category,block,2,0.0028,no
+io.edgekey.net,Akamai,no-category,ignore,2,0.000205,yes
+ioam.de,INFOnline,Audience Measurement,ignore,2,0.000116,yes
+iperceptions.com,iPerceptions,Analytics; Embedded Content,ignore,2,0.000404,yes
+iplsc.com,Interia,no-category,ignore,3,2.74e-05,yes
+ipredictive.com,Adelphic,Ad Motivated Tracking; Advertising,block,1,0.0506,no
+iqm.com,iqm.com,no-category,block,0,0.00899,no
+ispot.tv,iSpot.tv,Advertising; Analytics; Audience Measurement,block,0,0.00266,no
+issuu.com,Bending Spoons,no-category,ignore,3,0.000192,yes
+iteratehq.com,Iterate,no-category,ignore,1,0.000178,yes
+ivitrack.com,Ividence,Ad Motivated Tracking; Advertising; Analytics,ignore,1,0.000907,yes
+janusaent.com,janusaent.com,no-category,ignore,3,0.00176,yes
+jimstatic.com,Jimdo,no-category,ignore,3,4.79e-05,yes
+journeymv.com,journeymv.com,no-category,block,2,0.00711,no
+journity.com,Five Q,no-category,ignore,2,8.9e-05,yes
+js7k.com,Verizon Media,no-category,ignore,3,0.00382,yes
+jsdelivr.net,Prospect One,Content Delivery,ignore,3,0.124,yes
+jsma.s3.us-west-2.amazonaws.com,Amazon.com,Content Delivery,ignore,3,0.00013,yes
+jspm.io,jspm.io,no-category,ignore,2,0.00112,yes
+jsuol.com.br,Universo Online,no-category,ignore,2,5.48e-05,yes
+juicyads.com,JuicyAds,Ad Motivated Tracking; Advertising; Malware,ignore,1,0.00076,yes
+k5a.io,Kilkaya,no-category,ignore,2,0.000733,yes
+kakaocdn.net,Kakao,no-category,ignore,3,0.000322,yes
+kameleoon.eu,Kameleoon,no-category,ignore,1,0.000897,yes
+kameleoon.io,kameleoon.io,no-category,ignore,1,0.00105,yes
+kargo.com,Kargo,Ad Fraud; Ad Motivated Tracking; Advertising,block,1,0.038,no
+karte.io,Plaid,no-category,ignore,3,0.000438,yes
+ketchcdn.com,Ketch,no-category,block,1,0.00457,no
+kettledroopingcontinuation.com,kettledroopingcontinuation.com,no-category,ignore,3,0.00138,yes
+kit.com,Kit,no-category,block,1,0.00647,no
+kiyoh.com,DTG,no-category,ignore,1,0.00332,yes
+klarna.com,Klarna Bank,no-category,ignore,2,0.00283,no
+klarnaservices.com,Klarna Bank,no-category,ignore,2,0.000402,yes
+klaviyo.com,Klaviyo,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; Third-Party Analytics Marketing,block,2,0.034,no
+krushmedia.com,krushmedia.com,no-category,block,0,0.00767,no
+kueezrtb.com,kueezrtb.com,no-category,block,2,0.00894,no
+kxcdn.com,proinity,Content Delivery,ignore,3,0.00344,yes
+ladesk.com,Quality Unit,no-category,ignore,1,0.000315,yes
+ladsp.com,So-net Media Networks,Ad Motivated Tracking; Advertising; Analytics,ignore,1,0.0018,yes
+leadsrx.com,Sargents,no-category,ignore,1,0.00161,yes
+lendingtree.com,LendingTree,no-category,ignore,1,4.79e-05,yes
+lexisnexis.com,RELX Group,no-category,ignore,2,3.42e-05,yes
+liadm.com,LiveIntent,Ad Motivated Tracking; Advertising; Audience Measurement; Third-Party Analytics Marketing,block,1,0.0755,no
+licdn.com,Microsoft,Analytics; Audience Measurement; Content Delivery,ignore,3,0.0373,no
+liftdsp.com,liftdsp.com,no-category,block,0,0.00531,no
+lightboxcdn.com,Digioh,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Content Delivery; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.00483,yes
+lijit.com,Sovrn Holdings,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.0656,no
+linkconnector.com,LinkConnector,no-category,ignore,1,0.000342,yes
+linkedin.com,Microsoft,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Social - Share; Social Network,ignore,1,0.105,yes
+linksynergy.com,Rakuten,Ad Motivated Tracking; Advertising,ignore,1,0.000822,yes
+list-manage.com,Intuit,Embedded Content; Third-Party Analytics Marketing,ignore,3,0.000699,yes
+listrakbi.com,Listrak,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.0028,yes
+litix.io,Mux,no-category,ignore,1,0.000308,yes
+livechatinc.com,LiveChat,Embedded Content; Support Chat Widget,ignore,2,0.00389,no
+livedoor.net,Naver,no-category,ignore,1,0.00013,yes
+liveperson.net,LivePerson,Ad Motivated Tracking; Analytics; Embedded Content; Support Chat Widget,ignore,2,0.00175,no
+lngtd.com,Longitude Ads,no-category,ignore,2,0.000541,yes
+localytics.com,Upland Software,no-category,ignore,2,2.05e-05,yes
+loggly.com,SolarWinds Worldwide,no-category,ignore,1,0.000116,yes
+loop11.com,Loop11,no-category,ignore,3,8.9e-05,yes
+loopme.me,Brightcom,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,ignore,2,0.0423,yes
+lpsnmedia.net,LivePerson,Ad Motivated Tracking; Analytics; Embedded Content; Support Chat Widget,ignore,2,0.00157,no
+luckyorange.com,Lucky Orange,no-category,ignore,2,0.00238,yes
+lytics.io,Lytics,no-category,ignore,2,0.00087,yes
+m.sni.global.fastly.net,Fastly,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Content Delivery; Embedded Content; Session Replay; Third-Party Analytics Marketing,ignore,3,0.000308,yes
+m2.ai,MonetizeMore,no-category,ignore,1,5.48e-05,yes
+magnetmail.net,Higher Logic,no-category,ignore,1,0.000171,yes
+magsrv.com,magsrv.com,no-category,block,2,0.00949,no
+mail.ru,VK,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Social - Share,ignore,3,0.0016,yes
+mailchimp.com,Intuit,Advertising; Embedded Content; Third-Party Analytics Marketing,block,3,0.00523,yes
+mailchimpapp.com,Intuit,no-category,ignore,1,0.000178,yes
+mailerlite.com,MailerLite,no-category,block,1,0.00404,no
+maillist-manage.com,ZOHO,no-category,ignore,2,5.48e-05,yes
+mantis-intelligence.com,mantis-intelligence.com,no-category,block,1,0.00428,no
+maps.googleapis.com,Google Ads (Google),Content Delivery; Embedded Content,ignore,2,0.0261,no
+marketingautomation.services,Sharpspring,no-category,ignore,2,0.00037,yes
+marketiq.com,marketiq.com,no-category,ignore,0,0.00372,yes
+marketo.com,Adobe,Ad Motivated Tracking; Advertising; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.000699,yes
+marketo.net,Adobe,Ad Motivated Tracking; Advertising; Embedded Content; Third-Party Analytics Marketing,block,1,0.00536,no
+marphezis.com,Brightcom,no-category,block,1,0.00708,no
+marzaent.com,marzaent.com,no-category,ignore,2,0.00149,yes
+mateti.net,Webtrekk,no-category,ignore,1,9.59e-05,yes
+matheranalytics.com,Mather Economics,no-category,ignore,2,0.00134,yes
+mathtag.com,MediaMath,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.019,no
+maxmind.com,MaxMind,Ad Fraud; Ad Motivated Tracking; Analytics; Audience Measurement,ignore,3,0.000692,yes
+mczbf.com,Conversant,no-category,block,1,0.00357,no
+medallia.com,Medallia,no-category,block,2,0.00333,no
+medallia.eu,Medallia,no-category,ignore,2,0.000315,yes
+media.net,Media.net Advertising,Ad Motivated Tracking; Advertising,block,1,0.0614,yes
+media01.eu,Dynamic 1001,no-category,ignore,1,0.000201,yes
+media6degrees.com,Dstillery,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,0,0.0148,no
+mediacorp.sg,MEDIACORP,no-category,ignore,2,4.79e-05,yes
+mediago.io,Baidu,no-category,block,1,0.0069,no
+mediarithmics.com,mediarithmics,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Third-Party Analytics Marketing,ignore,1,0.00222,yes
+mediavine.com,Mediavine,Ad Motivated Tracking; Advertising; Audience Measurement,block,2,0.0228,no
+memberful.com,Patreon,no-category,ignore,1,0.000459,yes
+mercari.com,Mercari,no-category,ignore,1,0.000219,yes
+merchant-center-analytics.goog,merchant-center-analytics.goog,no-category,ignore,0,0.0164,yes
+metricswpsh.com,metricswpsh.com,no-category,ignore,0,0.00276,yes
+mfadsrvr.com,IPONWEB,Ad Fraud; Ad Motivated Tracking; Advertising,block,1,0.0372,no
+mgaru.dev,mgaru.dev,no-category,ignore,1,0.00578,yes
+mgid.com,MGID,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,3,0.0122,no
+mgln.ai,mgln.ai,no-category,block,0,0.00286,no
+micpn.com,Movable Ink,Ad Motivated Tracking; Advertising; Audience Measurement,ignore,1,0.00142,yes
+microad.jp,MicroAd,Ad Motivated Tracking; Advertising,ignore,3,0.00164,yes
+minutemedia-prebid.com,minutemedia-prebid.com,no-category,block,1,0.0171,no
+missena.io,missena.io,no-category,ignore,1,0.00171,yes
+mixpo.com,Mixpo,no-category,ignore,3,2.74e-05,yes
+mktoresp.com,Adobe,Ad Motivated Tracking; Advertising; Embedded Content; Third-Party Analytics Marketing,ignore,0,0.00505,yes
+mktoweb.com,Adobe,no-category,ignore,1,0.000938,yes
+ml314.com,Bombora,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Session Replay,block,1,0.0184,no
+mmvideocdn.com,mmvideocdn.com,no-category,ignore,3,0.00166,yes
+mobon.net,"Inrifle Co., Ltd.",no-category,ignore,1,4.79e-05,yes
+moloco.com,Moloco,no-category,block,2,0.00644,no
+monetate.net,Monetate,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.00192,yes
+monsido.com,Monsido,no-category,block,1,0.00375,no
+monu.delivery,"Monumetric (The Blogger Network, LLC)",no-category,ignore,3,0.000801,yes
+mookie1.com,WPP,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.00411,no
+motortrend.com,TEN A Discovery Communications Company,no-category,ignore,2,0.000178,yes
+mountain.com,Mountain Digital,no-category,block,1,0.00969,no
+mouseflow.com,Mouseflow,Action Pixels; Ad Motivated Tracking; Analytics; Session Replay; Third-Party Analytics Marketing,block,2,0.00323,no
+mpeasylink.com,DigitalPoint,no-category,ignore,1,0.000733,yes
+mrf.io,Marfeel,no-category,block,1,0.00749,no
+mrktmtrcs.net,mrktmtrcs.net,no-category,ignore,1,0.00649,yes
+mts.ru,Mobile TeleSystems Public Joint Stock Company,no-category,ignore,3,0.00039,yes
+mxpnl.com,Mixpanel,Action Pixels; Analytics; Audience Measurement; Session Replay; Third-Party Analytics Marketing,block,2,0.00328,yes
+mxptint.net,Valassis Digital,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,1,0.00796,no
+mygaru.com,mygaru.com,no-category,ignore,1,0.0059,yes
+nakanohito.jp,User Local,no-category,ignore,2,0.000938,yes
+naver.net,Naver,no-category,ignore,2,0.000473,yes
+navistechnologies.info,Buehner-Fry,no-category,ignore,1,2.74e-05,yes
+nc0.co,Ensighten,no-category,ignore,3,0.00112,no
+net.edgekey.net,Akamai,no-category,ignore,3,0.000555,yes
+newrelic.com,New Relic,Analytics,block,2,0.0227,yes
+news.com.au,Nationwide News,no-category,ignore,3,6.85e-05,yes
+newscgp.com,Nationwide News,no-category,ignore,2,0.000103,yes
+newsroom.bi,newsroom.bi,no-category,block,0,0.0069,no
+nextday.media,P B.V.,no-category,ignore,2,0.000123,yes
+nextdoor.com,Nextdoor,no-category,block,2,0.00345,no
+nextmillmedia.com,Next Millennium,no-category,block,0,0.00308,no
+nexx360.io,nexx360.io,no-category,block,1,0.00323,no
+nine.com.au,Nine Entertainment,no-category,ignore,2,6.16e-05,yes
+nitropay.com,GG Software,no-category,ignore,3,0.0014,yes
+nl.edgekey.net,Akamai,no-category,ignore,3,7.53e-05,yes
+noibu.com,noibu.com,no-category,block,2,0.00273,no
+northbeam.io,northbeam.io,no-category,block,2,0.00265,no
+nosto.com,Nosto Solutions,no-category,ignore,1,0.000918,yes
+npttech.com,Piano Software,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; SSO; Third-Party Analytics Marketing,ignore,1,0.0021,yes
+nr-data.net,New Relic,Analytics,block,0,0.0228,yes
+nrich.ai,N.Rich,no-category,ignore,0,0.00342,yes
+nsaudience.pl,nazwa.pl,no-category,ignore,1,0.000205,yes
+ntv.io,Nativo,Ad Motivated Tracking; Advertising; Analytics,ignore,2,0.00265,yes
+nuance.com,Microsoft,Support Chat Widget,ignore,2,0.000178,no
+nytrng.com,Voltn,no-category,block,1,0.00342,no
+ocmthood.com,ocmthood.com,no-category,ignore,2,0.00221,yes
+ojrq.net,Impact,no-category,ignore,0,0.00602,yes
+omappapi.com,Retyp,no-category,block,2,0.0055,no
+omguk.com,Optimise Media Limited,no-category,ignore,1,8.9e-05,yes
+omnisnippet1.com,Omnisend,no-category,ignore,2,0.00185,yes
+omnisrc.com,Soundest,no-category,ignore,1,4.79e-05,yes
+omnitagjs.com,Adyoulike,Ad Motivated Tracking; Advertising,block,1,0.0315,no
+omtrdc.net,Adobe,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.0176,yes
+onaudience.com,OnAudience,no-category,ignore,0,0.0325,no
+onecount.net,GCN Publishing,no-category,ignore,3,2.74e-05,yes
+onesignal.com,OneSignal,Ad Motivated Tracking; Analytics; Embedded Content; Third-Party Analytics Marketing,block,2,0.0083,no
+onet.pl,Ringier,no-category,ignore,2,4.11e-05,yes
+onetag-sys.com,OneTag,no-category,block,1,0.0503,no
+opecloud.com,TripleLift,no-category,block,2,0.00623,no
+open-system.fr,ALLIANCE RESEAUX,no-category,ignore,1,2.05e-05,yes
+openfpcdn.io,openfpcdn.io,no-category,ignore,3,0.00118,yes
+openstreetmap.org,OpenStreetMap Foundation,no-category,ignore,1,0.00249,yes
+opentable.com,Booking Holdings,no-category,ignore,1,6.16e-05,yes
+opentext.com,Open Text,no-category,ignore,2,2.74e-05,yes
+openwebmp.com,openwebmp.com,no-category,block,1,0.013,no
+openx.net,OpenX,Ad Fraud; Ad Motivated Tracking; Advertising; Audience Measurement,block,0,0.0968,no
+openxcdn.net,OpenX,no-category,ignore,1,0.0323,yes
+opera.com,Opera Software,no-category,block,1,0.0482,no
+opmnstr.com,Retyp,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.000233,yes
+opta.net,Perform Media Services,no-category,ignore,2,0.000233,yes
+optable.co,optable.co,no-category,block,2,0.0374,no
+optad360.io,Publishers Revenue Optimization,no-category,ignore,3,0.000219,yes
+opti-digital.com,Opti Digital,no-category,ignore,1,0.00202,yes
+optidigital.com,Opti Digital,no-category,block,0,0.00364,no
+optimizely.com,Optimizely,Action Pixels; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.00905,no
+optimonk.com,WebShop Marketing Kft,no-category,ignore,3,0.000746,yes
+optmnstr.com,Retyp,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Third-Party Analytics Marketing,ignore,2,0.000226,yes
+optmstr.com,Retyp,no-category,ignore,1,4.79e-05,yes
+optnmnstr.com,Retyp,no-category,ignore,2,3.42e-05,yes
+optnmstr.com,Retyp,no-category,ignore,2,7.53e-05,yes
+oraclecloud.com,Oracle,no-category,ignore,2,0.000733,yes
+oracleinfinity.io,Oracle,no-category,ignore,2,0.00052,yes
+orbsrv.com,ExoClick,no-category,ignore,2,0.000979,yes
+ortb.net,ortb.net,no-category,ignore,0,0.00722,yes
+osano.com,Osano,no-category,block,2,0.00967,no
+otm-r.com,OTM,no-category,ignore,1,0.00101,yes
+outbrain.com,Outbrain,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,2,0.055,yes
+outbrainimg.com,Outbrain,no-category,block,0,0.00286,no
+ownlocal.com,OwnLocal.com,no-category,ignore,2,0.000144,yes
+p-n.io,Pushly,no-category,block,2,0.00386,no
+p7cloud.net,p7cloud.net,no-category,block,2,0.00485,no
+pages02.net,International Business Machines,no-category,ignore,1,0.000103,yes
+pages03.net,International Business Machines,no-category,ignore,1,0.000178,yes
+pages04.net,International Business Machines,no-category,ignore,1,5.48e-05,yes
+pages05.net,International Business Machines,no-category,ignore,1,0.000274,yes
+pages08.net,International Business Machines,no-category,ignore,1,0.000123,yes
+pandect.es,pandect.es,no-category,ignore,1,0.00103,yes
+pardot.com,Salesforce.com,Ad Motivated Tracking; Advertising; Analytics; Embedded Content,ignore,1,0.00231,yes
+parsely.com,Parsely,Action Pixels; Ad Motivated Tracking; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.0108,yes
+patreon.com,Patreon,no-category,ignore,1,0.00011,yes
+paypal.com,PayPal,Analytics; Audience Measurement; Badge; Embedded Content; Online Payment; SSO,ignore,3,0.00692,no
+pbstck.com,Pubstack,no-category,block,1,0.0044,no
+pdst.fm,Podsights,no-category,ignore,2,0.00223,yes
+peer-39.com,peer-39.com,no-category,block,3,0.00836,no
+pemsrv.com,pemsrv.com,no-category,block,2,0.00344,no
+perfalytics.com,perfalytics.com,no-category,ignore,2,0.00188,yes
+perfdrive.com,Radware,no-category,ignore,3,0.000616,yes
+performax.cz,OSOBNOSTI.cz,no-category,ignore,3,0.00024,yes
+permutive.app,Permutive,no-category,block,1,0.0059,yes
+permutive.com,Permutive,Analytics; Audience Measurement; Session Replay; Third-Party Analytics Marketing,block,1,0.00457,no
+personalizer.io,LimeSpot,no-category,ignore,2,0.000267,yes
+pghub.io,pghub.io,no-category,ignore,1,0.0251,yes
+piano.io,Piano Software,no-category,ignore,2,0.00477,no
+picreel.com,Webfolio Management,no-category,ignore,2,2.05e-05,yes
+pingdom.net,Pingdom,Action Pixels; Analytics; Audience Measurement,block,3,0.00288,no
+pinklion.io,pinklion.io,no-category,ignore,0,0.00745,yes
+pinterest.com,Pinterest,Content Delivery; Embedded Content; Social - Share,ignore,1,0.0444,no
+pippio.com,LiveRamp,Ad Motivated Tracking; Advertising,ignore,0,0.0594,yes
+piwik.pro,Piwik PRO,no-category,ignore,2,0.0022,yes
+pixad.com.tr,pixad.com.tr,no-category,block,1,0.00444,no
+pixlee.com,Pixlee TurnTo,no-category,ignore,3,0.000466,yes
+playdigo.com,playdigo.com,no-category,ignore,0,0.00731,yes
+playwire.com,Intergi Entertainment,no-category,block,1,0.00271,no
+plug.it,ItaliaOnLine,no-category,ignore,2,4.11e-05,yes
+pmbmonetize.live,pmbmonetize.live,no-category,ignore,0,0.00853,yes
+pmdstatic.net,PRISMA Media,no-category,ignore,3,0.000137,yes
+popcash.net,One Media,no-category,ignore,3,0.00011,yes
+portalfluently.com,portalfluently.com,no-category,ignore,3,0.00321,yes
+postaffiliatepro.com,Quality Unit,no-category,ignore,1,0.000582,yes
+posthog.com,posthog.com,no-category,block,2,0.00536,no
+postrelease.com,Nativo,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,0,0.0513,no
+postscript.io,postscript.io,no-category,ignore,1,0.00213,yes
+powr.io,POWR,no-category,ignore,1,0.0014,yes
+presage.io,Ogury,no-category,block,1,0.0359,no
+pretty-soft.com,pretty-soft.com,no-category,ignore,1,0.00212,yes
+primis.tech,McCann,no-category,block,2,0.0174,no
+privacy-center.org,Didomi,no-category,block,2,0.00631,no
+prmutv.co,Permutive,no-category,ignore,0,0.00266,yes
+pro-market.net,Almondnet Group,Ad Motivated Tracking; Advertising; Audience Measurement,block,1,0.00357,no
+programmaticx.ai,programmaticx.ai,no-category,block,0,0.00619,no
+protechts.net,Human Security,no-category,ignore,3,0.000657,yes
+protrafficinspector.com,protrafficinspector.com,no-category,ignore,0,0.0046,yes
+providesupport.com,Provide Support,no-category,ignore,1,0.000226,no
+ptengine.com,PTMIND,no-category,ignore,2,0.000192,yes
+ptengine.jp,PTMIND,no-category,ignore,2,0.000247,yes
+pub.network,Freestar,no-category,block,2,0.00548,no
+publir.com,Publir,no-category,ignore,2,0.000103,yes
+publitas.com,Publitas.com,no-category,ignore,2,0.000137,yes
+pubmatic.com,PubMatic,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.106,no
+pubnation.com,OpenX,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,ignore,2,0.00162,yes
+pulseinsights.com,Jeremy Bieger,no-category,ignore,1,0.000164,yes
+pushnami.com,Pushnami,no-category,ignore,3,0.00026,yes
+pxf.io,Impact,no-category,block,0,0.00338,no
+pxlclnmdecom-a.akamaihd.net,Akamai,Content Delivery,ignore,3,0.000274,yes
+pzz.io,Kizitos Holding,no-category,ignore,1,0.000704,yes
+qq.com,Tencent,no-category,ignore,3,0.000267,yes
+qualaroo.com,Qualaroo,Analytics; Audience Measurement; Embedded Content; Session Replay; Third-Party Analytics Marketing,ignore,2,0.000651,yes
+qualified.com,qualified.com,no-category,ignore,2,0.00108,yes
+qualtrics.com,Silver Lake,Analytics; Audience Measurement; Embedded Content; Session Replay; Third-Party Analytics Marketing,block,2,0.0101,no
+quantcount.com,Quantcast,no-category,block,0,0.0157,no
+quantserve.com,Quantcast,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.0432,no
+quantummetric.com,Quantum Metric,no-category,block,2,0.00413,no
+r10s.jp,Rakuten,no-category,ignore,2,5.48e-05,yes
+rakuten.com,Rakuten,no-category,block,2,0.00442,no
+rambler.ru,Rambler Internet Holding,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,ignore,3,0.000247,yes
+rapidedge.io,rapidedge.io,no-category,ignore,1,0.0247,yes
+raptivecdn.com,raptivecdn.com,no-category,ignore,0,0.0231,yes
+realizationnewestfangs.com,realizationnewestfangs.com,no-category,ignore,3,0.00166,yes
+realsrv.com,ExoClick,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,ignore,2,0.00199,yes
+rebuyengine.com,"Rebuy, LLC",no-category,ignore,2,0.0035,no
+receptivity.io,receptivity.io,no-category,block,2,0.0114,no
+recruitics.com,Recruitics,no-category,ignore,1,0.000158,yes
+reddit.com,Reddit,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Badge; Embedded Content; Social - Comment; Social - Share; Social Network; Third-Party Analytics Marketing,block,0,0.03,yes
+redditstatic.com,Reddit,Action Pixels; Ad Motivated Tracking; Analytics,block,2,0.0297,no
+refinery89.com,refinery89.com,no-category,ignore,2,0.00101,yes
+resetdigital.co,Reset Digital,no-category,block,0,0.00303,no
+reson8.com,Resonate Networks,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,0,0.00251,no
+responsiveads.com,ResponsiveAds,no-category,ignore,2,0.000219,yes
+retargetly.com,Retargetly,no-category,ignore,2,0.000267,yes
+revcontent.com,RevContent,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,2,0.00368,no
+rezync.com,Zeta Global,Ad Motivated Tracking,block,1,0.0245,no
+rfihub.com,Zeta Global,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.0429,no
+rfksrv.com,Reflektion,no-category,ignore,2,0.00026,yes
+richaudience.com,Rich Audience,no-category,block,1,0.0333,no
+rijksoverheid.nl,Rijksoverheid,no-category,ignore,2,6.85e-05,yes
+ringcentral.com,RingCentral,no-category,ignore,2,0.00011,yes
+ringier-advertising.ch,Ringier,no-category,ignore,3,3.42e-05,yes
+rkdms.com,Merkle,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,2,0.026,no
+rlcdn.com,LiveRamp,Ad Fraud; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.11,no
+rmbl.ws,Rumble,no-category,ignore,1,0.00061,yes
+rmtag.com,Rakuten,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,ignore,2,0.000623,yes
+roeye.com,roeye.com,no-category,ignore,0,0.005,yes
+roeyecdn.com,roeyecdn.com,no-category,block,1,0.00531,no
+rogersmedia.com,Rogers Communications,no-category,ignore,3,3.42e-05,yes
+rokt.com,Rokt,no-category,ignore,1,0.00131,yes
+rqtrk.eu,Roq.ad,Ad Motivated Tracking; Advertising,block,1,0.0139,no
+rtb-oveeo.com,rtb-oveeo.com,no-category,ignore,0,0.00465,yes
+rtb.mx,rtb.mx,no-category,ignore,0,0.00592,yes
+rtbhouse.com,RTB House,no-category,ignore,1,0.0163,yes
+rtbwise.com,rtbwise.com,no-category,ignore,1,0.0193,yes
+rtoaster.jp,BrainPad,no-category,ignore,1,0.000123,yes
+rubiconproject.com,Magnite,Ad Motivated Tracking; Advertising,block,2,0.122,yes
+rvlife.com,Social Knowledge,no-category,ignore,2,0.000116,yes
+s.sni.global.fastly.net,Fastly,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Content Delivery; Embedded Content; Session Replay; Third-Party Analytics Marketing,ignore,3,0.000151,yes
+s13emagst.akamaized.net,Akamai,Content Delivery,ignore,3,6.16e-05,yes
+s3.us-west-2.amazonaws.com,Amazon.com,Content Delivery,ignore,3,0.000726,yes
+sail-horizon.com,CM Group,Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Third-Party Analytics Marketing,ignore,1,0.00384,yes
+sailthru.com,CM Group,no-category,ignore,1,0.000171,yes
+salecycle.com,SaleCycle Limited,no-category,ignore,2,0.000384,yes
+salesforce-sites.com,Salesforce.com,no-category,ignore,1,0.000267,yes
+salesforceliveagent.com,Salesforce.com,Embedded Content; Support Chat Widget,ignore,1,0.000856,no
+salesmanago.pl,Benhauer,no-category,ignore,2,0.00011,yes
+samplicio.us,Lucid Holdings,Action Pixels; Ad Motivated Tracking; Audience Measurement; Third-Party Analytics Marketing,block,0,0.00336,no
+sancdn.net,ICF,no-category,ignore,2,0.000137,yes
+sardine.ai,Sardine Inc.,no-category,ignore,3,7.53e-05,yes
+sascdn.com,Smartadserver,Advertising,block,1,0.00629,no
+satis.fi,Consult IT Nordic,no-category,ignore,2,0.00102,yes
+sc-static.net,Snap,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Embedded Content,block,2,0.0157,no
+scene7.com,Adobe,Advertising; Content Delivery,ignore,2,0.00373,no
+scene7.com.edgekey.net,Akamai,no-category,ignore,2,0.00162,yes
+scholarlyiq.com,Scholarly iQ,no-category,ignore,2,2.74e-05,yes
+schwab.com,Charles Schwab &,no-category,ignore,3,0.000267,yes
+scorecardresearch.com,comScore,Analytics; Audience Measurement,block,1,0.0584,yes
+screenpopper.com,EZ Publishing,no-category,ignore,2,0.000116,yes
+script.ac,Human Security,no-category,block,3,0.00533,no
+scriptwrapper.com,scriptwrapper.com,no-category,block,1,0.0078,no
+searchspring.io,searchspring.io,no-category,ignore,2,0.00161,yes
+securedvisit.com,4Cite Marketing,Ad Motivated Tracking; Advertising,block,2,0.00539,no
+securityannex.net,securityannex.net,no-category,ignore,2,0.00151,yes
+seedtag.com,SEEDTAG ADVERTISING,no-category,block,1,0.0407,no
+segment.com,Segment.io,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,2,0.00816,yes
+segment.io,Segment.io,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,1,0.00614,no
+semasio.net,Semasio,Ad Motivated Tracking; Advertising,block,0,0.00953,no
+sentry.io,Functional Software,no-category,ignore,0,0.0176,yes
+servenobid.com,Prebid.org,no-category,block,2,0.012,no
+serverbid.com,Consumable,no-category,block,1,0.00365,no
+sexad.net,ICF,no-category,ignore,1,0.000158,yes
+seznam.cz,Seznam.cz,no-category,ignore,3,0.000363,yes
+sharethis.com,ShareThis,Ad Motivated Tracking; Advertising; Embedded Content; Social - Share; Third-Party Analytics Marketing,block,2,0.0137,no
+sharethrough.com,Sharethrough,Ad Motivated Tracking; Advertising,block,1,0.0659,no
+shb-sync.com,shb-sync.com,no-category,block,0,0.00408,no
+shgcdn3.com,shgcdn3.com,no-category,ignore,1,0.00223,yes
+shinobi.jp,Ninja Tools,no-category,ignore,1,0.000555,yes
+shop.app,Shopify,no-category,block,0,0.0227,yes
+shop.pe,Add Shoppers,no-category,block,1,0.00331,no
+shopifycdn.com,Shopify,Content Delivery; Embedded Content,ignore,1,0.0181,no
+shopifysvc.com,Shopify,no-category,ignore,0,0.0285,yes
+sibautomation.com,Dual Technologies Services,no-category,ignore,1,0.00155,yes
+signifyd.com,Signifyd,no-category,ignore,3,0.0023,yes
+simpli.fi,Simplifi Holdings,Ad Motivated Tracking; Advertising; Analytics,block,0,0.0519,no
+site.com,Salesforce.com,Content Delivery,ignore,2,0.00471,yes
+siteimprove.com,Siteimprove,Analytics,ignore,2,0.000233,yes
+siteimproveanalytics.com,Siteimprove,Analytics,block,2,0.0121,no
+sitescout.com,Centro,Action Pixels; Ad Motivated Tracking; Advertising; Analytics,block,0,0.054,no
+sjv.io,Impact,no-category,block,0,0.00275,no
+skimresources.com,Skimbit,Ad Motivated Tracking; Advertising; Analytics,block,1,0.00414,no
+slgnt.eu,Selligent,no-category,ignore,1,0.000212,yes
+slickstream.com,slickstream.com,no-category,block,1,0.00897,no
+smaato.net,Smaato,Ad Motivated Tracking; Advertising; Analytics,block,0,0.0372,no
+smartadserver.com,Smartadserver,Ad Motivated Tracking; Advertising,block,1,0.0752,no
+smartcaptcha.yandexcloud.net,Yandex,no-category,ignore,3,3.42e-05,yes
+smartnews-ads.com,SmartNews,no-category,ignore,3,0.000856,yes
+smartytouch.co,smartytouch.co,no-category,ignore,0,0.00477,yes
+smilewanted.com,smilewanted.com,no-category,block,0,0.0194,no
+snapchat.com,Snap,Action Pixels; Ad Motivated Tracking; Social Network,block,1,0.0153,no
+snigelweb.com,snigelweb.com,no-category,ignore,3,0.00179,yes
+socdm.com,Supership,Ad Motivated Tracking; Advertising,block,1,0.0129,no
+sojern.com,Sojern,Ad Motivated Tracking; Advertising,block,2,0.00266,no
+sonobi.com,Sonobi,Advertising,block,0,0.0435,no
+sparteo.com,sparteo.com,no-category,block,1,0.0108,no
+spendsdetachment.com,spendsdetachment.com,no-category,ignore,3,0.00168,yes
+sportradar.com,Sportradar,no-category,ignore,2,0.000274,yes
+sportradarserving.com,Sportradar,no-category,block,0,0.00943,no
+sportslocalmedia.com,Spacefoot,no-category,ignore,2,0.000247,yes
+spreadshirts.net,sprd.net,no-category,ignore,2,1.37e-05,yes
+springserve.com,SpringServe,Ad Motivated Tracking; Advertising,block,2,0.0133,no
+sspinc.io,Secret Sauce Partners,no-category,ignore,2,1.37e-05,yes
+stackadapt.com,Collective Roll,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,1,0.0781,no
+stape.io,stape.io,no-category,block,3,0.00315,no
+startappnetwork.com,startappnetwork.com,no-category,ignore,0,0.00573,yes
+statcounter.com,StatCounter,Analytics,block,3,0.00494,no
+stay22.com,stay22.com,no-category,block,1,0.00502,no
+stbm.it,ARNOLDO MONDADORI EDITORE,no-category,ignore,2,0.000123,yes
+storage.googleapis.com,Google Ads (Google),Content Delivery; Embedded Content,ignore,2,0.0141,no
+storygize.net,Storygize,Action Pixels; Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.0028,no
+stpd.cloud,SETUPAD,no-category,ignore,3,0.000384,yes
+streamrail.com,Unity (ironSource),no-category,ignore,1,0.00762,yes
+stripe.com,Stripe,Content Delivery; Embedded Content; Online Payment,ignore,2,0.0103,no
+sundaysky.com,SundaySky,Ad Motivated Tracking; Advertising; Audience Measurement; Embedded Content,block,1,0.00303,yes
+swaven.com,Swaven,no-category,ignore,2,0.000575,yes
+syf.com,Synchrony Financial,no-category,ignore,2,0.00013,yes
+symantec.com,Broadcom,no-category,ignore,1,0.000185,yes
+syncingbridge.com,syncingbridge.com,no-category,block,0,0.0268,no
+t.co,Twitter,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Badge; Embedded Content; Federated Login; Social - Share; Social Network,ignore,0,0.0226,yes
+t13.io,Freestar,no-category,block,0,0.00507,no
+taboola.com,Taboola,Ad Motivated Tracking; Advertising; Audience Measurement; Third-Party Analytics Marketing,block,2,0.0328,no
+talkable.com,Curebit,no-category,ignore,1,4.11e-05,yes
+taobao.com,Alibaba,no-category,ignore,1,5.48e-05,yes
+tapad.com,Tapad,Ad Motivated Tracking; Advertising; Analytics; Third-Party Analytics Marketing,block,0,0.0973,no
+tappx.com,Tappx,no-category,block,0,0.00321,no
+tctm.co,Call Tracking Metrics,no-category,ignore,1,0.000986,yes
+teads-xo.com,teads-xo.com,no-category,ignore,2,0.00146,yes
+teads.tv,Teads,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Third-Party Analytics Marketing,block,1,0.0486,no
+tealiumiq.com,Tealium,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Session Replay; Third-Party Analytics Marketing,block,1,0.00377,no
+team-rec.jp,Team Lab,no-category,ignore,1,4.11e-05,yes
+technoratimedia.com,Synacor,Ad Fraud; Ad Motivated Tracking; Advertising,ignore,1,0.0022,yes
+telkomsel.com,Telekomunikasi Seluler PT,no-category,ignore,1,0.000205,yes
+temu.com,Pinduoduo,no-category,block,0,0.0555,no
+termly.io,termly.io,no-category,block,2,0.00284,no
+tfaforms.net,Veer West,no-category,ignore,2,0.000171,yes
+the-ozone-project.com,The Ozone Project,no-category,block,2,0.00561,no
+theadex.com,Virtual Minds,Ad Motivated Tracking; Advertising,ignore,3,0.000116,yes
+thejobnetwork.com,RealMatch,no-category,ignore,1,7.53e-05,yes
+thestar.com,Toronto Star Newspapers,no-category,ignore,2,2.05e-05,yes
+thrtle.com,Throtle,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,ignore,0,0.0232,yes
+tidio.co,Green Hills,no-category,ignore,2,0.00125,yes
+tiktok.com,ByteDance,no-category,block,1,0.0466,yes
+tiktokw.us,ByteDance,no-category,block,0,0.0406,no
+tinypass.com,Piano Software,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; SSO; Third-Party Analytics Marketing,ignore,3,0.00302,no
+tiqcdn.com,Tealium,Advertising; Analytics; Audience Measurement; Tag Manager; Third-Party Analytics Marketing,block,3,0.00933,yes
+tldw.me,spoteam.com,no-category,ignore,2,0.000479,yes
+top100.ru,Rambler Internet Holding,no-category,ignore,3,6.85e-05,yes
+townsquare.media,Townsquare Media,no-category,ignore,2,0.00037,yes
+trackersimulator.org,EFF Test Trackers,no-category,block,3,0.1,no
+trackjs.com,TrackJS,no-category,ignore,3,0.00107,yes
+tracookiepixel.xyz,tracookiepixel.xyz,no-category,ignore,0,0.0228,yes
+tradetracker.net,TradeTracker,no-category,ignore,1,0.000123,yes
+trafficjunky.com,Aylo,no-category,ignore,3,0.000212,yes
+translate.googleapis.com,Google Ads (Google),Content Delivery; Embedded Content,ignore,2,0.0144,no
+travelaudience.com,travelaudience.com,no-category,block,1,0.00533,no
+travelpayouts.com,Go Travel Un,no-category,ignore,2,0.000678,yes
+treasuredata.com,Treasure Data,Ad Motivated Tracking; Analytics; Audience Measurement,ignore,2,0.00231,yes
+tremorhub.com,Telaria,Ad Motivated Tracking; Advertising,block,0,0.0105,no
+trendemon.com,SSL,no-category,ignore,3,8.22e-05,yes
+tribalfusion.com,Exponential Interactive,Ad Motivated Tracking; Advertising,block,3,0.016,no
+trkn.us,Claritas,no-category,block,3,0.00739,no
+tru.am,trueAnthem,Third-Party Analytics Marketing,ignore,1,0.00182,yes
+trueleadid.com,Lead Intelligence,Advertising; Third-Party Analytics Marketing,ignore,1,0.00013,yes
+trustedstack.com,trustedstack.com,no-category,block,1,0.029,no
+trustpilot.com,Trustpilot,Analytics; Embedded Content,block,2,0.0111,no
+trvdp.com,Brandsmind,no-category,ignore,1,0.000575,yes
+tsyndicate.com,Traffic Stars,Action Pixels; Ad Motivated Tracking; Advertising,block,3,0.00574,no
+turn.com,Amobee,Ad Motivated Tracking; Advertising,block,1,0.0661,no
+tvpixel.com,Data Plus Math,Ad Motivated Tracking; Advertising; Analytics,ignore,2,0.00114,yes
+tvspix.com,tvspix.com,no-category,block,1,0.00287,no
+tvsquared.com,TVSquared,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement,block,2,0.00621,no
+tweakwise.com,Tweakwise.com,no-category,ignore,1,5.48e-05,yes
+twitch.tv,Amazon.com,Content Delivery; Embedded Content,ignore,3,0.000288,yes
+twitchcdn.net,Amazon.com,no-category,ignore,3,0.00013,yes
+twitter.com,Twitter,Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Federated Login; Social - Comment; Social - Share; Social Network,ignore,2,0.0371,yes
+tynt.com,33Across,Action Pixels; Ad Motivated Tracking; Advertising; Social - Share; Third-Party Analytics Marketing,block,1,0.0203,no
+uidapi.com,The Trade Desk,no-category,block,1,0.0344,no
+ujet.co,UJET INC,no-category,ignore,2,0.000233,yes
+unbxdapi.com,Unbxd Software,no-category,ignore,3,0.000623,yes
+uncn.jp,Bulbit,Ad Fraud; Ad Motivated Tracking; Advertising; Audience Measurement,ignore,2,0.00102,yes
+underdog.media,Underdog Media,no-category,ignore,2,0.000219,yes
+undertone.com,Undertone Networks,Ad Motivated Tracking; Advertising,block,1,0.0233,no
+unpkg.com,unpkg,Content Delivery,ignore,2,0.0385,yes
+unrulymedia.com,Unruly Group,Ad Motivated Tracking; Advertising; Audience Measurement; Embedded Content; Third-Party Analytics Marketing,block,1,0.00817,no
+uplift.com,Uplift,no-category,ignore,1,0.00013,yes
+upsellit.com,USI,no-category,block,2,0.00309,no
+urbanairship.com,Urban Airship,no-category,ignore,2,2.74e-05,yes
+us-west-2.amazonaws.com,Amazon.com,Content Delivery,ignore,1,0.00166,yes
+usabilla.com,Momentive,Ad Motivated Tracking; Analytics; Third-Party Analytics Marketing,ignore,1,0.001,yes
+usbrowserspeed.com,usbrowserspeed.com,no-category,block,0,0.00838,no
+usemessages.com,HubSpot,Embedded Content; Support Chat Widget,ignore,1,0.00479,no
+userapi.com,VK,no-category,ignore,3,0.000192,yes
+usergram.info,beBit,no-category,ignore,2,8.22e-05,yes
+uservoice.com,UserVoice,no-category,ignore,1,0.00013,yes
+usocial.pro,Compubyte,no-category,ignore,1,2.74e-05,yes
+uuidksinc.net,uuidksinc.net,no-category,block,1,0.00328,no
+valuecommerce.com,ValueCommerce,no-category,ignore,2,0.000562,yes
+verint-cdn.com,Verint Systems,no-category,ignore,3,0.000781,yes
+viafoura.net,Viafoura,no-category,ignore,2,0.00162,yes
+vibe.co,vibe.co,no-category,block,1,0.00297,no
+vidazoo.com,Vidazoo,no-category,ignore,3,0.000849,yes
+vidoomy.com,Soluciones Corporativas IP,no-category,ignore,2,0.000384,yes
+vimeo.com,Vimeo,Content Delivery; Embedded Content,ignore,1,0.0108,yes
+vimeocdn.com,Vimeo,Content Delivery; Embedded Content,ignore,3,0.00591,yes
+vistarsagency.com,vistarsagency.com,no-category,ignore,0,0.01,yes
+visually-io.com,Visually CRM,no-category,ignore,1,0.00127,yes
+visualwebsiteoptimizer.com,Wingify,Analytics; Session Replay; Third-Party Analytics Marketing,block,2,0.0113,yes
+visx.net,YOC,no-category,block,1,0.0045,no
+vk.com,VK,Ad Motivated Tracking; Advertising; Analytics; Embedded Content; Federated Login; Social - Comment; Social - Share; Social Network,ignore,1,0.00144,yes
+vk.ru,VK,no-category,ignore,3,0.00024,yes
+vntsm.com,Venatus Media,no-category,ignore,2,0.000801,yes
+vrtcal.com,VRTCAL Markets,no-category,ignore,1,0.000589,yes
+wbd.com,Warner Bros. Discovery,no-category,ignore,2,4.79e-05,yes
+we-stats.com,BioCatch,no-category,ignore,3,0.000253,yes
+weather.gov,National Oceanic and Atmospheric Administration NOAA,no-category,ignore,1,0.000336,yes
+webantenna.info,beBit,no-category,ignore,2,5.48e-05,yes
+webcontentassessor.com,The Media Trust,no-category,block,2,0.00806,no
+webengage.co,Webklipper,no-category,ignore,1,0.000144,yes
+webengage.com,Webklipper,no-category,ignore,2,0.000178,yes
+webeyez.com,Blue Capital Markets,no-category,ignore,3,0.000329,yes
+webtraxs.com,Thomas Publishing Company,no-category,ignore,2,0.000137,yes
+webtrends-optimize.com,LCN.com,no-category,ignore,2,0.000363,yes
+webtrends.com,WebTrends,no-category,ignore,2,9.59e-05,yes
+webvisor.org,Yandex,Session Replay,ignore,2,0.00122,yes
+wec-virtualassistant-cx-prod.web.app,Google,no-category,ignore,3,3.42e-05,yes
+weglot.com,weglot.com,no-category,ignore,2,0.00244,no
+whitetrafsa.com,whitetrafsa.com,no-category,ignore,2,0.00105,yes
+witglobal.net,Würth IT,no-category,ignore,2,0.000201,yes
+wknd.ai,wknd.ai,no-category,block,1,0.00433,no
+woosmap.com,Web Geo Services,no-category,ignore,2,0.000178,no
+workdeadlinededicate.com,workdeadlinededicate.com,no-category,ignore,3,0.00153,yes
+wovn.io,Wovn,no-category,ignore,2,0.000185,yes
+wp.com,Automattic,Analytics; Content Delivery; Embedded Content,ignore,1,0.0276,yes
+wp.pl,Wirtualna Polska,no-category,block,1,0.00407,no
+wt-eu02.net,Webtrekk,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content,ignore,1,0.000493,yes
+wt-safetag.com,Webtrekk,Advertising; Third-Party Analytics Marketing,ignore,2,0.000253,yes
+wurflcloud.com,wurflcloud.com,no-category,ignore,0,0.00444,yes
+wysistat.com,ID.fr,no-category,ignore,2,0.000418,yes
+x.com,Twitter,no-category,ignore,1,0.00155,no
+yadro.ru,ECO PC - Complex Solutions,Ad Motivated Tracking; Analytics; Malware,ignore,0,0.0061,yes
+yads.tech,Yandex,no-category,block,2,2.05e-05,no
+yahoo.co.jp,LY-Corporation,Ad Motivated Tracking; Advertising,block,1,0.00301,no
+yahoo.com,Verizon Media,Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Federated Login,block,1,0.0984,no
+yandex.com,Yandex,no-category,ignore,1,0.012,yes
+yandex.net,Yandex,Content Delivery; Embedded Content; Session Replay,ignore,1,0.001,no
+yandex.ru,Yandex,Action Pixels; Ad Motivated Tracking; Advertising; Analytics; Audience Measurement; Embedded Content; Online Payment; SSO; Session Replay,block,3,0.0134,yes
+yandexmetrica.com,Yandex,no-category,block,0,0.0165,no
+yango.com,Yandex,no-category,block,2,5.48e-05,no
+yastatic.net,Yandex,Ad Motivated Tracking; Advertising; Content Delivery; Embedded Content; Social - Share,ignore,3,0.00284,no
+yelda-chat.s3.eu-west-3.amazonaws.com,Amazon.com,Content Delivery,ignore,3,0.000302,yes
+yellowblue.io,Unity (ironSource),no-category,block,0,0.0347,no
+yieldmo.com,YieldMo,Ad Motivated Tracking; Advertising,block,1,0.0485,no
+yimg.com,Verizon Media,Ad Motivated Tracking; Advertising; Content Delivery,ignore,1,0.00914,yes
+yimg.jp,LY-Corporation,Ad Motivated Tracking; Advertising,ignore,2,0.00442,yes
+ymetrica1.com,Yandex,no-category,block,0,0.0165,no
+ymmobi.com,ymmobi.com,no-category,ignore,0,0.0192,yes
+yotpo.com,Yotpo,Advertising; Embedded Content; Third-Party Analytics Marketing,block,2,0.00953,yes
+youtube-nocookie.com,Youtube (Google),Ad Motivated Tracking; Content Delivery; Embedded Content,ignore,3,0.00295,yes
+youtube.com,Youtube (Google),Ad Motivated Tracking; Content Delivery; Embedded Content,ignore,3,0.0485,yes
+zemanta.com,Outbrain,Ad Motivated Tracking; Advertising; Third-Party Analytics Marketing,block,1,0.0171,no
+zencdn.net,Brightcove,Advertising; Analytics; Content Delivery; Embedded Content,ignore,2,0.00481,yes
+zendesk.com,Zendesk,Analytics; Content Delivery; Embedded Content; Federated Login,ignore,1,0.00755,no
+zeotap.com,Zeotap,no-category,block,1,0.00255,no
+zetaglobal.net,Zeta Global,no-category,ignore,1,0.00234,yes
+zi-scripts.com,zi-scripts.com,no-category,block,1,0.00374,no
+zip.co,Zip Co,no-category,ignore,3,0.000719,yes
+zohocdn.com,ZOHO,Content Delivery,ignore,2,0.00117,yes
+zoologyfibre.com,zoologyfibre.com,no-category,ignore,2,0.00172,yes
+zoominfo.com,Zoom Information,no-category,block,1,0.00416,no
+zopim.com,Zendesk,Embedded Content; Support Chat Widget,ignore,1,0.00201,no
+zprk.io,Near,no-category,block,1,0.00257,no
+zucks.net,Zucks,no-category,ignore,1,0.000356,yes

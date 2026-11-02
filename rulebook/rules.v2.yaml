@@ -35,13 +35,13 @@ conventions: # PDF 0.6
 registers: # PDF Appendix A
   R1:
     {
-      used_by: "necessary-cookie list",
-      value: "OPEN: build from pilot, then freeze",
+      used_by: "0.2, CN-02, SB-02",
+      value: "Starter list in rulebook/necessary_cookies.yaml, confirmed in the pilot, then frozen. A cookie not on the list with no documented purpose = non-necessary, flagged 'purpose unknown'.",
     }
   R2:
     {
-      used_by: "first-party evidence",
-      value: "Common ownership shown in site disclosures or a public company record",
+      used_by: "0.2, CK-02",
+      value: "Common ownership shown in the site's own disclosures or a public company record",
     }
   R3:
     {
@@ -51,7 +51,7 @@ registers: # PDF Appendix A
   R4:
     {
       used_by: CN-01,
-      value: "OPEN: coverage measure for 'significantly obstructs' and screenshot method",
+      value: "Grid method. Cut the first-paint viewport screenshot into a 3x3 grid. 'Significantly obstructs' = the banner box covers at least 1/9 of the viewport AND is not entirely inside the bottom row. Measure the banner box, not any dimmed backdrop. Positions recorded: bottom, top, centre_modal, left, right, full_screen. Methodological threshold, not statutory.",
     }
   R5:
     {
@@ -60,14 +60,18 @@ registers: # PDF Appendix A
     }
   R6:
     {
-      used_by: "capture environment",
-      value: "OPEN: browser, version, viewport, network location, language",
+      used_by: "0.4",
+      value: "Chrome stable (version recorded per capture day), desktop viewport 1366x768, fresh named profile, no extensions, NOT Incognito, network location Nigeria, language en-NG.",
     }
-  R7: { used_by: "observation window", value: "OPEN: seconds" }
+  R7:
+    {
+      used_by: "0.4",
+      value: "10 seconds after page load finishes, no interaction. Same 10 seconds after an Accept or Reject click.",
+    }
   R8:
     {
       used_by: TR-01,
-      value: "Frozen DuckDuckGo blocklist snapshot (version + hash) for annotators and tool",
+      value: "Frozen DuckDuckGo blocklist snapshot (data/lists/tds-snapshot.json, hash in FREEZE.json). A third-party request is a tracker if its domain is in the list AND either the list's default for that domain is 'block' or the request URL matches one of that domain's URL rules (a matching rule marked 'ignore' means not a tracker). Annotators run eval/is_tracker.py on the HAR file; the tool uses the same code.",
     }
   R9:
     {
@@ -109,7 +113,16 @@ rules:
         "GAID Sch 1 para 4(iii),(vii)",
         "GAID Art 49(3) (context only, not a cookie cap)",
       ]
-    thresholds: { max_days: 365, register: R3 }
+    # thresholds: { max_days: 365, register: R3 }
+
+    thresholds:
+      {
+        min_coverage: 0.111,
+        bottom_row_starts_at: 0.667,
+        register: R4,
+        positions_recorded:
+          [bottom, top, centre_modal, left, right, full_screen],
+      }
     decision:
       non_compliant: "A persistent cookie lasts longer than max_days and no justification appears in the disclosures"
       compliant: "No persistent cookie exceeds max_days, or each one that does is justified"

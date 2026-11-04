@@ -43,3 +43,67 @@ class ScoreCard(BaseModel):
     critical_count: int = 0
     coverage: float = 0.0
     category_scores: dict[str, float] = Field(default_factory=dict)
+
+
+class Event(BaseModel):
+    """One observation on the run clock. Key names, sizes and hashes only, never raw values."""
+    t_ms: int  # milliseconds since navigation start, one monotonic clock per run (D-30)
+    kind: str  # request, response, cookie_set_js, storage_set, capture_error
+    domain: str | None = None
+    third_party: bool | None = None
+    vendor: str | None = None
+    detail: dict = Field(default_factory=dict)
+
+
+class RunStatus(str, Enum):
+    OK = "ok"
+    BLOCKED = "blocked"
+    FAILED = "failed"
+
+
+class RunResult(BaseModel):
+    url: str
+    condition: Condition
+    status: RunStatus
+    block_reasons: list[str] = Field(default_factory=list)
+    error: str | None = None
+    load_timeout: bool = False
+    observe_s: float
+    events: list[Event] = Field(default_factory=list)
+    cookies: list[dict] = Field(default_factory=list)  # attributes and value_hash, never values
+    local_storage_keys: list[str] = Field(default_factory=list)
+    session_storage_keys: list[str] = Field(default_factory=list)
+    indexeddb_names: list[str] = Field(default_factory=list)
+    files: dict[str, str] = Field(default_factory=dict)
+
+
+class Event(BaseModel):
+    """One observation on the run clock. Key names, sizes and hashes only, never raw values."""
+    t_ms: int  # milliseconds since navigation start, one monotonic clock per run (D-30)
+    kind: str  # request, response, cookie_set_js, storage_set, capture_error
+    domain: str | None = None
+    third_party: bool | None = None
+    vendor: str | None = None
+    detail: dict = Field(default_factory=dict)
+
+
+class RunStatus(str, Enum):
+    OK = "ok"
+    BLOCKED = "blocked"
+    FAILED = "failed"
+
+
+class RunResult(BaseModel):
+    url: str
+    condition: Condition
+    status: RunStatus
+    block_reasons: list[str] = Field(default_factory=list)
+    error: str | None = None
+    load_timeout: bool = False
+    observe_s: float
+    events: list[Event] = Field(default_factory=list)
+    cookies: list[dict] = Field(default_factory=list)  # attributes and value_hash, never values
+    local_storage_keys: list[str] = Field(default_factory=list)
+    session_storage_keys: list[str] = Field(default_factory=list)
+    indexeddb_names: list[str] = Field(default_factory=list)
+    files: dict[str, str] = Field(default_factory=dict)

@@ -65,7 +65,8 @@ def score(results: list[RuleResult], rulebook: dict, status: ScanStatus = ScanSt
                                             sum(rules[i]["weight"] for i in members))
 
     card = ScoreCard(status=status, score_weighted=weighted, score_equal=equal_score, band=band,
-                     critical_count=critical_count, coverage=coverage, category_scores=categories, empty_categories=empty)
+                     critical_count=critical_count, coverage=coverage, category_scores=categories, empty_categories=empty,
+                     scored_weight=sum(rules[i]["weight"] for i in scored), total_weight=total_weight)
     if not scored:
         card.note = "no rule was applicable, so there is nothing to score"
     hide_below = rulebook["scoring"]["coverage"]["hide_score_below"]

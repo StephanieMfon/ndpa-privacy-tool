@@ -54,6 +54,7 @@ def capture_run(url: str, out_dir: Path, condition: Condition = Condition.NO_ACT
 
     with sync_playwright() as p:
         browser = p.chromium.launch(channel=cfg.channel, headless=cfg.headless)
+        result.browser_version = browser.version
         context = browser.new_context(
             viewport={"width": cfg.viewport[0], "height": cfg.viewport[1]},
             locale=cfg.locale, timezone_id=cfg.timezone_id,

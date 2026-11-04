@@ -10,3 +10,6 @@ data/evidence/
 notes.md
 .DS_Store
 spikes/data/
+data/*.db
+data/*.db-wal
+data/*.db-shm

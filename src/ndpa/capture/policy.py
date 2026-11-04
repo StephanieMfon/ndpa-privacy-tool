@@ -34,7 +34,26 @@ LINKS_JS = """() => Array.from(document.querySelectorAll('a[href]')).map(a => ({
 })).filter(l => /^https?:/.test(l.href))"""
 HEADINGS_JS = """() => Array.from(document.querySelectorAll('h1,h2,h3,h4'))
   .map(h => h.innerText.trim()).filter(Boolean).slice(0, 60)"""
-TEXT_JS = "() => document.body ? document.body.innerText : ''"
+# Text of the page including collapsed sections (accordions, closed <details>), which innerText leaves out.
+TEXT_JS = """() => {
+  const skip = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEMPLATE']);
+  const block = /^(P|DIV|LI|H[1-6]|TR|SECTION|ARTICLE|UL|OL|BR|TABLE|DT|DD|BLOCKQUOTE|PRE|HEADER|FOOTER|NAV|ASIDE|FORM)$/;
+  const out = [];
+  const walk = (node) => {
+    if (node.nodeType === 3) {
+      const t = node.nodeValue.replace(/\\s+/g, ' ').trim();
+      if (t) out.push(t);
+      return;
+    }
+    if (node.nodeType !== 1 || skip.has(node.tagName)) return;
+    const isBlock = block.test(node.tagName);
+    if (isBlock) out.push('\\n');
+    for (const child of node.childNodes) walk(child);
+    if (isBlock) out.push('\\n');
+  };
+  if (document.body) walk(document.body);
+  return out.join(' ').replace(/ *\\n */g, '\\n').replace(/\\n{2,}/g, '\\n').trim();
+}"""
 
 
 def classify_link(text: str, href: str) -> set[str]:

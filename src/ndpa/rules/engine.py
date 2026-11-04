@@ -84,6 +84,7 @@ def main() -> None:
     else:
         print(f"score: {card.score_weighted} (equal-weight {card.score_equal}), risk band: {card.band}, "
               f"critical failures: {card.critical_count}, coverage: {card.coverage:.0%}")
+        print(f"       based on {card.scored_weight:g} of {card.total_weight:g} points: the rules that applied to this site")
     if card.status.value == "done":
         print(f"categories: {card.category_scores}  (nothing to assess: {card.empty_categories})")
         fixes = fix_first(results, rulebook)

@@ -109,3 +109,14 @@ def test_pdf_policy_is_reported_as_unreadable_not_as_missing(make_site, tmp_path
     pc = run(make_site, files, tmp_path)
     assert pc.discovery_status == "uncertain"
     assert any("PDF" in p for p in pc.problems)
+
+
+def test_text_inside_collapsed_sections_is_read(make_site, tmp_path):
+    hidden = ('<div style="display:none">' + "We collect personal data to provide our services and we respect your privacy. " * 10
+              + "</div><details><summary>Your rights</summary><p>You have the right to access your personal data.</p></details>")
+    files = {"index.html": doc("Home", HOME + '<a href="/privacy/">Privacy Policy</a>'),
+             "privacy/index.html": doc("Privacy", "<h1>Privacy Policy</h1>" + hidden)}
+    pc = run(make_site, files, tmp_path)
+    assert pc.discovery_status == "found_linked"
+    text = (tmp_path / pc.pages[0].text_file).read_text(encoding="utf-8")
+    assert "right to access your personal data" in text and text.count("\n") >= 2

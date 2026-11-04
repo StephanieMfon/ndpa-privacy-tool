@@ -19,6 +19,7 @@ import json
 import re
 import sys
 import time
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -32,6 +33,59 @@ def _safe_site_folder_name(url: str) -> str:
     """Turn a URL into a filesystem-safe folder name, e.g. https://kara.com.ng/ -> kara.com.ng"""
     netloc = urlparse(url).netloc or url
     return re.sub(r"[^a-zA-Z0-9.\-]", "_", netloc)
+
+
+@contextmanager
+def launched_page(url: str, timeout_ms: int = 30000, har_path: str | None = None,
+                   settle_ms: int = 2000, on_request=None, init_script: str | None = None):
+    """
+    Shared browser-launch + navigate logic, used by harness.py, consent_capture.py,
+    and full_scan.py, so none of them drift out of sync on viewport, timeout,
+    or settle behaviour.
+
+    `on_request`, if given, is attached BEFORE navigation starts (critical —
+    attaching after goto() misses every request made during initial load).
+
+    `init_script`, if given, is injected via context.add_init_script() BEFORE
+    navigation — runs before any of the page's own scripts, so it can safely
+    monkey-patch browser APIs (used by full_scan.py for SB-04 fingerprinting
+    detection). None by default; existing callers are unaffected.
+
+    Yields (page, context, start_time). start_time is a time.monotonic()
+    reference so callers can timestamp events (clicks, cookie changes)
+    consistently with any network_log timestamps recorded via on_request.
+    """
+    if not url.startswith(("http://", "https://")):
+        raise ValueError(f"URL must include scheme (http:// or https://): {url}")
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context_kwargs = {"viewport": {"width": 1366, "height": 768}}
+        if har_path:
+            context_kwargs["record_har_path"] = har_path
+        context = browser.new_context(**context_kwargs)
+
+        if init_script:
+            context.add_init_script(init_script)
+
+        page = context.new_page()
+        start_time = time.monotonic()
+
+        if on_request:
+            page.on("request", on_request)
+
+        try:
+            page.goto(url, timeout=timeout_ms, wait_until="networkidle")
+        except PlaywrightTimeoutError:
+            page.wait_for_load_state("domcontentloaded")
+
+        page.wait_for_timeout(settle_ms)
+
+        try:
+            yield page, context, start_time
+        finally:
+            context.close()
+            browser.close()
 
 
 def scan_site(url: str, timeout_ms: int = 30000) -> dict:
@@ -53,51 +107,24 @@ def scan_site(url: str, timeout_ms: int = 30000) -> dict:
     dom_path = site_folder / "dom_snapshot.html"
     result_path = site_folder / "scan_result.json"
 
-    network_log = []
+    # Record raw monotonic time per request (single listener, attached
+    # before navigation starts so early requests aren't missed). Normalized
+    # to "seconds since start_time" once start_time is available below.
+    raw_requests = []
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(
-            record_har_path=str(har_path),
-            viewport={"width": 1366, "height": 768},
-        )
-        page = context.new_page()
+    def _on_request(request):
+        raw_requests.append((time.monotonic(), request.url, request.resource_type, request.method))
 
-        # Record every request with a timestamp we control, since the HAR
-        # file's own timestamps are harder to correlate with our later
-        # consent-click timestamps (Module 3 will reuse this pattern).
-        start_time = time.monotonic()
-
-        def _on_request(request):
-            network_log.append({
-                "url": request.url,
-                "timestamp": round(time.monotonic() - start_time, 4),
-                "resource_type": request.resource_type,
-                "method": request.method,
-            })
-
-        page.on("request", _on_request)
-
-        try:
-            page.goto(url, timeout=timeout_ms, wait_until="networkidle")
-        except PlaywrightTimeoutError:
-            # Some sites never go fully idle (polling, ads, etc.) — fall back
-            # to "domcontentloaded" evidence rather than failing the whole
-            # scan. Recorded in the result so it's a visible limitation,
-            # not a silent gap.
-            page.wait_for_load_state("domcontentloaded")
-
-        # Small fixed settle time so late-loading consent banners / trackers
-        # have a chance to appear before we snapshot. Matches Phase 2 manual
-        # annotation practice of waiting for banner render before observing.
-        page.wait_for_timeout(2000)
-
+    with launched_page(url, timeout_ms=timeout_ms, har_path=str(har_path),
+                        on_request=_on_request) as (page, context, start_time):
         page.screenshot(path=str(screenshot_path), full_page=False)
         dom_path.write_text(page.content(), encoding="utf-8")
         cookies = context.cookies()
 
-        context.close()  # required to flush the HAR file to disk
-        browser.close()
+    network_log = [
+        {"url": u, "timestamp": round(t - start_time, 4), "resource_type": rt, "method": m}
+        for (t, u, rt, m) in raw_requests
+    ]
 
     result = {
         "url": url,

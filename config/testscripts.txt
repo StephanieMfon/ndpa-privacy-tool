@@ -1,0 +1,23 @@
+
+
+Testing consent capture
+-----------------------
+for url in $(cat your_site_list.txt); do
+  echo "$url:"
+  curl -s -A "Mozilla/5.0" "$url" | grep -oiE "cookiebot|onetrust|cookielaw|iubenda|termly|cookieyes|cybot" | sort -u
+  echo "---"
+done
+
+Testing that trackers are known
+--------------------------------
+python -m pytest tests/test_trackers.py -v
+
+python3 -c "
+from scanner.harness import scan_site
+from scanner.rules import trackers
+
+result = scan_site('https://kara.com.ng')
+detected = trackers.detect_trackers(result)
+for d in detected:
+    print(d['vendor'], d['matched_url'], d['first_seen_timestamp'])
+"

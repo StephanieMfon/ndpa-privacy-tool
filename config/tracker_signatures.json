@@ -1,0 +1,15 @@
+{
+  "_comment": "Fixed Decisions Register v1, Section 2. Fixed set of 10 vendors — don't add new ones mid-project without a versioned update and a logged reason, same rule as the main Rulebook.",
+  "vendors": [
+    {"name": "Google Analytics", "signatures": ["google-analytics.com", "analytics.google.com", "gtag", "ga.js"]},
+    {"name": "Google Tag Manager", "signatures": ["googletagmanager.com"]},
+    {"name": "Google Ads / DoubleClick", "signatures": ["doubleclick.net"]},
+    {"name": "Meta Pixel", "signatures": ["connect.facebook.net", "facebook.com/tr"]},
+    {"name": "Hotjar", "signatures": ["static.hotjar.com"]},
+    {"name": "Microsoft Clarity", "signatures": ["clarity.ms"]},
+    {"name": "LinkedIn Insight", "signatures": ["snap.licdn.com"]},
+    {"name": "TikTok Pixel", "signatures": ["analytics.tiktok.com"]},
+    {"name": "Segment", "signatures": ["cdn.segment.com"]},
+    {"name": "Mixpanel", "signatures": ["cdn.mxpnl.com"]}
+  ]
+}

@@ -1,4 +1,5 @@
 """
+scanner/rules/cookies.py
 
 Phase 3, Module 2 — Cookie rules (CK-01 to CK-05).
 
@@ -143,9 +144,10 @@ def check_ck04(cookie: dict, scanned_at_epoch: float, policy_text: str | None) -
                         notes=f"Expiry within 6-month threshold ({lifespan_seconds / 86400:.0f} days).")
 
     if policy_text is None:
-        return _result("CK-04", "Non-Compliant", cookie,
+        return _result("CK-04", "Unable to Determine", cookie,
                         notes=f"Exceeds 6-month threshold ({lifespan_seconds / 86400:.0f} days). "
-                              f"Policy justification not yet checked — pending Module 6 (privacy_policy).",
+                              f"Policy justification not yet checked — pending Module 6 (privacy_policy), "
+                              f"or the policy page could not be reached for this site.",
                         pending_policy_crossref=True)
 
     # Placeholder matching until Module 6 defines the real text-search interface.
@@ -164,8 +166,9 @@ def check_ck05(cookie: dict, party: str, policy_text: str | None) -> dict:
         return _result("CK-05", "Not Applicable", cookie, notes="First-party cookie.")
 
     if policy_text is None:
-        return _result("CK-05", "Non-Compliant", cookie,
-                        notes="Third-party cookie detected. Disclosure not yet checked — pending Module 6 (privacy_policy).",
+        return _result("CK-05", "Unable to Determine", cookie,
+                        notes="Third-party cookie detected. Disclosure not yet checked — "
+                              "pending Module 6 (privacy_policy), or the policy page could not be reached for this site.",
                         pending_policy_crossref=True)
 
     domain = cookie.get("domain", "")

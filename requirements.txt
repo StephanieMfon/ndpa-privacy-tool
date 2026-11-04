@@ -1,2 +1,11 @@
-playwright
-pytest
+playwright>=1.45
+pytest>=8.0
+spacy>=3.8
+beautifulsoup4>=4.12
+lxml>=5.0
+
+# spaCy's small English model isn't a normal pip package — install separately:
+#   python -m spacy download en_core_web_sm
+# If that command is blocked by network restrictions, install directly from
+# the GitHub release instead:
+#   pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

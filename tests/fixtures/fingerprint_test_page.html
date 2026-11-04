@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head><title>NDPA Fingerprint Instrumentation Test</title></head>
+<body>
+<canvas id="c" width="50" height="50"></canvas>
+<script>
+  // 1. Canvas fingerprinting — the strong-signal test case: we deliberately
+  //    send a slice of the returned value in a later request, so
+  //    check_sb04() should find a "strong" confidence match.
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  ctx.fillText('fingerprint test', 5, 5);
+  const dataUrl = canvas.toDataURL();
+
+  setTimeout(() => {
+    fetch('/beacon?v=' + encodeURIComponent(dataUrl.slice(0, 40)));
+  }, 500);
+
+  // 2. Audio fingerprinting — constructor-level detection only.
+  try { new (window.OfflineAudioContext || window.AudioContext)(1, 1, 44100); } catch (e) {}
+
+  // 3. Plugin enumeration.
+  try { navigator.plugins.length; } catch (e) {}
+
+  // 4. Font fingerprinting — repeated measureText, above the 3-call threshold.
+  try {
+    for (let i = 0; i < 4; i++) { ctx.measureText('sample text ' + i); }
+  } catch (e) {}
+
+  // 5. WebGL parameter query.
+  try {
+    const gl = document.createElement('canvas').getContext('webgl');
+    if (gl) gl.getParameter(gl.VENDOR);
+  } catch (e) {}
+</script>
+</body>
+</html>

@@ -44,14 +44,23 @@ Produced by every `scanner/rules/*.py` module. One list of these per site.
 {
     "rule_id": str,      # e.g. "CK-01", matches Annotation Rulebook exactly
     "category": str,     # "cookies" | "consent" | "trackers" | "script_behaviour" | "privacy_policy"
-    "label": str,        # "Compliant" | "Non-Compliant" | "Not Applicable"
+    "label": str,        # "Compliant" | "Non-Compliant" | "Not Applicable" | "Unable to Determine"
     "evidence": dict,    # rule-specific — cookie name, screenshot ref, quoted policy text ref, etc.
     "notes": str or None
 }
 ```
 
-`label` values are fixed to these three strings exactly — matches the
-Annotation Rulebook's Section 0.1 (no fourth "unclear" category).
+`label` is one of these four values exactly. The first three match the
+Annotation Rulebook's Section 0.1 (no fourth "unclear" category for
+*manual annotation*). "Unable to Determine" is a tool-specific fourth
+status, distinct from that convention — it means the tool lacked enough
+evidence to evaluate a rule (currently: CK-04, CK-05, TR-02 when a site's
+privacy policy couldn't be located or fetched), not an interpretive
+judgment on complete evidence. It is excluded from the compliance score
+the same way Not Applicable is, but tracked as a separate count, and MUST
+be excluded from any tool-vs-human precision/recall/F1 comparison in
+Phase 7 — no human annotator ever produces this label, so it isn't
+comparable to a gold label.
 
 ## Scoring convention (locked)
 Equal weight per rule. Site compliance score = (Compliant count) /

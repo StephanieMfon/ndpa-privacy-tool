@@ -127,7 +127,7 @@ def test_ck04_exceeds_threshold_no_policy_flags_pending():
     expires = NOW_EPOCH + (400 * 24 * 60 * 60)  # ~13 months out
     c = make_cookie(expires=expires)
     r = ck.check_ck04(c, NOW_EPOCH, policy_text=None)
-    assert r["label"] == "Non-Compliant"
+    assert r["label"] == "Unable to Determine"
     assert r["evidence"]["pending_policy_crossref"] is True
 
 
@@ -150,7 +150,7 @@ def test_ck05_first_party_not_applicable():
 def test_ck05_third_party_no_policy_flags_pending():
     c = make_cookie(domain="analytics.google.com")
     r = ck.check_ck05(c, "third-party", policy_text=None)
-    assert r["label"] == "Non-Compliant"
+    assert r["label"] == "Unable to Determine"
     assert r["evidence"]["pending_policy_crossref"] is True
 
 

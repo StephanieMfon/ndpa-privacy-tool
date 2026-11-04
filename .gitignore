@@ -1,11 +1,12 @@
 venv/
+.venv*/
 __pycache__/
 *.pyc
 .env
 data/evidence/
 .pytest_cache/
+.ruff_cache/
+*.egg-info/
 notes.md
 .DS_Store
-main.py.venv*/
-spikes/data/
 spikes/data/

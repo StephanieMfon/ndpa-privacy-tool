@@ -20,6 +20,9 @@ patterns:
     - cookie_notice_accepted
     - viewed_cookie_policy
     - euconsent-v2
+    - "*consent*"
+    - wpca_cc
+    - sb-closed
   security:
     - __cf_bm
     - cf_clearance
@@ -31,6 +34,7 @@ patterns:
     - nlbi_*
     - ak_bmsc
     - bm_sz
+    - "ts[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*"
   load_balancing:
     - AWSALB
     - AWSALBCORS
@@ -42,3 +46,6 @@ patterns:
     - PHPSESSID
     - JSESSIONID
     - ASP.NET_SessionId
+    - "*sessid"
+    - "*_session"
+    - "*sessionid"

@@ -6,6 +6,7 @@ Usage:
 """
 import argparse
 import re
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,6 +66,7 @@ def capture_run(url: str, out_dir: Path, condition: Condition = Condition.NO_ACT
         page.on("request", recorder.on_request)
         page.on("response", recorder.on_response)
 
+        result.started_at = time.time()
         log.start()  # navigation start: t_ms = 0
         try:
             page.goto(url, timeout=load_timeout_s * 1000, wait_until="load")

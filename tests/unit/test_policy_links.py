@@ -42,3 +42,8 @@ def test_is_policy_text():
 def test_headings_mention_privacy():
     assert headings_mention_privacy(["Acceptance", "Privacy and personal data"])
     assert not headings_mention_privacy(["Acceptance", "Payment"])
+
+
+def test_legal_does_not_match_inside_other_words():
+    assert classify_link("Condolement of Illegal Admission", "https://x.ng/illegal-admission") == set()
+    assert classify_link("Weather conditions", "https://x.ng/weather") == set()

@@ -92,3 +92,20 @@ def test_page_that_renders_nothing_is_uncertain(make_site, tmp_path):
 def test_blocked_homepage_is_uncertain(make_site, tmp_path):
     pc = run(make_site, {}, tmp_path, block=True)
     assert pc.discovery_status == "uncertain" and "blocked" in pc.problems[0]
+
+
+def test_policy_inside_an_embedded_frame_is_read(make_site, tmp_path):
+    files = {"index.html": doc("Home", HOME + '<a href="/privacy/">Privacy Policy</a>'),
+             "privacy/index.html": doc("Privacy", '<h1>Privacy</h1><iframe src="/policy-frame/"></iframe>'),
+             "policy-frame/index.html": POLICY}
+    pc = run(make_site, files, tmp_path)
+    assert pc.discovery_status == "found_linked"
+    assert [p.text_chars > 500 for p in pc.pages if p.is_privacy_policy] == [True]
+
+
+def test_pdf_policy_is_reported_as_unreadable_not_as_missing(make_site, tmp_path):
+    files = {"index.html": doc("Home", HOME + '<a href="/privacy.pdf">Privacy Policy</a>'),
+             "privacy.pdf": "%PDF-1.4 fake"}
+    pc = run(make_site, files, tmp_path)
+    assert pc.discovery_status == "uncertain"
+    assert any("PDF" in p for p in pc.problems)

@@ -88,6 +88,7 @@ class RunResult(BaseModel):
     status: RunStatus
     block_reasons: list[str] = Field(default_factory=list)
     error: str | None = None
+    started_at: float | None = None  # UTC epoch seconds when the run began (cookie lifespans need it)
     load_timeout: bool = False
     load_ms: int | None = None  # when navigation finished (or timed out), on the run clock
     observe_s: float

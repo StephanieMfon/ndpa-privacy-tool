@@ -25,8 +25,8 @@ COMMON_PATHS = ("/privacy", "/privacy-policy", "/privacy-notice", "/data-protect
 
 _PRIVACY = re.compile(r"privacy|data protection|ndpa|personal data", re.I)
 _COOKIE = re.compile(r"cookie", re.I)
-_TERMS = re.compile(r"terms|conditions", re.I)
-_HUB = re.compile(r"legal|policies|policy|trust|compliance|about|help|support|contact", re.I)
+_TERMS = re.compile(r"\bterms\b|\bconditions of (use|service)\b", re.I)
+_HUB = re.compile(r"\b(legal|policies|policy|trust|compliance|about|help|support|contact)\b", re.I)
 _ABOUT_PRIVACY = re.compile(r"privacy|personal data|data protection", re.I)
 
 LINKS_JS = """() => Array.from(document.querySelectorAll('a[href]')).map(a => ({
@@ -88,9 +88,26 @@ class _Walker:
         except Exception:  # noqa: BLE001
             return []
 
+    def _text_and_headings(self) -> tuple[str, list[str]]:
+        """Visible text and headings of the page and of every frame in it (policies are often embedded)."""
+        parts, headings = [], []
+        for frame in self.page.frames:
+            try:
+                text, found = frame.evaluate(TEXT_JS), frame.evaluate(HEADINGS_JS)
+            except Exception:  # noqa: BLE001  (frame went away)
+                continue
+            if text and text.strip():
+                parts.append(text)
+            headings.extend(found)
+        return "\n".join(parts), headings[:60]
+
     def visit(self, url: str, kinds: set[str], via: str, click_path: list[str]) -> PolicyPage | None:
         """Open one page and record it. Pages that do not exist (404) are not recorded and are not a problem."""
         self.visited.add(url.split("#")[0])
+        if urlparse(url).path.lower().endswith(".pdf"):
+            if kinds & {"privacy", "cookie"}:
+                self.problems.append(f"PDF policy, text not read: {url}")
+            return None
         status = None
         try:
             response = self.page.goto(url, wait_until="load", timeout=20000)
@@ -109,8 +126,7 @@ class _Walker:
         final = self.page.url.split("#")[0]
         if final in self.by_final_url:
             return self.by_final_url[final]
-        text = self.page.evaluate(TEXT_JS)
-        headings = self.page.evaluate(HEADINGS_JS)
+        text, headings = self._text_and_headings()
         blocked = [r for r in detect_block(status, {}, self.page.content()).reasons if r != "empty_page"]
         if blocked:
             self.problems.append(f"blocked ({blocked[0]}): {url}")

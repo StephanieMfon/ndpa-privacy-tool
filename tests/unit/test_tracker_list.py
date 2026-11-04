@@ -54,3 +54,9 @@ def test_unknown_domain(tl):
 ])
 def test_is_third_party(url, expected):
     assert is_third_party(url, "https://www.shop.com.ng/") is expected
+
+
+def test_owner_of_ignores_the_default_action(tl):
+    assert tl.owner_of("cdn.bigco.example") == "BigCo"      # default 'ignore', still has an owner
+    assert tl.owner_of("tracker.example") == "Tracker Inc"
+    assert tl.owner_of("unknown.example") is None

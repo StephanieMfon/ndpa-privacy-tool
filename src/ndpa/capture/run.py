@@ -96,6 +96,7 @@ def capture_run(url: str, out_dir: Path, condition: Condition = Condition.NO_ACT
                 act(page, log, condition, observe_s, result.consent, out_dir / "after_click.png")
 
             recorder.resolve_set_cookies()
+            result.captured_at = time.time()
             result.cookies = [
                 {"name": c["name"], "domain": c["domain"], "path": c["path"],
                  "secure": c["secure"], "httpOnly": c["httpOnly"],

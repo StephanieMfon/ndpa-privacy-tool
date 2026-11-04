@@ -146,6 +146,8 @@ def act(page, log: EventLog, condition: Condition, observe_s: float, obs: Consen
         page.wait_for_timeout(1500)
         live = _find(page, mark=True, token=f"m{log.now_ms()}")
         target, reached_via = (roles(live["controls"]).get("reject") if live else None), "panel"
+        if live:
+            obs.panel_text = live["text"]
         if target:
             obs.reject_control = _info(target, "panel")
     if target is None and role == "accept" and "close" in found:

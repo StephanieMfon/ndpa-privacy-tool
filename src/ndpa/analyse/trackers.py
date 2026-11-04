@@ -20,6 +20,10 @@ class TrackerMatch:
     reason: str
 
 
+def registrable_domain(url_or_host: str) -> str:
+    return _extract(url_or_host).top_domain_under_public_suffix
+
+
 def is_third_party(url: str, site_url: str) -> bool:
     return _extract(url).top_domain_under_public_suffix != _extract(site_url).top_domain_under_public_suffix
 
@@ -27,6 +31,16 @@ def is_third_party(url: str, site_url: str) -> bool:
 class TrackerList:
     def __init__(self, path: Path = SNAPSHOT):
         self._trackers = json.loads(Path(path).read_text())["trackers"]
+
+    def owner_of(self, host: str) -> str | None:
+        """The organisation behind a domain according to the list, whatever the domain's default action."""
+        parts = host.lower().split(".")
+        for i in range(len(parts) - 1):
+            entry = self._trackers.get(".".join(parts[i:]))
+            if entry:
+                owner = entry.get("owner") or {}
+                return owner.get("displayName") or owner.get("name") or None
+        return None
 
     def match(self, url: str) -> TrackerMatch | None:
         """Return a TrackerMatch if this request URL is a tracker request, else None."""

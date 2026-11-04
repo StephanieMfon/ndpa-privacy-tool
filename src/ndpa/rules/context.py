@@ -5,6 +5,7 @@ from pathlib import Path
 
 import yaml
 
+from ndpa.analyse.trackers import TrackerList
 from ndpa.models import Event, PolicyCapture, RuleResult, RunResult
 
 NECESSARY_PATH = Path("rulebook/necessary_cookies.yaml")
@@ -37,6 +38,7 @@ class ScanEvidence:
     accept: RunResult | None = None
     reject: RunResult | None = None
     policy: PolicyCapture | None = None
+    policy_texts: dict[str, str] = field(default_factory=dict)  # text_file -> text of each visited policy page
 
     def runs(self) -> list[RunResult]:
         return [r for r in (self.no_action, self.accept, self.reject) if r is not None]
@@ -49,6 +51,7 @@ class Ctx:
     trigger: bool = False                     # rulebook 0.6: a non-necessary cookie or a tracker, in any run
     trigger_reasons: list[str] = field(default_factory=list)
     mechanism: bool = False                   # a banner or panel appeared in at least one run
+    trackers: TrackerList | None = None       # to find which organisation owns a cookie domain
 
 
 def result(rule_id: str, outcome: str, note: str = "", evidence: list[dict] | None = None,
@@ -115,8 +118,8 @@ def by_vendor(events: list[Event], run_label: str) -> list[dict]:
     return list(rows.values())
 
 
-def build_ctx(ev: ScanEvidence, necessary: NecessaryCookies) -> Ctx:
-    ctx = Ctx(ev=ev, necessary=necessary)
+def build_ctx(ev: ScanEvidence, necessary: NecessaryCookies, trackers: TrackerList | None = None) -> Ctx:
+    ctx = Ctx(ev=ev, necessary=necessary, trackers=trackers)
     for run in ev.runs():
         label = run.condition.value
         if cookie_sets(run, necessary):

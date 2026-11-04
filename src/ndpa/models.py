@@ -43,6 +43,8 @@ class ScoreCard(BaseModel):
     critical_count: int = 0
     coverage: float = 0.0
     category_scores: dict[str, float] = Field(default_factory=dict)
+    empty_categories: list[str] = Field(default_factory=list)  # categories with no applicable rule
+    note: str = ""  # why a score is missing or hidden
 
 
 class Event(BaseModel):
@@ -80,6 +82,7 @@ class ConsentObservation(BaseModel):
     pre_click_local_storage_keys: list[str] = Field(default_factory=list)
     banner_after_reload: bool | None = None
     reopen_control: str | None = None
+    panel_text: str | None = None  # text of the preferences panel, when the Reject run opened one
 
 
 class RunResult(BaseModel):
@@ -88,7 +91,8 @@ class RunResult(BaseModel):
     status: RunStatus
     block_reasons: list[str] = Field(default_factory=list)
     error: str | None = None
-    started_at: float | None = None  # UTC epoch seconds when the run began (cookie lifespans need it)
+    started_at: float | None = None  # UTC epoch seconds when the run began
+    captured_at: float | None = None  # UTC epoch seconds when the cookie jar was read (lifespans are measured from here)
     load_timeout: bool = False
     load_ms: int | None = None  # when navigation finished (or timed out), on the run clock
     observe_s: float

@@ -92,3 +92,10 @@ def test_blocked_page_stops_before_any_click(site, tmp_path):
     r = run(site, "blocked.html", Condition.ACCEPT, tmp_path)
     assert r.status == RunStatus.BLOCKED and "http_403" in r.block_reasons
     assert r.consent.action == "none" and of_kind(r, "consent_click") == []
+
+
+def test_banner_box_is_the_whole_banner_even_when_a_button_says_cookies(site, tmp_path):
+    c = run(site, "banner_wrapped_buttons.html", Condition.NO_ACTION, tmp_path).consent
+    assert c.accept_control["text"] == "Accept all cookies" and c.reject_control["text"] == "Reject all"
+    assert c.banner_geometry["coverage"] > 0.1  # the banner, not just the div around the buttons
+    assert "We use cookies" in c.banner_text

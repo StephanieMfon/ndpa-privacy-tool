@@ -74,6 +74,8 @@ def capture_run(url: str, out_dir: Path, condition: Condition = Condition.NO_ACT
             result.status = RunStatus.FAILED
             result.error = (str(exc).splitlines() or [type(exc).__name__])[0][:300]
 
+        result.load_ms = log.now_ms()  # navigation finished, or timed out
+
         if result.status != RunStatus.FAILED:
             # Window 1 (register R7): observe with no interaction, watching for the banner.
             banner, first_seen = watch_banner(page, log, observe_s)
@@ -139,6 +141,7 @@ def summary(r: RunResult) -> str:
     lines = [
         f"status            : {r.status.value} {', '.join(r.block_reasons)}".rstrip(),
         f"error             : {r.error}" if r.error else "error             : none",
+        f"page load         : {r.load_ms} ms{' (timed out)' if r.load_timeout else ''}",
         f"requests          : {len(requests)} ({sum(1 for e in requests if e.third_party)} third-party)",
         f"tracker requests  : {len(tracker_requests)} from "
         f"{sorted({e.vendor for e in tracker_requests if e.vendor})}",
@@ -147,7 +150,7 @@ def summary(r: RunResult) -> str:
         f"storage sets: {len(kinds('storage_set'))}",
         f"banner            : {'found via ' + str(c.banner_via) if c.banner_found else 'not found'}"
         + (f", {geo.get('position')}, covers {geo.get('coverage')}, passes R4: {geo.get('passes_r4')}, "
-           f"first seen {c.banner_first_seen_ms} ms" if c.banner_found else ""),
+           f"first seen {c.banner_first_seen_ms - (r.load_ms or 0)} ms after load" if c.banner_found else ""),
         f"controls          : accept={c.accept_control}, reject={c.reject_control}, "
         f"settings={c.settings_control}, close={c.close_control}",
     ]

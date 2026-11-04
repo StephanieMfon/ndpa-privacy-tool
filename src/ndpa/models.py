@@ -89,6 +89,7 @@ class RunResult(BaseModel):
     block_reasons: list[str] = Field(default_factory=list)
     error: str | None = None
     load_timeout: bool = False
+    load_ms: int | None = None  # when navigation finished (or timed out), on the run clock
     observe_s: float
     events: list[Event] = Field(default_factory=list)
     cookies: list[dict] = Field(default_factory=list)  # attributes and value_hash, never values
@@ -97,3 +98,23 @@ class RunResult(BaseModel):
     indexeddb_names: list[str] = Field(default_factory=list)
     files: dict[str, str] = Field(default_factory=dict)
     consent: ConsentObservation = Field(default_factory=ConsentObservation)
+
+
+class PolicyPage(BaseModel):
+    """One page visited while looking for the privacy or cookie policy."""
+    url: str
+    kinds: list[str]  # privacy, cookie, terms
+    via: str  # "link" (followed from the homepage) or "probe" (common path)
+    click_path: list[str] = Field(default_factory=list)  # link texts from the homepage
+    http_status: int | None = None
+    text_chars: int = 0
+    headings: list[str] = Field(default_factory=list)
+    text_file: str | None = None
+    is_privacy_policy: bool = False  # long enough and about privacy (or a headed privacy section, R11)
+    embedded: bool = False  # privacy section inside the Terms page
+
+
+class PolicyCapture(BaseModel):
+    discovery_status: str  # found_linked / found_unlinked / exhaustive_negative / uncertain
+    pages: list[PolicyPage] = Field(default_factory=list)
+    problems: list[str] = Field(default_factory=list)

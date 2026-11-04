@@ -28,6 +28,16 @@
       && parseFloat(s.opacity) !== 0;
   };
   const label = (el) => (el.innerText || el.value || '').trim();
+  // The banner's message must contain the marker words in text that is NOT inside a button or link,
+  // otherwise a button labelled "Accept all cookies" would count as the whole banner.
+  const hasMessage = (c) => {
+    const walker = document.createTreeWalker(c, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const n = walker.currentNode;
+      if (MARKER.test(n.nodeValue) && n.parentElement && !n.parentElement.closest(CONTROL_SEL)) return true;
+    }
+    return false;
+  };
   const rect = (el) => {
     const b = el.getBoundingClientRect();
     return { x: b.x, y: b.y, width: b.width, height: b.height };
@@ -61,7 +71,7 @@
     for (const root of roots) {
       const pool = [root, ...descendants(root).filter((e) => FLOAT_TAGS.has(e.tagName))];
       for (const c of pool) {
-        if (!visible(c) || !MARKER.test(c.innerText || '')) continue;
+        if (!visible(c) || !hasMessage(c)) continue;
         const controls = descendants(c).filter((e) => e.matches(CONTROL_SEL) && visible(e));
         if (!controls.some((e) => STRONG.test(label(e) + ' ' + (e.getAttribute('aria-label') || '')))) continue;
         const b = c.getBoundingClientRect();

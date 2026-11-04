@@ -53,11 +53,12 @@
   };
   const firstLayer = () => {
     box.innerHTML = "<p>We use cookies to improve your experience.</p>";
+    const row = cfg.wrap === "yes" ? box.appendChild(document.createElement("div")) : box;
     const wanted = (cfg.buttons || "").split(",");
-    if (wanted.includes("accept")) box.appendChild(button("Accept all", () => done("accepted")));
-    if (wanted.includes("reject")) box.appendChild(button("Reject all", () => done("rejected")));
-    if (wanted.includes("manage")) box.appendChild(button("Manage preferences", panel));
-    if (wanted.includes("close")) box.appendChild(button("\u00d7", () => done("closed"), "Close"));
+    if (wanted.includes("accept")) row.appendChild(button(cfg.accept || "Accept all", () => done("accepted")));
+    if (wanted.includes("reject")) row.appendChild(button("Reject all", () => done("rejected")));
+    if (wanted.includes("manage")) row.appendChild(button("Manage preferences", panel));
+    if (wanted.includes("close")) row.appendChild(button("\u00d7", () => done("closed"), "Close"));
   };
   const panel = () => {
     box.innerHTML = "<p>Cookie preferences. Choose which cookies we may use.</p>"

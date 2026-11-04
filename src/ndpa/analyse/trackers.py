@@ -21,7 +21,7 @@ class TrackerMatch:
 
 
 def is_third_party(url: str, site_url: str) -> bool:
-    return _extract(url).registered_domain != _extract(site_url).registered_domain
+    return _extract(url).top_domain_under_public_suffix != _extract(site_url).top_domain_under_public_suffix
 
 
 class TrackerList:

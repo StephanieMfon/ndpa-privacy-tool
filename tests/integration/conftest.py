@@ -6,9 +6,21 @@ from pathlib import Path
 import pytest
 
 SITE_DIR = Path(__file__).resolve().parent.parent / "fixtures" / "site"
+BLOCK_PAGE = (b"<html><body><h1>Access denied</h1>"
+              b"<p>This request was blocked by our security service. Incident ID: 123</p></body></html>")
 
 
 class _Handler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path.startswith("/blocked"):
+            self.send_response(403)
+            self.send_header("Content-Type", "text/html")
+            self.send_header("Content-Length", str(len(BLOCK_PAGE)))
+            self.end_headers()
+            self.wfile.write(BLOCK_PAGE)
+            return
+        super().do_GET()
+
     def end_headers(self):
         if self.path.startswith("/server_cookie"):
             self.send_header("Set-Cookie", "srv_id=xyz; Path=/")

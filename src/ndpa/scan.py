@@ -6,16 +6,13 @@ Usage:
     python -m ndpa.scan https://example.com.ng [--observe 10] [--headless] [--bundled-chromium] [--vantage "Port Harcourt, NG"]
 """
 import argparse
-import hashlib
 import json
-import re
 import shutil
 import subprocess
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse
 
 from ndpa.analyse.trackers import SNAPSHOT, TrackerList
 from ndpa.capture.policy import capture_policy
@@ -27,6 +24,7 @@ from ndpa.rules.context import NecessaryCookies
 from ndpa.rules.engine import evaluate, load_scan
 from ndpa.scoring.score import RULEBOOK_PATH, load_rulebook, scan_status, score
 from ndpa.storage import db
+from ndpa.urls import host_of
 
 CONDITIONS = (Condition.NO_ACTION, Condition.ACCEPT, Condition.REJECT)
 
@@ -78,20 +76,24 @@ def _capture(url, folder, condition, opts, trackers, say) -> tuple[RunResult, in
 
 
 def run_scan(url: str, db_path: Path = db.DEFAULT_DB, out_root: Path = Path("data/evidence"),
-             opts: ScanOptions | None = None, trackers: TrackerList | None = None, say_out=print) -> ScanSummary:
+             opts: ScanOptions | None = None, trackers: TrackerList | None = None, say_out=print,
+             scan_id: int | None = None) -> ScanSummary:
+    """Scan one site. Pass scan_id when the dashboard has already created the (queued) scan row."""
     opts = opts or ScanOptions()
     if trackers is None and SNAPSHOT.exists():
         trackers = TrackerList()
-    host = re.sub(r"[^a-zA-Z0-9.\-]", "_", urlparse(url).netloc)
+    host = host_of(url)
     folder = out_root / host / datetime.now(timezone.utc).strftime("%Y-%m-%dT%H-%M-%S")
     folder.mkdir(parents=True, exist_ok=True)
 
     conn = db.connect(db_path)
     rulebook = load_rulebook()
-    scan_id = db.insert_scan(
-        conn, url, host, str(folder), opts.vantage, tool_version=_tool_version(),
-        rulebook_version=str(rulebook.get("meta", {}).get("version", "unknown")),
-        rulebook_sha256=_sha256_file(RULEBOOK_PATH), tracker_list_sha256=_sha256_file(SNAPSHOT))
+    env = dict(tool_version=_tool_version(), rulebook_version=str(rulebook.get("meta", {}).get("version", "unknown")),
+               rulebook_sha256=_sha256_file(RULEBOOK_PATH), tracker_list_sha256=_sha256_file(SNAPSHOT))
+    if scan_id is None:
+        scan_id = db.insert_scan(conn, url, host, str(folder), opts.vantage, **env)
+    else:
+        db.update_scan(conn, scan_id, status="running", started_at=db.now(), folder=str(folder), **env)
 
     def say(stage: str, message: str = "") -> None:
         db.log_progress(conn, scan_id, stage, message)
@@ -159,9 +161,12 @@ def main() -> None:
     ap.add_argument("--bundled-chromium", action="store_true")
     ap.add_argument("--vantage", default="unspecified", help='where the scan runs from, e.g. "Port Harcourt, NG"')
     ap.add_argument("--db", default=str(db.DEFAULT_DB))
+    ap.add_argument("--out-root", default="data/evidence", help="where evidence folders are written")
+    ap.add_argument("--scan-id", type=int, default=None, help="use a scan row the dashboard already created")
     args = ap.parse_args()
     cfg = BrowserConfig(channel=None if args.bundled_chromium else "chrome", headless=args.headless)
-    summary = run_scan(args.url, Path(args.db), opts=ScanOptions(observe_s=args.observe, browser=cfg, vantage=args.vantage))
+    summary = run_scan(args.url, Path(args.db), Path(args.out_root),
+                       opts=ScanOptions(observe_s=args.observe, browser=cfg, vantage=args.vantage), scan_id=args.scan_id)
     card = summary.card
     print()
     print(f"scan #{summary.scan_id}: {summary.status.value}" + (f" ({summary.error})" if summary.error else ""))

@@ -6,10 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "ndpa"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = ["pydantic>=2", "pyyaml", "tldextract", "playwright", "spacy>=3.8"]
+dependencies = ["pydantic>=2", "pyyaml", "tldextract", "playwright", "spacy>=3.8", "fastapi", "uvicorn", "jinja2"]
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff"]
+dev = ["pytest", "ruff", "httpx"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -19,3 +19,7 @@ line-length = 100
 
 [tool.pytest.ini_options]
 markers = ["browser: needs a real browser"]
+filterwarnings = ["ignore:Using .httpx. with .starlette.testclient"]
+
+[tool.setuptools.package-data]
+ndpa = ["web/templates/*.html", "web/static/*", "capture/*.js"]

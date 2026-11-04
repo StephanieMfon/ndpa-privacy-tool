@@ -43,20 +43,24 @@ CREATE TABLE IF NOT EXISTS progress (
   id INTEGER PRIMARY KEY AUTOINCREMENT, scan_id INTEGER NOT NULL REFERENCES scan(id), at TEXT NOT NULL,
   stage TEXT NOT NULL, message TEXT
 );
+CREATE INDEX IF NOT EXISTS ix_progress_scan ON progress(scan_id, id);
 """
 
 SCAN_COLUMNS = {"status", "rulebook_version", "rulebook_sha256", "tracker_list_sha256", "tool_version",
-                "browser_version", "vantage", "finished_at", "folder", "manifest_hash", "error"}
+                "browser_version", "vantage", "started_at", "finished_at", "folder", "manifest_hash", "error"}
+FINAL_STATUSES = {"done", "blocked", "failed"}
 
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def connect(path: Path = DEFAULT_DB) -> sqlite3.Connection:
+def connect(path: Path = DEFAULT_DB, share_across_threads: bool = False) -> sqlite3.Connection:
+    """share_across_threads: the web framework opens a connection in one worker thread and closes it in another.
+    A connection is only ever used by one request at a time, so this is safe."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
+    conn = sqlite3.connect(path, timeout=30, check_same_thread=not share_across_threads)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.execute("PRAGMA journal_mode = WAL")
@@ -64,13 +68,17 @@ def connect(path: Path = DEFAULT_DB) -> sqlite3.Connection:
     return conn
 
 
-def insert_scan(conn: sqlite3.Connection, url: str, host: str, folder: str, vantage: str, **env) -> int:
-    cur = conn.execute("INSERT INTO scan (url, host, status, started_at, folder, vantage) VALUES (?,?,?,?,?,?)",
-                       (url, host, "running", now(), folder, vantage))
+def create_scan(conn: sqlite3.Connection, url: str, host: str, vantage: str, status: str = "queued") -> int:
+    """A scan row that has not started yet (the dashboard needs its id before the scan runs)."""
+    cur = conn.execute("INSERT INTO scan (url, host, status, started_at, vantage) VALUES (?,?,?,?,?)",
+                       (url, host, status, now(), vantage))
     conn.commit()
-    scan_id = cur.lastrowid
-    if env:
-        update_scan(conn, scan_id, **env)
+    return cur.lastrowid
+
+
+def insert_scan(conn: sqlite3.Connection, url: str, host: str, folder: str, vantage: str, **env) -> int:
+    scan_id = create_scan(conn, url, host, vantage, status="running")
+    update_scan(conn, scan_id, folder=folder, **env)
     return scan_id
 
 
@@ -86,6 +94,11 @@ def update_scan(conn: sqlite3.Connection, scan_id: int, **fields) -> None:
 def log_progress(conn: sqlite3.Connection, scan_id: int, stage: str, message: str = "") -> None:
     conn.execute("INSERT INTO progress (scan_id, at, stage, message) VALUES (?,?,?,?)", (scan_id, now(), stage, message))
     conn.commit()
+
+
+def progress_rows(conn: sqlite3.Connection, scan_id: int, after_id: int = 0) -> list[dict]:
+    return [dict(r) for r in conn.execute(
+        "SELECT id, at, stage, message FROM progress WHERE scan_id = ? AND id > ? ORDER BY id", (scan_id, after_id))]
 
 
 def insert_run(conn: sqlite3.Connection, scan_id: int, run: RunResult, attempts: int = 1) -> int:
@@ -137,15 +150,19 @@ def get_scan(conn: sqlite3.Connection, scan_id: int) -> dict | None:
     return dict(row) if row else None
 
 
-def list_scans(conn: sqlite3.Connection, host: str | None = None) -> list[dict]:
+def list_scans(conn: sqlite3.Connection, host: str | None = None, limit: int | None = None) -> list[dict]:
     """Newest first, with the headline score. Used for history and re-scan comparison."""
     sql = ("SELECT scan.id, scan.url, scan.host, scan.status, scan.started_at, score.score_weighted, score.band, "
-           "score.coverage FROM scan LEFT JOIN score ON score.scan_id = scan.id")
-    args: tuple = ()
+           "score.critical_count, score.coverage FROM scan LEFT JOIN score ON score.scan_id = scan.id")
+    args: list = []
     if host:
         sql += " WHERE scan.host = ?"
-        args = (host,)
-    return [dict(r) for r in conn.execute(sql + " ORDER BY scan.id DESC", args)]
+        args.append(host)
+    sql += " ORDER BY scan.id DESC"
+    if limit:
+        sql += " LIMIT ?"
+        args.append(limit)
+    return [dict(r) for r in conn.execute(sql, args)]
 
 
 def get_findings(conn: sqlite3.Connection, scan_id: int) -> list[dict]:

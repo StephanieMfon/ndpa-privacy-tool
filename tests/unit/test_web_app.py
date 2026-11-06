@@ -78,6 +78,15 @@ def test_a_post_from_another_website_is_refused(make):
     assert r.status_code == 403 and db.list_scans(db.connect(settings.db_path)) == []
 
 
+def test_a_form_post_that_hides_its_origin_is_accepted_only_if_the_browser_says_same_origin(make):
+    client, settings = make()
+    hidden = {"origin": "null", "sec-fetch-site": "same-origin"}  # what Chrome sends for a form post under no-referrer
+    assert client.post("/scans", data={"url": PUBLIC}, headers=hidden, follow_redirects=False).status_code == 303
+    assert client.post("/scans", data={"url": PUBLIC}, headers={"origin": "null"}).status_code == 403
+    assert client.post("/scans", data={"url": PUBLIC}, headers={"origin": "http://testserver", "sec-fetch-site": "cross-site"}).status_code == 403
+    assert len(db.list_scans(db.connect(settings.db_path))) == 1
+
+
 def test_a_full_queue_says_so(make):
     gate = threading.Event()
     client, _ = make(runner=lambda *a: gate.wait(10), max_queue=1)
@@ -104,6 +113,40 @@ def test_every_page_renders_for_every_kind_of_scan(make):
     assert "refused an automated visit" in client.get(f"/scans/{blocked}").text and "No score is given" in client.get(f"/scans/{blocked}").text
     assert "could not be completed" in client.get(f"/scans/{failed}").text
     assert "Timeline" not in client.get(f"/scans/{blocked}").text.split("<main")[1].split("</nav>")[1][:400]  # no timeline tab for a blocked scan
+
+
+def test_the_timeline_says_so_when_there_was_no_banner_to_click(make):
+    client, settings = make()
+    sid = seeded(settings)
+    conn = db.connect(settings.db_path)
+    conn.execute("UPDATE run SET consent_click_ms = NULL WHERE condition IN ('accept', 'reject')")
+    conn.commit()
+    page = client.get(f"/scans/{sid}/timeline").text
+    assert page.count("Nothing to click") == 2 and page.count("there was nothing to click") == 2
+    assert "Before the click" not in page and "After clicking" not in page and "tl-click" not in page
+    clicked = ws.seed_scan(conn, settings.evidence_root, host="other.ng", started="2026-11-05T10:00:00+00:00")
+    assert "Nothing to click" not in client.get(f"/scans/{clicked}/timeline").text  # a real click is described as before
+
+
+def test_a_scan_that_failed_because_no_browser_starts_says_how_to_fix_it(make):
+    client, settings = make()
+    wordings = ["Error: BrowserType.launch: Executable doesn't exist at /x/chrome",
+                "Error: BrowserType.launch: Chromium distribution 'chrome' is not found at /Applications/Google Chrome.app",
+                "TargetClosedError: BrowserType.launch: Target page, context or browser has been closed"]
+    for i, error in enumerate(wordings):
+        sid = seeded(settings, host=f"c{i}.ng", results=None, status="failed", error=error, started=f"2026-11-0{i + 1}T10:00:00+00:00")
+        page = client.get(f"/scans/{sid}").text
+        assert "The browser could not be started" in page and "--bundled-chromium" in page, error
+    other = seeded(settings, host="b.ng", results=None, status="failed", error="Error: net::ERR_NAME_NOT_RESOLVED", started="2026-11-02T10:00:00+00:00")
+    assert "browser could not be started" not in client.get(f"/scans/{other}").text
+
+
+def test_comparing_two_different_sites_is_labelled_as_such(make):
+    client, settings = make()
+    a = seeded(settings, host="a.ng", started="2026-11-01T10:00:00+00:00")
+    b = seeded(settings, host="b.ng", started="2026-11-02T10:00:00+00:00", results=ws.better_site())
+    page = client.get(f"/compare?a={a}&b={b}").text
+    assert "Comparing two different sites" in page and "Did the fixes work?" not in page and "scans of different sites" in page
 
 
 def test_a_running_scan_shows_live_progress_and_timeline_redirects_to_it(make):
@@ -149,7 +192,7 @@ def test_every_response_carries_the_security_headers(make):
     for url in ("/", "/static/app.css", "/nope"):
         h = client.get(url).headers
         assert "default-src 'none'" in h["content-security-policy"] and "script-src 'self'" in h["content-security-policy"]
-        assert h["x-content-type-options"] == "nosniff" and h["x-frame-options"] == "DENY" and h["referrer-policy"] == "no-referrer"
+        assert h["x-content-type-options"] == "nosniff" and h["x-frame-options"] == "DENY" and h["referrer-policy"] == "same-origin"
     assert "immutable" in client.get("/static/app.js").headers["cache-control"]
 
 

@@ -3,7 +3,7 @@ from ndpa.analyse.trackers import is_third_party, registrable_domain
 from ndpa.models import Outcome
 from ndpa.rules.context import Ctx, ScanEvidence, result
 from ndpa.rules.disclosures import collect, no_match
-from ndpa.rules.text import DURATION_RE, analyse, mentions, snippet, vendor_names
+from ndpa.rules.text import DURATION_RE, analyse, mentions, vendor_names
 
 MAX_DAYS = 365  # register R3: a methodological threshold, not a statutory limit
 

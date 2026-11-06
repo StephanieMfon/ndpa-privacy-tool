@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, band, score_chip, status_chip, delta %}
+{% set nav = 'history' %}
+{% block title %}History · NDPA Privacy Check{% endblock %}
+{% block content %}
+<div class="page-head"><h1>History</h1><p class="lead">Every site you have scanned. Scan a site again after making changes to see what improved.</p></div>
+{% if hosts %}
+<ul class="list card">
+  {% for h in hosts %}
+  <li><a class="row" href="/history/{{ h.host }}">
+    <span class="row-main"><strong>{{ h.host }}</strong><span class="muted">{{ h.count }} scan{{ '' if h.count == 1 else 's' }} · latest {{ h.latest.started_at[:10] }}</span></span>
+    <span class="row-end">{% if h.trend is not none %}{{ delta(h.trend) }}{% endif %}{% if h.latest.status == 'done' %}{{ band(h.latest.band) }}{{ score_chip(h.latest) }}{% else %}{{ status_chip(h.latest.status) }}{% endif %}</span>
+  </a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="card empty"><p><strong>Nothing here yet.</strong></p><p><a class="btn btn-primary" href="/">Scan a website</a></p></div>
+{% endif %}
+{% endblock %}

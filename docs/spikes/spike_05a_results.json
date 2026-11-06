@@ -1,0 +1,99 @@
+{
+  "sites": {
+    "gtbank.com": {
+      "third_party": 0,
+      "flagged": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "any": 0,
+      "countries": []
+    },
+    "punchng.com": {
+      "third_party": 30,
+      "flagged": {
+        "A": 3,
+        "B": 17,
+        "C": 12
+      },
+      "any": 19,
+      "countries": [
+        "AE",
+        "CA",
+        "DE",
+        "FR",
+        "GB",
+        "IE",
+        "NG",
+        "PT",
+        "UA",
+        "US"
+      ]
+    },
+    "www.jumia.com.ng": {
+      "third_party": 1,
+      "flagged": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "any": 0,
+      "countries": [
+        "CA"
+      ]
+    },
+    "www.mtn.ng": {
+      "third_party": 23,
+      "flagged": {
+        "A": 7,
+        "B": 19,
+        "C": 6
+      },
+      "any": 20,
+      "countries": [
+        "CA",
+        "DE",
+        "GB",
+        "IE",
+        "IL",
+        "NG",
+        "NL",
+        "PT",
+        "US"
+      ]
+    }
+  },
+  "ep_only": [
+    "contentinsights.com",
+    "smartocto.com"
+  ],
+  "tds_only": [
+    "adnxs.com",
+    "ads-twitter.com",
+    "adtrafficquality.google",
+    "amazon-adsystem.com",
+    "bidswitch.net",
+    "casalemedia.com",
+    "creativecdn.com",
+    "criteo.com",
+    "criteo.net",
+    "crwdcntrl.net",
+    "eskimi.com",
+    "googlesyndication.com",
+    "im-apps.net",
+    "linkedin.com",
+    "mgaru.dev",
+    "onesignal.com",
+    "openx.net",
+    "openxcdn.net",
+    "pubmatic.com",
+    "rubiconproject.com",
+    "smartadserver.com",
+    "t.co",
+    "taboola.com",
+    "tiktokw.us",
+    "twitter.com",
+    "yahoo.com"
+  ]
+}

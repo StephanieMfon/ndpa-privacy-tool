@@ -88,8 +88,8 @@ def run_scan(url: str, db_path: Path = db.DEFAULT_DB, out_root: Path = Path("dat
 
     conn = db.connect(db_path)
     rulebook = load_rulebook()
-    env = dict(tool_version=_tool_version(), rulebook_version=str(rulebook.get("meta", {}).get("version", "unknown")),
-               rulebook_sha256=_sha256_file(RULEBOOK_PATH), tracker_list_sha256=_sha256_file(SNAPSHOT))
+    env = {"tool_version": _tool_version(), "rulebook_version": str(rulebook.get("meta", {}).get("version", "unknown")),
+           "rulebook_sha256": _sha256_file(RULEBOOK_PATH), "tracker_list_sha256": _sha256_file(SNAPSHOT)}
     if scan_id is None:
         scan_id = db.insert_scan(conn, url, host, str(folder), opts.vantage, **env)
     else:
@@ -120,7 +120,8 @@ def run_scan(url: str, db_path: Path = db.DEFAULT_DB, out_root: Path = Path("dat
         card = score(results, rulebook, status)
         fixes = fix_first(results, rulebook)
     except Exception as exc:  # noqa: BLE001  (for example Chrome is not installed)
-        error, status = f"{type(exc).__name__}: {exc}", ScanStatus.FAILED
+        first_line = (str(exc).splitlines() or [""])[0]  # a browser error can be a long boxed message
+        error, status = f"{type(exc).__name__}: {first_line}", ScanStatus.FAILED
         results, fixes = [], []
         card = score([], rulebook, status)
         say("error", error)

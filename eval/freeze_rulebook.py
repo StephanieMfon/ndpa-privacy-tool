@@ -1,5 +1,9 @@
 """Freeze Rulebook v2.0. Run ONCE, after the pilot: python eval/freeze_rulebook.py"""
-import datetime, hashlib, json, os, pathlib
+import datetime
+import hashlib
+import json
+import os
+import pathlib
 
 FILES = [
     "rulebook/rules.v2.yaml",

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, band, score_chip, status_chip %}
+{% set nav = 'scan' %}
+{% block title %}NDPA Privacy Check{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Nigeria Data Protection Act 2023 · GAID 2025</p>
+  <h1>Does this website respect its visitors' privacy choices?</h1>
+  <p class="lead">Enter a website. We open it in a real browser, watch what happens before and after a visitor clicks <strong>Accept</strong> or <strong>Reject</strong> on the cookie banner, and read the privacy policy. It takes about three minutes.</p>
+  <form class="scan-form" method="post" action="/scans" data-scan-form>
+    <label class="sr-only" for="url">Website address</label>
+    <div class="scan-field{% if error %} has-error{% endif %}">
+      {{ icon('search') }}
+      <input id="url" name="url" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="www.example.com.ng" value="{{ typed }}" required aria-describedby="url-help"{% if error %} aria-invalid="true"{% endif %}>
+      <button class="btn btn-primary btn-lg" type="submit">Scan website</button>
+    </div>
+    <p id="url-help" class="{{ 'form-error' if error else 'muted' }}"{% if error %} role="alert"{% endif %}>{{ error or "Public websites only. We only look: we never log in, fill in forms or test for security weaknesses." }}</p>
+  </form>
+</section>
+
+<section class="grid-3" aria-label="What is checked">
+  <article class="card feature"><h2>{{ icon('lock') }}Cookies and consent</h2><p>Is the banner hard to miss? Can a visitor say no as easily as yes? Does the site keep its word when they do?</p><p class="muted">{{ area_counts.consent + area_counts.cookies }} checks</p></article>
+  <article class="card feature"><h2>{{ icon('alert') }}Trackers and scripts</h2><p>Which companies are contacted, and what is stored on the visitor's device, before anyone has agreed?</p><p class="muted">{{ area_counts.script_behaviour + area_counts.trackers }} checks</p></article>
+  <article class="card feature"><h2>{{ icon('file') }}Privacy policy</h2><p>Is it easy to find, and does it say what data is used and why, how long it is kept, and what rights people have?</p><p class="muted">{{ area_counts.privacy_policy }} checks</p></article>
+</section>
+
+<section class="recent" aria-labelledby="recent-h">
+  <div class="section-head"><h2 id="recent-h">Recent scans</h2>{% if recent %}<a href="/history">All sites {{ icon('arrow') }}</a>{% endif %}</div>
+  {% if recent %}
+  <ul class="list card">
+    {% for s in recent %}
+    <li><a class="row" href="/scans/{{ s.id }}">
+      <span class="row-main"><strong>{{ s.host }}</strong><span class="muted">{{ s.when }}</span></span>
+      <span class="row-end">{% if s.status == 'done' %}{{ band(s.band) }}{{ score_chip(s) }}{% else %}{{ status_chip(s.status) }}{% endif %}</span>
+    </a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <div class="card empty"><p><strong>No scans yet.</strong></p><p class="muted">Your first scan will appear here, and every later scan of the same site will be kept so you can check whether fixes worked.</p></div>
+  {% endif %}
+</section>
+{% endblock %}

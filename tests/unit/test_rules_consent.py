@@ -1,4 +1,4 @@
-from builders import (NECESSARY, consent, geometry, js_cookie, run, scan, server_cookie, tracker_request)
+from builders import NECESSARY, consent, geometry, js_cookie, run, scan, server_cookie, tracker_request
 
 from ndpa.models import Condition, Outcome
 from ndpa.rules.checks import consent as c

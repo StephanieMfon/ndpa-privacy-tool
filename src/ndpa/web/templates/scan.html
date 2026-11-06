@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, band, tier, outcome, evidence, scan_head, status_chip %}
+{% set nav = 'history' %}
+{% set s = v.scan %}
+{% block title %}{{ s.host }} · Scan #{{ s.id }} · NDPA Privacy Check{% endblock %}
+{% block content %}
+{{ scan_head(v, 'overview') }}
+
+{% if s.status == 'blocked' %}
+<section class="card notice notice-warn">
+  <h2>{{ icon('lock') }}This site refused an automated visit</h2>
+  <p>The site (or a security service in front of it) did not let our browser in, so we could not see what a visitor sees. <strong>No score is given</strong>, because scoring a block page would be misleading.</p>
+  {% for r in v.runs if r.block_reasons %}<p class="muted">What we saw: {{ r.block_reasons|map('block_reason')|join('; ') }}.</p>{% endfor %}
+  <p>Trying again later, or from another network, sometimes works. Repeated visits make a block more likely, so please do not retry in quick succession.</p>
+</section>
+{% elif s.status == 'failed' %}
+<section class="card notice notice-bad">
+  <h2>{{ icon('x') }}The scan could not be completed</h2>
+  <p>{{ s.error or 'The site could not be loaded.' }}</p>
+  {% if s.error and ('BrowserType.launch' in s.error or 'playwright install' in s.error) %}
+  <p>The browser could not be started. Check that Google Chrome is installed, or run <code class="mono">python -m playwright install chromium</code> and start the dashboard with <code class="mono">--bundled-chromium</code>.</p>
+  {% endif %}
+  <p class="muted">Scan again to retry. If it keeps failing, check that the address opens in an ordinary browser from this network.</p>
+</section>
+{% else %}
+
+<section class="top-cards">
+  <article class="card scorecard" aria-labelledby="score-h">
+    <h2 id="score-h" class="card-title">Result</h2>
+    <div class="score-body">
+      <div class="gauge-wrap">{{ v.gauge }}</div>
+      <div class="score-facts">
+        <p>{{ band(v.card.band) }}</p>
+        <ul class="facts">
+          <li>{% if v.card.critical_count %}<strong>{{ v.card.critical_count }} critical</strong> failure{{ '' if v.card.critical_count == 1 else 's' }}{% else %}<strong>No critical</strong> failures{% endif %}</li>
+          <li><strong>{{ v.counts.non_compliant }}</strong> failed · <strong>{{ v.counts.compliant }}</strong> passed · {{ v.counts.not_applicable }} not applicable{% if v.counts.unable_to_determine %} · {{ v.counts.unable_to_determine }} could not be checked{% endif %}</li>
+          <li>Based on <strong>{{ '%g' % v.card.scored_weight }} of {{ '%g' % v.card.total_weight }}</strong> points: the checks that applied to this site</li>
+          {% if v.card.equal is not none %}<li class="muted">If every check counted the same: {{ '%g' % v.card.equal }}</li>{% endif %}
+        </ul>
+      </div>
+    </div>
+    <ul class="area-bars" aria-label="Score by area">
+      {% for b in v.bars %}<li><span>{{ b.label }}</span>{{ b.svg }}{% if b.empty %}<span class="empty">nothing to assess</span>{% else %}<span class="val">{{ '%g' % b.value }}%</span>{% endif %}</li>{% endfor %}
+    </ul>
+    {% if v.card.note %}<p class="note">{{ icon('alert') }}{{ v.card.note }}</p>{% endif %}
+    <div class="coverage"><div class="coverage-head"><span>Checks completed</span><strong>{{ (v.card.coverage * 100) | round | int }}%</strong></div>{{ v.coverage_bar }}</div>
+  </article>
+
+  <article class="card radar-card" aria-labelledby="radar-h">
+    <h2 id="radar-h" class="card-title">Where the problems are</h2>
+    <div class="radar-wrap">{{ v.radar }}</div>
+    {% if v.previous %}<p class="legend"><span class="key key-now"></span>This scan <span class="key key-prev"></span>Previous scan ({{ v.previous.started_at[:10] }})</p>{% endif %}
+  </article>
+</section>
+
+<section class="card plain" aria-labelledby="plain-h">
+  <h2 id="plain-h" class="card-title">In plain words</h2>
+  <p class="plain-headline plain-{{ v.summary.band or 'none' }}">{{ v.summary.headline }}</p>
+  {% if v.summary.points %}<ul class="plain-points">{% for p in v.summary.points %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+  {% if v.fixes %}<p class="plain-next"><strong>Start with:</strong>
+    {% for f in v.fixes[:3] %}<a href="#{{ f.anchor }}">{{ f.name }}</a>{{ ', ' if not loop.last }}{% endfor %}.</p>{% endif %}
+</section>
+
+{% if v.screenshots %}
+<section aria-labelledby="shots-h">
+  <div class="section-head"><h2 id="shots-h">What a visitor sees</h2></div>
+  <div class="shots">
+    {% for shot in v.screenshots %}
+    <figure class="card shot"><a href="/scans/{{ s.id }}/file/{{ shot.path }}" target="_blank" rel="noopener"><img src="/scans/{{ s.id }}/file/{{ shot.path }}" alt="{{ shot.label }} on {{ s.host }}" loading="lazy" width="1366" height="768"></a><figcaption>{{ shot.label }}</figcaption></figure>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if v.fixes %}
+<section aria-labelledby="fix-h">
+  <div class="section-head"><h2 id="fix-h">Fix first</h2><p class="muted">Most serious first</p></div>
+  <ol class="fixes">
+    {% for f in v.fixes %}
+    <li class="card fix">
+      <div class="fix-head"><span class="rank">{{ loop.index }}</span><h3><a href="#{{ f.anchor }}">{{ f.name }}</a></h3>{{ tier(f) }}{% if f.instances_failed %}<span class="muted affects">{{ f.instances_failed }} affected</span>{% endif %}</div>
+      <p class="fix-text">{{ f.fix }}</p>
+      <p class="clause muted">Satisfies {{ f.clause }}{% if f.root_cause %} · caused by {{ f.root_cause }}{% endif %}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+<section aria-labelledby="checks-h">
+  <div class="section-head"><h2 id="checks-h">All {{ rule_total }} checks</h2>
+    <div class="filters no-print" role="group" aria-label="Filter checks">
+      <button type="button" class="filter" data-filter="all" aria-pressed="true">All {{ v.findings|length }}</button>
+      <button type="button" class="filter" data-filter="bad" aria-pressed="false">Failed {{ v.counts.non_compliant }}</button>
+      <button type="button" class="filter" data-filter="ok" aria-pressed="false">Passed {{ v.counts.compliant }}</button>
+      {% if v.counts.not_applicable %}<button type="button" class="filter" data-filter="na" aria-pressed="false">Not applicable {{ v.counts.not_applicable }}</button>{% endif %}
+      {% if v.counts.unable_to_determine %}<button type="button" class="filter" data-filter="unk" aria-pressed="false">Could not check {{ v.counts.unable_to_determine }}</button>{% endif %}
+    </div>
+  </div>
+  {% for g in v.groups %}
+  <div class="group" data-group>
+    <h3 class="group-title">{{ g.label }}</h3>
+    <div class="checks">
+      {% for f in g.findings %}
+      <details class="check check-{{ f.tone }}" id="{{ f.anchor }}" data-tone="{{ f.tone }}">
+        <summary>
+          <span class="check-outcome">{{ outcome(f) }}</span>
+          <span class="check-main"><span class="check-name"><span class="mono rule-id">{{ f.rule_id }}</span> {{ f.name }}</span><span class="check-note">{{ f.note }}</span></span>
+          <span class="check-tier">{{ tier(f) }}</span>
+          {{ icon('chevron', 'chev') }}
+        </summary>
+        <div class="check-body">
+          <p>{{ f.note }}{% if f.root_cause %} <span class="muted">(Caused by {{ f.root_cause }}: fixing that fixes this.)</span>{% endif %}</p>
+          {% if f.outcome == 'non_compliant' %}<div class="howto"><strong>How to fix</strong><p>{{ f.fix }}</p></div>{% endif %}
+          {{ evidence(f.evidence_table) }}
+          {% if f.legal %}<p class="legal muted"><strong>Legal basis:</strong> {{ f.legal|join(' · ') }}</p>{% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% endblock %}

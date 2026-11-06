@@ -19,13 +19,15 @@ def test_a_fresh_manifest_verifies_and_has_a_final_hash(tmp_path):
 
 
 def test_the_same_files_give_the_same_final_hash(tmp_path):
-    a, b = make(tmp_path / "a" if (tmp_path / "a").mkdir() or True else tmp_path), None
+    first = tmp_path / "first"
+    first.mkdir()
+    make(first)
     other = tmp_path / "copy"
     other.mkdir()
     (other / "a").mkdir()
     (other / "a" / "one.txt").write_text("first")
     (other / "two.json").write_text('{"x": 1}')
-    assert chain.build_manifest(a)["final"] == chain.build_manifest(other)["final"]
+    assert chain.build_manifest(first)["final"] == chain.build_manifest(other)["final"]
 
 
 def test_changing_a_file_is_detected(tmp_path):

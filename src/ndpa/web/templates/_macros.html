@@ -1,0 +1,66 @@
+{% macro icon(name, cls="") %}<svg class="ic {{ cls }}" aria-hidden="true" focusable="false"><use href="#i-{{ name }}"/></svg>{% endmacro %}
+
+{% macro outcome(f) %}
+{%- set ic = {'ok': 'check', 'bad': 'x', 'na': 'minus', 'unk': 'help'}[f.tone] -%}
+<span class="chip chip-{{ f.tone }}">{{ icon(ic) }}{{ f.outcome_label }}</span>
+{% endmacro %}
+
+{% macro tier(f) %}<span class="tier tier-{{ f.tier }}">{{ f.tier_label }}</span>{% endmacro %}
+
+{% macro band(b) %}
+{%- if b == 'high' -%}<span class="pill pill-high">{{ icon('alert') }}High risk</span>
+{%- elif b == 'moderate' -%}<span class="pill pill-moderate">{{ icon('alert') }}Moderate risk</span>
+{%- elif b == 'low' -%}<span class="pill pill-low">{{ icon('check') }}Low risk</span>
+{%- else -%}<span class="pill pill-none">No score</span>{%- endif -%}
+{% endmacro %}
+
+{% macro status_chip(status) %}
+{%- if status in ('queued', 'running') -%}<span class="chip chip-run">{{ icon('clock') }}{{ 'Waiting' if status == 'queued' else 'Running' }}</span>
+{%- elif status == 'blocked' -%}<span class="chip chip-warn">{{ icon('lock') }}Blocked</span>
+{%- elif status == 'failed' -%}<span class="chip chip-bad">{{ icon('x') }}Failed</span>
+{%- else -%}<span class="chip chip-ok">{{ icon('check') }}Done</span>{%- endif -%}
+{% endmacro %}
+
+{% macro delta(d) %}
+{%- if d is none -%}<span class="muted">—</span>
+{%- elif d > 0 -%}<span class="delta delta-up">▲ {{ d|abs }}</span>
+{%- elif d < 0 -%}<span class="delta delta-down">▼ {{ d|abs }}</span>
+{%- else -%}<span class="delta delta-flat">no change</span>{%- endif -%}
+{% endmacro %}
+
+{% macro score_chip(s) %}
+{%- if s.score_weighted is none -%}<span class="score-chip score-none">—</span>
+{%- else -%}<span class="score-chip score-{{ s.band }}">{{ '%g' % s.score_weighted }}</span>{%- endif -%}
+{% endmacro %}
+
+{% macro evidence(t) %}
+{%- if t.rows -%}
+<div class="table-wrap"><table class="evidence"><thead><tr>{% for c in t.columns %}<th scope="col">{{ c }}</th>{% endfor %}</tr></thead>
+<tbody>{% for r in t.rows %}<tr>{% for c in r %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>
+{%- if t.more %}<details class="more"><summary>Show {{ t.more|length }} more</summary>
+<div class="table-wrap"><table class="evidence"><tbody>{% for r in t.more %}<tr>{% for c in r %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></details>{% endif %}
+{%- endif -%}
+{% endmacro %}
+
+{% macro scan_head(v, tab) %}
+{% set s = v.scan %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/history">History</a><span aria-hidden="true">/</span><a href="/history/{{ s.host }}">{{ s.host }}</a><span aria-hidden="true">/</span><span>Scan #{{ s.id }}</span></nav>
+<header class="scan-head">
+  <div class="scan-title">
+    <h1>{{ s.host }}</h1>
+    <p class="scan-url"><a href="{{ s.url }}" rel="noopener noreferrer nofollow" target="_blank">{{ s.url }}{{ icon('external') }}</a></p>
+    <p class="meta"><span>{{ v.started }}</span>{% if s.vantage and s.vantage != 'unspecified' %}<span>from {{ s.vantage }}</span>{% endif %}{% if s.browser_version %}<span>Chrome {{ s.browser_version }}</span>{% endif %}{{ status_chip(s.status) }}</p>
+  </div>
+  <div class="actions no-print">
+    <form method="post" action="/scans"><input type="hidden" name="url" value="{{ s.url }}"><button class="btn btn-primary" type="submit">{{ icon('refresh') }}Scan again</button></form>
+    {% if v.previous %}<a class="btn" href="/compare?a={{ v.previous.id }}&amp;b={{ s.id }}">{{ icon('compare') }}Compare with previous</a>{% endif %}
+    <button class="btn" type="button" data-print>{{ icon('print') }}Print</button>
+    <a class="btn" href="/api/scans/{{ s.id }}">{{ icon('file') }}JSON</a>
+  </div>
+</header>
+<nav class="tabs no-print" aria-label="Scan sections">
+  <a href="/scans/{{ s.id }}" {% if tab == 'overview' %}aria-current="page"{% endif %}>Overview</a>
+  {% if s.status == 'done' %}<a href="/scans/{{ s.id }}/timeline" {% if tab == 'timeline' %}aria-current="page"{% endif %}>Timeline</a>{% endif %}
+  <a href="/scans/{{ s.id }}/evidence" {% if tab == 'evidence' %}aria-current="page"{% endif %}>Evidence</a>
+</nav>
+{% endmacro %}

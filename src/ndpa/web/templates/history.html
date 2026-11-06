@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, band, score_chip, status_chip, delta %}
+{% set nav = 'history' %}
+{% block title %}{{ h.host }} history · NDPA Privacy Check{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/history">History</a><span aria-hidden="true">/</span><span>{{ h.host }}</span></nav>
+<header class="scan-head">
+  <div class="scan-title"><h1>{{ h.host }}</h1><p class="meta"><span>{{ h.scans|length }} scan{{ '' if h.scans|length == 1 else 's' }}</span></p></div>
+  <div class="actions no-print">
+    <form method="post" action="/scans"><input type="hidden" name="url" value="{{ h.scans[0].url }}"><button class="btn btn-primary" type="submit">{{ icon('refresh') }}Scan again</button></form>
+    {% if h.latest_two|length == 2 %}<a class="btn" href="/compare?a={{ h.latest_two[1] }}&amp;b={{ h.latest_two[0] }}">{{ icon('compare') }}Compare latest two</a>{% endif %}
+  </div>
+</header>
+
+{% if h.spark %}<section class="card trend"><h2 class="card-title">Score over time</h2>
+  <div class="trend-body"><div class="spark-wrap">{{ h.spark }}<p class="muted">Oldest on the left. Higher is better.</p></div>
+  {% if h.stats %}<dl class="stats"><div><dt>First</dt><dd>{{ '%g' % h.stats.first }}</dd></div><div><dt>Latest</dt><dd>{{ '%g' % h.stats.latest }}</dd></div><div><dt>Change</dt><dd>{{ delta(h.stats.change) if h.stats.count > 1 else '—' }}</dd></div></dl>{% endif %}</div></section>{% endif %}
+
+<section aria-labelledby="scans-h">
+  <div class="section-head"><h2 id="scans-h">Scans</h2><p class="muted no-print" data-compare-hint>Tick two scans to compare them.</p></div>
+  <form method="get" action="/compare" data-compare-form>
+  <div class="card table-card"><div class="table-wrap"><table class="scans">
+    <thead><tr><th scope="col" class="no-print"><span class="sr-only">Select</span></th><th scope="col">Scanned</th><th scope="col">Result</th><th scope="col">Risk</th><th scope="col">Critical</th><th scope="col">Change</th><th scope="col"><span class="sr-only">Open</span></th></tr></thead>
+    <tbody>
+    {% for s in h.scans %}
+    <tr>
+      <td class="no-print">{% if s.status == 'done' %}<input type="checkbox" name="pick" value="{{ s.id }}" aria-label="Select scan {{ s.id }} for comparison" data-pick>{% endif %}</td>
+      <td><a href="/scans/{{ s.id }}">{{ s.when }}</a></td>
+      <td>{% if s.status == 'done' %}{{ score_chip(s) }}{% else %}{{ status_chip(s.status) }}{% endif %}</td>
+      <td>{% if s.status == 'done' %}{{ band(s.band) }}{% endif %}</td>
+      <td>{% if s.critical_count is not none and s.status == 'done' %}{{ s.critical_count }}{% endif %}</td>
+      <td>{{ delta(s.delta) if s.status == 'done' else '' }}</td>
+      <td class="no-print"><a href="/scans/{{ s.id }}" aria-label="Open scan {{ s.id }}">{{ icon('arrow') }}</a></td>
+    </tr>
+    {% endfor %}
+    </tbody></table></div></div>
+  <div class="compare-bar no-print"><button class="btn btn-primary" type="submit" data-compare-button disabled>{{ icon('compare') }}Compare selected</button></div>
+  </form>
+</section>
+{% endblock %}

@@ -62,3 +62,17 @@ Cut order if behind: crawl -> evidence integrity -> CNAME -> mobile -> dark patt
 - R3 / D-15: CK-01 threshold = 12 months, methodological, not statutory.
 - R10 / D-12: SB-01 "active" = transmitting or storing. SB-01, SB-02, SB-03 and CN-02 all kept.
 - Overlap rule (pending OK): CN-02+SB-02 share 3 points; SB-01+SB-03 share 3 points. Total weight 28. Risk band unchanged.
+
+## Update 5 Nov 2026 (dashboard)
+
+- D-36 Front end simplified (supersedes the front-end part of D-20): hand-written CSS with light and dark colour tokens, charts drawn on the server as inline SVG (radar, gauge, bars, sparkline, timeline), about 100 lines of plain JavaScript. No Tailwind, HTMX, Alpine or Chart.js, so there is nothing third-party to vendor or keep safe, and charts print crisply.
+- D-37 Scans run one at a time in a background queue, each in its own process (refines D-32). A scan over 15 minutes is stopped together with everything it started. Scans interrupted by a restart are marked failed. Dashboard scans use the real, visible Chrome by default (matches annotators and R6); `--headless` is optional.
+- D-38 Thin security implemented (D-23): addresses on private or local networks are refused, form posts must come from the dashboard itself (checked with the browser's own Sec-Fetch-Site header, falling back to Origin; Referrer-Policy is same-origin, because no-referrer makes browsers send Origin: null and the form was refused), strict Content-Security-Policy (no inline scripts or styles), only a fixed list of evidence files is served and never outside the scan folder, listens on 127.0.0.1 only.
+- D-39 Score display: only applicable rules are scored, so the result always shows "based on N of 28 points", with the risk band first. Equal-weight score shown as "if every check counted the same". (User decision, 5 Nov 2026.)
+- D-40 Timeline wording follows what happened: when a site shows no cookie banner, the Accept and Reject runs are labelled "Nothing to click" and described as the whole visit, not "before the click".
+
+## Update 6 Nov 2026 (repository hygiene)
+
+- D-41 The old scanner (scanner/, config/, run_scan.py, main.py and its tests) is retired. Nothing in the new code depended on it; the rulebook, the DuckDuckGo tracker list and rulebook/necessary_cookies.yaml replace its inputs. It stays recoverable from git (tags v0-code-snapshot and pre-cleanup-2026-11-06).
+- D-42 spike_05a_results.json and its script are kept in docs/spikes/ as the evidence for choosing the DuckDuckGo tracker list over EasyPrivacy.
+- D-43 Lint uses ruff with an explicit rule set (E4, E7, E9, F, I, B, C4), line length 120, and B008 ignored (FastAPI idiom). CI runs ruff, the unit tests and the browser tests on every push.

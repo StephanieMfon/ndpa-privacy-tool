@@ -126,7 +126,7 @@ def timeline_svg(marks: list[dict], t_max_ms: int, click_ms: int | None, click_l
     parts = []
     split = x(click_ms) if click_ms is not None else left + plot_w
     parts.append(f'<rect class="tl-before" x="{left}" y="{top}" width="{split - left:.1f}" height="{lane_h * len(LANES)}"/>')
-    for i, (key, label) in enumerate(LANES):
+    for i, (_key, label) in enumerate(LANES):
         y = top + i * lane_h
         parts.append(f'<line class="tl-lane" x1="{left}" x2="{left + plot_w}" y1="{y + lane_h}" y2="{y + lane_h}"/>')
         parts.append(f'<text class="tl-lane-label" x="{left - 12}" y="{y + lane_h / 2 + 4}" text-anchor="end">{escape(label)}</text>')

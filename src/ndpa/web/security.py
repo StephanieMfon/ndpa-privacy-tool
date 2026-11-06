@@ -54,6 +54,13 @@ def check_target(url: str, allow_private: bool = False, resolver=socket.getaddri
     return None
 
 
-def same_origin(origin: str | None, host: str | None) -> bool:
-    """A form post must come from this site's own pages. Requests without an Origin header are not from a browser."""
+def same_origin(origin: str | None, host: str | None, fetch_site: str | None = None) -> bool:
+    """A form post must come from this site's own pages.
+
+    Browsers state where a request came from in the Sec-Fetch-Site header, which a web page cannot forge, so it is
+    trusted when present. Otherwise the Origin header is compared with the Host header. An Origin of "null" is never
+    accepted on its own. Requests without either header are not from a browser (scripts, tests).
+    """
+    if fetch_site:
+        return fetch_site in ("same-origin", "none")
     return origin is None or (host is not None and urlsplit(origin).netloc == host)

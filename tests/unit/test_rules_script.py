@@ -1,4 +1,4 @@
-from builders import (NECESSARY, consent, js_cookie, run, scan, server_cookie, storage_set, tracker_request)
+from builders import NECESSARY, consent, js_cookie, run, scan, server_cookie, storage_set, tracker_request
 
 from ndpa.models import Condition, Outcome
 from ndpa.rules.checks import script as s

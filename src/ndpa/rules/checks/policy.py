@@ -2,8 +2,16 @@
 from ndpa.models import Outcome
 from ndpa.rules.context import Ctx, ScanEvidence, result
 from ndpa.rules.disclosures import collect, no_match
-from ndpa.rules.text import (DURATION_RE, EMAIL_RE, PRIVACY_CUE_RE, PRIVACY_LOCAL_PART_RE, TRIGGER_RE,
-                             VAGUE_RETENTION_RE, analyse, snippet)
+from ndpa.rules.text import (
+    DURATION_RE,
+    EMAIL_RE,
+    PRIVACY_CUE_RE,
+    PRIVACY_LOCAL_PART_RE,
+    TRIGGER_RE,
+    VAGUE_RETENTION_RE,
+    analyse,
+    snippet,
+)
 
 RIGHTS = {  # right -> label of the lexicon group that names it
     "access": "r_access", "rectification": "r_rectify", "erasure": "r_erase",
@@ -57,7 +65,7 @@ def _privacy_sentences(d):
 def pp_03(ev: ScanEvidence, ctx: Ctx):
     """A contact channel for privacy matters (register R12: a general contact form or address does not count)."""
     d = collect(ev)
-    for source, text in d.privacy:
+    for _source, text in d.privacy:
         for m in EMAIL_RE.finditer(text):
             near = PRIVACY_CUE_RE.search(text[max(0, m.start() - 250): m.end() + 250])
             local = m.group(0).split("@")[0]
@@ -99,7 +107,7 @@ def pp_06(ev: ScanEvidence, ctx: Ctx):
     d = collect(ev)
     if not d.privacy:
         return no_match("PP-06", d, "no data subject rights could be checked")
-    status = {right: "missing" for right in [*RIGHTS, "complaint_to_NDPC"]}
+    status = dict.fromkeys([*RIGHTS, "complaint_to_NDPC"], "missing")
     for _src, s in _privacy_sentences(d):
         for right, label in RIGHTS.items():
             if label not in s.labels or "data_word" not in s.labels:

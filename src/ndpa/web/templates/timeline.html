@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, scan_head %}
+{% set nav = 'history' %}
+{% set s = v.scan %}
+{% block title %}Timeline · {{ s.host }} · NDPA Privacy Check{% endblock %}
+{% block content %}
+{{ scan_head(v, 'timeline') }}
+<p class="intro">Each row of the timeline is something the site did, placed at the moment it happened. <strong>What matters is what happens before a visitor chooses anything</strong>, and what keeps happening after they click Reject.</p>
+<ul class="legend legend-tl">
+  <li><span class="swatch swatch-flag"></span>Tracker, or a cookie that is not strictly necessary</li>
+  <li><span class="swatch swatch-calm"></span>Necessary cookie, or an ordinary storage write</li>
+  <li><span class="swatch swatch-before"></span>Before the visitor chose anything</li>
+  <li><span class="swatch swatch-click"></span>The click</li>
+</ul>
+{% for r in runs %}
+<section class="card tl-card" aria-labelledby="run-{{ r.condition }}">
+  <header class="tl-head">
+    <h2 id="run-{{ r.condition }}">{{ {'no_action': 'First visit, no clicks', 'accept': 'Visit, then click Accept', 'reject': 'Visit, then click Reject'}[r.condition] }}</h2>
+    {% if r.status != 'ok' %}<span class="chip chip-warn">{{ r.status|capitalize }}</span>{% endif %}
+    {% if r.condition != 'no_action' and r.click_ms is none %}<span class="chip chip-na">Nothing to click</span>{% endif %}
+  </header>
+  <div class="tl-summary">
+    <div><p class="tl-big">{{ r.before.trackers }}</p><p class="tl-cap">tracker request{{ '' if r.before.trackers == 1 else 's' }}{% if r.before.vendors %} to {{ r.before.vendors|length }} compan{{ 'y' if r.before.vendors|length == 1 else 'ies' }}{% endif %}</p></div>
+    <div><p class="tl-big">{{ r.before.cookies|length }}</p><p class="tl-cap">cookie{{ '' if r.before.cookies|length == 1 else 's' }} that {{ 'is' if r.before.cookies|length == 1 else 'are' }} not strictly necessary</p></div>
+    <p class="tl-when">
+      {%- if r.condition == 'no_action' %}<strong>Before any click</strong><br>No choice was made, so all of this happened without consent.
+      {%- elif r.click_ms is none %}<strong>The whole visit</strong><br>No cookie banner appeared, so there was nothing to click and no choice could be made.
+      {%- else %}<strong>Before the click</strong><br>Without consent.{% endif -%}
+    </p>
+  </div>
+  {% if r.after is not none %}
+  <div class="tl-summary tl-after">
+    <div><p class="tl-big">{{ r.after.trackers }}</p><p class="tl-cap">tracker request{{ '' if r.after.trackers == 1 else 's' }}{% if r.after.vendors %} to {{ r.after.vendors|length }} compan{{ 'y' if r.after.vendors|length == 1 else 'ies' }}{% endif %}</p></div>
+    <div><p class="tl-big">{{ r.after.cookies|length }}</p><p class="tl-cap">cookie{{ '' if r.after.cookies|length == 1 else 's' }} that {{ 'is' if r.after.cookies|length == 1 else 'are' }} not strictly necessary</p></div>
+    <p class="tl-when"><strong>After clicking {{ r.action }}</strong><br>{% if r.condition == 'reject' %}This should be quiet. Anything here ignores the visitor's choice.{% else %}Allowed: the visitor agreed.{% endif %}</p>
+  </div>
+  {% endif %}
+  <div class="tl-scroll">{{ r.svg }}</div>
+  {% if r.first_events %}
+  <details class="more"><summary>The first {{ r.first_events|length }} of {{ r.total_marks }} events</summary>
+    <div class="table-wrap"><table class="evidence"><thead><tr><th scope="col">Time</th><th scope="col">What happened</th></tr></thead>
+    <tbody>{% for m in r.first_events %}<tr><td class="mono">{{ (m.t_ms|seconds) }}</td><td>{{ m.label }}</td></tr>{% endfor %}</tbody></table></div>
+  </details>
+  {% endif %}
+</section>
+{% else %}
+<div class="card empty"><p>No timeline was recorded for this scan.</p></div>
+{% endfor %}
+{% endblock %}

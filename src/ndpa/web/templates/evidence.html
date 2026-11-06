@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, scan_head %}
+{% set nav = 'history' %}
+{% set s = v.scan %}
+{% block title %}Evidence · {{ s.host }} · NDPA Privacy Check{% endblock %}
+{% block content %}
+{{ scan_head(v, 'evidence') }}
+<section class="card" aria-labelledby="verify-h">
+  <h2 id="verify-h" class="card-title">Prove this report is genuine</h2>
+  {% if s.manifest_hash %}
+  <p>Every file from this scan is sealed in a hash chain. If anyone changes a file, removes one or adds one, verification fails. Run this command from the project folder; it needs only Python.</p>
+  <div class="code"><code data-copy-source>{{ v.verify_command }}</code><button class="btn btn-sm no-print" type="button" data-copy="{{ v.verify_command }}">{{ icon('copy') }}Copy</button></div>
+  <p class="muted">Final hash <span class="mono">{{ s.manifest_hash }}</span>. Keep a copy somewhere else: it is what proves the whole folder has not been rewritten.</p>
+  {% else %}<p class="muted">This scan was not sealed.</p>{% endif %}
+</section>
+
+<section class="card" aria-labelledby="how-h">
+  <h2 id="how-h" class="card-title">How it was captured</h2>
+  <dl class="kv">
+    <div><dt>Scanned from</dt><dd>{{ s.vantage or 'unspecified' }}</dd></div>
+    <div><dt>Browser</dt><dd>Chrome {{ s.browser_version or 'unknown' }}, 1366 × 768, language en-NG</dd></div>
+    <div><dt>Tool version</dt><dd class="mono">{{ s.tool_version or 'unknown' }}</dd></div>
+    <div><dt>Rulebook</dt><dd>{{ s.rulebook_version or 'unknown' }} <span class="mono muted">{{ s.rulebook_sha256|short }}</span></dd></div>
+    <div><dt>Tracker list</dt><dd class="mono">{{ s.tracker_list_sha256|short }}</dd></div>
+    <div><dt>Started · finished</dt><dd>{{ v.started }} · {{ v.finished or '—' }}</dd></div>
+  </dl>
+  {% if v.runs %}
+  <div class="table-wrap"><table class="evidence"><thead><tr><th scope="col">Run</th><th scope="col">Result</th><th scope="col">Attempts</th><th scope="col">Page loaded</th><th scope="col">Click at</th></tr></thead>
+  <tbody>{% for r in v.runs %}<tr><td>{{ {'no_action': 'No clicks', 'accept': 'Accept', 'reject': 'Reject'}[r.condition] }}</td><td>{{ r.status }}{% if r.block_reasons %} ({{ r.block_reasons|map('block_reason')|join('; ') }}){% endif %}</td><td>{{ r.attempts }}</td><td>{{ (r.load_ms|seconds) if r.load_ms else '—' }}</td><td>{{ (r.consent_click_ms|seconds) if r.consent_click_ms else '—' }}</td></tr>{% endfor %}</tbody></table></div>
+  {% endif %}
+</section>
+
+<section class="card" aria-labelledby="files-h">
+  <h2 id="files-h" class="card-title">Sealed files</h2>
+  {% if artifacts %}
+  <div class="table-wrap"><table class="evidence"><thead><tr><th scope="col">File</th><th scope="col">Size</th><th scope="col">SHA-256</th></tr></thead>
+  <tbody>{% for a in artifacts %}<tr><td class="mono">{% if a.path in ['results.json', 'meta.json', 'manifest.json'] or a.path.endswith('.png') %}<a href="/scans/{{ s.id }}/file/{{ a.path }}" target="_blank" rel="noopener">{{ a.path }}</a>{% else %}{{ a.path }}{% endif %}</td><td>{{ a.bytes|size }}</td><td class="mono">{{ a.sha256|short(16) }}…</td></tr>{% endfor %}</tbody></table></div>
+  <p class="muted">Network recordings (<span class="mono">network.har</span>) and page snapshots stay on this computer. They are listed here and sealed, but not served by the dashboard.</p>
+  {% else %}<p class="muted">No files were recorded.</p>{% endif %}
+</section>
+{% endblock %}

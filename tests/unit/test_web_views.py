@@ -153,6 +153,7 @@ def test_artifacts_and_evidence_tables(tmp_path):
     t = views.evidence_display([{"a_ms": 1, "list": ["x", "y"], "flag": True, "none": None, "d": {"k": "v"}}] * 10)
     assert t["columns"][0] == "A (ms)" and t["rows"][0] == ["1", "x, y", "yes", "", "k: v"] and len(t["rows"]) == 8 and len(t["more"]) == 2
     assert views.evidence_display(["not a dict"])["rows"] == []
+    assert views.evidence_display([{"run": "no_action", "x": 1}, {"run": "reject", "x": 2}])["rows"] == [["No clicks", "1"], ["After Reject", "2"]]
 
 
 def test_formatting_helpers():

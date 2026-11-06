@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% set nav = 'scan' %}
+{% block title %}Scanning {{ scan.host }} · NDPA Privacy Check{% endblock %}
+{% block content %}
+<section class="card progress" data-progress data-scan="{{ scan.id }}" data-last="{{ last_id }}" data-started="{{ scan.started_at }}">
+  <p class="eyebrow">{{ 'Waiting for its turn' if scan.status == 'queued' else 'Scanning' }}</p>
+  <h1>{{ scan.host }}</h1>
+  <p class="scan-url"><a href="{{ scan.url }}" rel="noopener noreferrer nofollow" target="_blank">{{ scan.url }}{{ icon('external') }}</a></p>
+  <p class="status-line" role="status" aria-live="polite" data-status>
+    {%- if position and position > 1 %}{{ position - 1 }} scan{{ '' if position == 2 else 's' }} ahead of this one.
+    {%- elif scan.status == 'queued' %}Starting shortly.
+    {%- else %}Scanning now. This usually takes two to three minutes.{% endif -%}
+  </p>
+  <ol class="stages">
+    {% for s in stages %}
+    <li class="stage stage-{{ s.state }}" data-stage="{{ s.key }}">
+      <span class="stage-icon" aria-hidden="true">
+        <span class="ic-wrap ic-pending"></span>
+        <span class="ic-wrap ic-running"><span class="spinner"></span></span>
+        <span class="ic-wrap ic-done">{{ icon('check') }}</span>
+        <span class="ic-wrap ic-failed">{{ icon('x') }}</span>
+        <span class="ic-wrap ic-blocked">{{ icon('lock') }}</span>
+        <span class="ic-wrap ic-skipped">{{ icon('minus') }}</span>
+      </span>
+      <div class="stage-body"><p class="stage-label">{{ s.label }}</p><p class="stage-msg" data-msg>{{ s.message }}</p></div>
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="muted progress-foot">Elapsed <span class="mono" data-elapsed>0:00</span> · You can leave this page. The scan carries on and will appear under <a href="/history/{{ scan.host }}">History</a>.</p>
+  <noscript><p class="muted">Turn on JavaScript to watch progress live, or reload this page in a minute.</p></noscript>
+</section>
+{% endblock %}

@@ -1,6 +1,6 @@
 import pytest
 
-from ndpa.models import Condition, ConsentObservation, Event, RunResult, RunStatus, ScoreCard, ScanStatus
+from ndpa.models import Condition, ConsentObservation, Event, RunResult, RunStatus, ScanStatus, ScoreCard
 from ndpa.storage import db
 
 

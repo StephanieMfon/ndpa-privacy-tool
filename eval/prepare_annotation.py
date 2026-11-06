@@ -1,6 +1,11 @@
 """Build annotator sheets from the blocklist snapshot, rulebook and site list.
 Run from the repo root: python eval/prepare_annotation.py"""
-import collections, csv, json, pathlib, yaml
+import collections
+import csv
+import json
+import pathlib
+
+import yaml
 
 out = pathlib.Path("eval/templates")
 out.mkdir(parents=True, exist_ok=True)
@@ -25,7 +30,7 @@ with open(out / "tracker_lookup.csv", "w", newline="") as f:
     w.writerows(rows)
 
 # 2. Label sheet: one row per site per scored rule
-sites = [l.strip() for l in open("my_site_list.txt") if l.strip() and not l.lstrip().startswith("#")]
+sites = [line.strip() for line in open("my_site_list.txt") if line.strip() and not line.lstrip().startswith("#")]
 rules = [r["id"] for r in yaml.safe_load(open("rulebook/rules.v2.yaml"))["rules"] if r["tier"] != "unscored"]
 with open(out / "annotation_template.csv", "w", newline="") as f:
     w = csv.writer(f)

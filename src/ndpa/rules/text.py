@@ -95,7 +95,7 @@ def analyse(text: str) -> list[Sentence]:
         labels = [set() for _ in spans]
         for match_id, start, _end in matcher(doc):
             labels[sentence_of[start]].add(nlp.vocab.strings[match_id])
-        out += [Sentence(span.text.strip(), lab) for span, lab in zip(spans, labels) if span.text.strip()]
+        out += [Sentence(span.text.strip(), lab) for span, lab in zip(spans, labels, strict=True) if span.text.strip()]
     return out
 
 

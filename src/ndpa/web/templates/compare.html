@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, band, tier, outcome, delta, status_chip %}
+{% set nav = 'history' %}
+{% block title %}Compare scans · NDPA Privacy Check{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/history">History</a><span aria-hidden="true">/</span><a href="/history/{{ c.b.host }}">{{ c.b.host }}</a><span aria-hidden="true">/</span><span>Compare</span></nav>
+<div class="page-head"><h1>{{ 'Did the fixes work?' if c.same_host else 'Comparing two different sites' }}</h1>
+<p class="lead">Scan <a href="/scans/{{ c.a.id }}">#{{ c.a.id }}</a> ({{ c.a_when }}) compared with scan <a href="/scans/{{ c.b.id }}">#{{ c.b.id }}</a> ({{ c.b_when }}).{% if not c.same_host %} <strong>These are scans of different sites.</strong>{% endif %}</p></div>
+
+{% if c.differences %}
+<aside class="card notice notice-warn"><h2>{{ icon('alert') }}These scans were not run in the same way</h2>
+<p>Differences in how a scan is run can change results on their own, so treat the comparison with care.</p>
+<ul>{% for d in c.differences %}<li><strong>{{ d.label }}:</strong> {{ d.a }} → {{ d.b }}</li>{% endfor %}</ul></aside>
+{% endif %}
+
+<section class="compare-top">
+  <article class="card cmp-score"><p class="eyebrow">Before · #{{ c.a.id }}</p>{% if c.ca and c.ca.weighted is not none %}<p class="cmp-num">{{ '%g' % c.ca.weighted }}</p>{{ band(c.ca.band) }}{% else %}<p class="cmp-num">—</p><p class="muted">No score</p>{% endif %}</article>
+  <div class="cmp-arrow" aria-hidden="true">{{ icon('arrow') }}</div>
+  <article class="card cmp-score"><p class="eyebrow">After · #{{ c.b.id }}</p>{% if c.cb and c.cb.weighted is not none %}<p class="cmp-num">{{ '%g' % c.cb.weighted }}</p>{{ band(c.cb.band) }}{% else %}<p class="cmp-num">—</p><p class="muted">No score</p>{% endif %}</article>
+  <article class="card cmp-delta"><p class="eyebrow">Change</p>{% if c.delta is not none %}<p class="cmp-num {{ 'up' if c.delta > 0 else 'down' if c.delta < 0 else '' }}">{{ c.delta|signed }}</p><p class="muted">points</p>{% else %}<p class="cmp-num">—</p>{% endif %}
+  <p class="cmp-counts"><span class="chip chip-ok">{{ c.groups.fixed|length }} fixed</span> <span class="chip chip-bad">{{ c.groups.new|length }} new</span></p></article>
+</section>
+
+{% if c.radar %}
+<section class="card"><h2 class="card-title">By area</h2>
+<div class="cmp-areas"><div class="radar-wrap">{{ c.radar }}</div>
+<div class="table-wrap"><table class="areas"><thead><tr><th scope="col">Area</th><th scope="col">Before</th><th scope="col">After</th><th scope="col">Change</th></tr></thead>
+<tbody>{% for r in c.category_rows %}<tr><th scope="row">{{ r.label }}</th><td>{{ '%g' % r.a }}</td><td>{{ '%g' % r.b }}</td><td>{{ delta(r.delta) }}</td></tr>{% endfor %}</tbody></table></div></div>
+<p class="legend"><span class="key key-now"></span>After <span class="key key-prev"></span>Before</p></section>
+{% endif %}
+
+{% macro cmp_block(title, tone, rows, note) %}
+{% if rows %}
+<section class="cmp-block" aria-label="{{ title }}"><div class="section-head"><h2>{{ title }}</h2><span class="chip chip-{{ tone }}">{{ rows|length }}</span></div>
+{% if note %}<p class="muted">{{ note }}</p>{% endif %}
+<ul class="cmp-list card">{% for r in rows %}
+<li><div class="cmp-rule"><span class="mono rule-id">{{ r.rule_id }}</span> <a href="/scans/{{ c.b.id }}#{{ r.rule_id|lower }}">{{ r.name }}</a> {{ tier(r) }}</div>
+<div class="cmp-change">{{ outcome(r.before) }}<span aria-hidden="true">{{ icon('arrow') }}</span><span class="sr-only">became</span>{{ outcome(r.after) }}</div>
+{% if r.before.instances_failed or r.after.instances_failed %}<p class="muted cmp-inst">Affected: {{ r.before.instances_failed or 0 }} → {{ r.after.instances_failed or 0 }}</p>{% endif %}</li>{% endfor %}</ul></section>
+{% endif %}
+{% endmacro %}
+{{ cmp_block('Fixed', 'ok', c.groups.fixed, 'These failed before and no longer do.') }}
+{{ cmp_block('New problems', 'bad', c.groups.new, 'These were fine, or not checked, before.') }}
+{{ cmp_block('Still failing', 'bad', c.groups.still, None) }}
+{{ cmp_block('Other changes', 'na', c.groups.other, None) }}
+{% if c.groups.same %}
+<details class="more"><summary>{{ c.groups.same|length }} check{{ '' if c.groups.same|length == 1 else 's' }} unchanged</summary>
+<ul class="cmp-list card">{% for r in c.groups.same %}<li><div class="cmp-rule"><span class="mono rule-id">{{ r.rule_id }}</span> {{ r.name }}</div><div class="cmp-change">{{ outcome(r.after) }}</div></li>{% endfor %}</ul></details>
+{% endif %}
+{% endblock %}

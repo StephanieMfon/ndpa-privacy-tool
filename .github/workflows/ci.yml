@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install the project and its test tools
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check src tests eval
+
+      - name: Install the browser the tests use
+        run: python -m playwright install --with-deps chromium
+
+      - name: Unit tests (no browser)
+        run: python -m pytest tests/unit -q
+
+      - name: Integration tests (real browser against local test sites)
+        run: python -m pytest tests/integration -q

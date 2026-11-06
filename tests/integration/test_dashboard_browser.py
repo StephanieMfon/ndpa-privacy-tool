@@ -121,7 +121,7 @@ def test_the_filter_buttons_and_fix_first_links_on_a_result_page(serve, page):
     page.click("[data-filter=all]")
     assert page.locator("details.check:visible").count() == 17
     page.click(".fixes a[href='#sb-03']")  # a Fix first link opens the matching check
-    page.wait_for_function("document.getElementById('sb-03').open === true")
+    page.wait_for_selector("details#sb-03[open]")
 
 
 def test_scan_again_from_a_result_page_starts_a_new_scan(serve, page):

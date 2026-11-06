@@ -2,7 +2,6 @@ import json
 import os
 import re
 import threading
-import time
 from pathlib import Path
 
 import pytest
@@ -242,15 +241,17 @@ def events(text):
     return out
 
 
-def test_the_stream_for_a_finished_scan_sends_the_state_then_finishes(make):
+def test_the_stream_replays_a_finished_scan_step_by_step_and_then_finishes(make):
     client, settings = make()
     sid = seeded(settings)
     got = events(stream(client, f"/scans/{sid}/events"))
-    assert [n for n, _ in got] == ["state", "finished"] and got[1][1]["status"] == "done"
-    assert all(s["state"] == "done" for s in got[0][1]["stages"])
+    names = [n for n, _ in got]
+    assert names[-1] == "finished" and got[-1][1]["status"] == "done" and names[:-1] == ["state"] * (len(names) - 1) and len(names) >= 3
+    assert all(s["state"] == "done" for s in got[-2][1]["stages"])  # the last update shows everything done
 
 
-def test_the_stream_follows_a_scan_from_waiting_to_finished(make):
+def test_the_stream_reports_every_step_even_when_the_scan_is_over_before_anyone_looks(make):
+    """The fake scan does not pause at all, which is the hardest case for a stream that only looks now and then."""
     settings_holder = {}
 
     def runner(scan_id, url):
@@ -259,7 +260,6 @@ def test_the_stream_follows_a_scan_from_waiting_to_finished(make):
         for stage, msg in (("no_action", "capturing"), ("no_action", "ok"), ("accept", "capturing"), ("accept", "ok"),
                            ("reject", "capturing"), ("reject", "ok"), ("policy", "found_linked"), ("rules", "evaluating"), ("saving", "x")):
             db.log_progress(conn, scan_id, stage, msg)
-            time.sleep(0.15)
         db.update_scan(conn, scan_id, status="done", finished_at=db.now())
         conn.close()
 
@@ -268,10 +268,16 @@ def test_the_stream_follows_a_scan_from_waiting_to_finished(make):
     client.post("/scans", data={"url": PUBLIC}, headers=SAME, follow_redirects=False)
     got = events(stream(client, "/scans/1/events"))
     states = [d for n, d in got if n == "state"]
-    assert len(states) >= 3 and got[-1][0] == "finished" and got[-1][1]["status"] == "done"
+    assert got[-1][0] == "finished" and got[-1][1]["status"] == "done"
     seen = [{s["key"]: s["state"] for s in d["stages"]} for d in states]
-    assert any(x["no_action"] == "running" for x in seen) and any(x["accept"] == "done" and x["reject"] != "done" for x in seen)
-    assert seen[-1]["saving"] == "done"
+    assert any(x["no_action"] == "running" for x in seen)  # the first step was reported while it was running
+    assert any(x["accept"] == "done" and x["reject"] != "done" for x in seen)  # and the order of the steps is kept
+    assert seen[-1]["saving"] == "done" and all(v == "done" for v in seen[-1].values())
+    done_once = dict.fromkeys(seen[0], False)
+    for x in seen:  # a finished step never goes back
+        for key, value in x.items():
+            assert not (done_once[key] and value != "done"), key
+            done_once[key] = done_once[key] or value == "done"
 
 
 def test_the_stream_for_an_unknown_scan_ends_quietly(make):

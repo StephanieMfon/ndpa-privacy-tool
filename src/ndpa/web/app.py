@@ -139,23 +139,28 @@ def create_app(settings: Settings | None = None, manager: ScanManager | None = N
 
         def stream() -> Iterator[str]:
             conn = db.connect(settings.db_path, share_across_threads=True)  # it may be closed from another thread when the visitor leaves
+
+            def state(rows: list[dict], status: str) -> str:
+                payload = json.dumps({"status": status, "stages": views.stage_states(rows, status),
+                                      "position": app.state.manager.queue_position(scan_id)})
+                return f"id: {rows[-1]['id'] if rows else 0}\nevent: state\ndata: {payload}\n\n"
+
             try:
                 yield "retry: 2000\n\n"
-                started, idle = time.monotonic(), 0.0
-                snapshot = None
-                position_last = last
+                started, idle, cursor, sent = time.monotonic(), 0.0, last, None
                 while time.monotonic() - started < 1800:
                     scan = db.get_scan(conn, scan_id)
                     if scan is None:
                         return
                     rows = db.progress_rows(conn, scan_id)
-                    if rows and rows[-1]["id"] != position_last or snapshot is None:
-                        position_last = rows[-1]["id"] if rows else 0
-                        payload = json.dumps({"status": scan["status"], "stages": views.stage_states(rows, scan["status"]),
-                                              "position": app.state.manager.queue_position(scan_id)})
-                        if payload != snapshot:
-                            snapshot = payload
-                            yield f"id: {position_last}\nevent: state\ndata: {payload}\n\n"
+                    new = [r for r in rows if r["id"] > cursor]
+                    for r in new:  # one update per step, in order, however quickly the steps happened
+                        status = scan["status"] if r is new[-1] else "running"
+                        yield state([x for x in rows if x["id"] <= r["id"]], status)
+                        sent, cursor = status, r["id"]
+                    if sent is None or (scan["status"] in db.FINAL_STATUSES and sent != scan["status"]):
+                        yield state(rows, scan["status"])  # nothing new to say, but bring the page up to date
+                        sent = scan["status"]
                     if scan["status"] in db.FINAL_STATUSES:
                         yield f"event: finished\ndata: {json.dumps({'status': scan['status']})}\n\n"
                         return

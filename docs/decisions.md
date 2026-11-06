@@ -76,3 +76,5 @@ Cut order if behind: crawl -> evidence integrity -> CNAME -> mobile -> dark patt
 - D-41 The old scanner (scanner/, config/, run_scan.py, main.py and its tests) is retired. Nothing in the new code depended on it; the rulebook, the DuckDuckGo tracker list and rulebook/necessary_cookies.yaml replace its inputs. It stays recoverable from git (tags v0-code-snapshot and pre-cleanup-2026-11-06).
 - D-42 spike_05a_results.json and its script are kept in docs/spikes/ as the evidence for choosing the DuckDuckGo tracker list over EasyPrivacy.
 - D-43 Lint uses ruff with an explicit rule set (E4, E7, E9, F, I, B, C4), line length 120, and B008 ignored (FastAPI idiom). CI runs ruff, the unit tests and the browser tests on every push.
+
+- D-44 (6 Nov 2026) The live-progress stream sends one update per step instead of only the latest picture, so a quick step is never skipped; tests must never depend on timing. Browser tests must not evaluate strings as JavaScript (the Content-Security-Policy forbids it); they use selector waits.

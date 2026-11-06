@@ -51,3 +51,10 @@
 - B-38 Re-assessed B-12 with the real scans: MTN has 0 of 13 script-set cookies without an attributed script; punchng has 27 of 107, but they are only two cookie names, FCCDCF and FCNEC (they look like Google Funding Choices consent cookies; what they store is UNVERIFIED). So the CDP attribution upgrade would fix very little. Recommend keeping it low in the cut order. Instead, check at the pilot whether FCCDCF and FCNEC belong on the R1 necessary-cookie list (they are currently counted as non-necessary).
 - B-37 CI uses actions/checkout@v6 and actions/setup-python@v6. Newer major versions may exist (UNVERIFIED); update when GitHub warns, or turn on Dependabot for actions.
 - B-39 My test sandbox runs older browsers (Playwright 1.56, Chromium 141) than the project's own machine (Chrome 156). Rule: before delivering, state the versions I tested with. A CI job that tests against the newest Playwright would catch these differences earlier.
+
+## Added 7 Nov 2026 (evaluation harness)
+- B-40 A dashboard Evaluation page (precision, recall and F1 tables, block rate, error list), once there are real numbers to show.
+- B-41 The Cookiescanner comparison on the overlapping rules is not built: it needs that external tool and network access. Decide at the pilot whether it is still wanted.
+- B-42 The report treats 'unable to determine' as an abstention. If many appear on one rule, investigate that rule before reporting.
+- B-43 Per-rule intervals with about 30 sites are wide. Chapter 4 should say so, and lean on the category and overall numbers.
+- B-44 Trial run first: python -m ndpa.evaluation.corpus --name trial --limit 3 --allow-unfrozen --vantage "...", then check the dashboard with --db data/eval.db. Delete the trial manifest in data/eval_runs/ afterwards.

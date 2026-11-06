@@ -14,3 +14,6 @@ data/*.db
 data/*.db-wal
 data/*.db-shm
 data/logs/
+
+# evaluation corpus evidence (large). The run manifests in data/eval_runs/ and the reports in data/eval_reports/ are kept in git.
+data/eval_evidence/

@@ -78,3 +78,11 @@ Cut order if behind: crawl -> evidence integrity -> CNAME -> mobile -> dark patt
 - D-43 Lint uses ruff with an explicit rule set (E4, E7, E9, F, I, B, C4), line length 120, and B008 ignored (FastAPI idiom). CI runs ruff, the unit tests and the browser tests on every push.
 
 - D-44 (6 Nov 2026) The live-progress stream sends one update per step instead of only the latest picture, so a quick step is never skipped; tests must never depend on timing. Browser tests must not evaluate strings as JavaScript (the Content-Security-Policy forbids it); they use selector waits.
+
+## Update 7 Nov 2026 (evaluation harness)
+
+- D-45 The positive class is non-compliant ("the tool finds a violation"). TP, FP, FN, TN are counted per rule and summed for categories and overall (micro). Macro F1 is shown beside it. Every undefined number is shown as n/a, never as zero.
+- D-46 'Unable to determine' exists only in the tool. It is reported as an abstention; recall is shown both ways: without abstentions (lenient) and with each abstention on a gold non-compliant case counted as a miss (strict).
+- D-47 Gold = annotator 1, overridden by an adjudicated sheet where one exists. A second annotator gives agreement (percentage and Cohen's kappa) and a disagreements sheet for adjudication. Intervals are 95% Wilson intervals.
+- D-48 Blocked and failed scans have no outcomes: they are left out of the comparison and counted in the block rate. Annotators' labels are scored with the tool's own scoring formula, so the score comparison is like for like. Weighted versus equal-weight sensitivity is reported, and the weights are never tuned.
+- D-49 The corpus run is resumable, shuffled by a fixed seed, paused between sites, saved after every site, and refuses to run on an unfrozen or changed rulebook (a trial flag overrides this and marks the report as a trial). It records the freeze hashes and the 72-hour window. Sites are matched by host (without www, keeping a non-default port).

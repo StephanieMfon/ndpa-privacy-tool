@@ -127,3 +127,58 @@ def test_no_mechanism_convention_cn01_and_cn03_fail_cn04_cn05_not_applicable_cn0
     got = {fn.__name__: check(fn, ev).outcome for fn in (c.cn_01, c.cn_02, c.cn_03, c.cn_04, c.cn_05)}
     assert got == {"cn_01": Outcome.NON_COMPLIANT, "cn_02": Outcome.NON_COMPLIANT, "cn_03": Outcome.NON_COMPLIANT,
                    "cn_04": Outcome.NOT_APPLICABLE, "cn_05": Outcome.NOT_APPLICABLE}
+
+
+# CN-02 and the Close button (register R5: strict reading decides, implied reading is reported alongside)
+def close_scan(*events, jar=None, geo=None, action="close"):
+    """A banner with only a Close control: the Accept run clicks it at 5 s, and `events` happen after that."""
+    first = run(cons=consent(geo=geo), events=[tracker_request(400)])  # a tracker makes this a consent site; no cookie before consent
+    accepted = run(A, cons=consent(action=action, click_ms=5000), events=list(events), jar=jar)
+    return scan(first, accept=accepted)
+
+
+def close_rows(r):
+    return [e for e in r.evidence if e["run"] == "close"]
+
+
+def test_a_cookie_set_after_close_counts_under_the_strict_reading_but_the_implied_reading_excuses_a_first_party_one():
+    r = check(c.cn_02, close_scan(server_cookie(6000, "prefs")))  # the site's own server, a conspicuous banner
+    assert r.outcome == Outcome.NON_COMPLIANT and r.instances_failed == 1  # Close is not consent
+    row = close_rows(r)[0]
+    assert row["cookie"] == "prefs" and row["excused_if_implied"] is True and row["implied_outcome"] == "compliant"
+    assert "after a Close click" in r.note and "implied reading (R5) this rule would be compliant" in r.note
+
+
+def test_the_implied_reading_never_excuses_a_third_party_or_tracker_cookie():
+    for event in (server_cookie(6000, "uid", third_party=True, domain="ads.example"), js_cookie(6000, "_ga", vendor="Google Analytics"), js_cookie(6000, "x")):
+        r = check(c.cn_02, close_scan(event))
+        row = close_rows(r)[0]
+        assert r.outcome == Outcome.NON_COMPLIANT and row["excused_if_implied"] is False and row["implied_outcome"] == "non_compliant"
+
+
+def test_the_implied_reading_needs_a_banner_that_passed_the_obstruction_test():
+    strip = geometry(position="bottom", coverage=0.03, bottom_row_only=True, passes=False)
+    r = check(c.cn_02, close_scan(server_cookie(6000, "prefs"), geo=strip))
+    assert close_rows(r)[0]["excused_if_implied"] is False and close_rows(r)[0]["implied_outcome"] == "non_compliant"
+
+
+def test_a_cookie_of_unknown_origin_is_not_excused():
+    r = check(c.cn_02, close_scan(jar=[{"name": "mystery", "domain": "shop.example", "expires": -1}]))  # in the jar, no event says who set it
+    assert close_rows(r)[0]["how"] == ["jar_only"] and close_rows(r)[0]["excused_if_implied"] is False
+
+
+def test_the_strict_outcome_stays_compliant_when_nothing_is_set_after_close():
+    r = check(c.cn_02, close_scan())
+    assert r.outcome == Outcome.COMPLIANT and not close_rows(r)
+
+
+def test_an_accept_click_is_consent_so_cookies_after_it_are_fine_and_nothing_about_close_is_added():
+    r = check(c.cn_02, close_scan(server_cookie(6000, "prefs"), action="accept"))
+    assert r.outcome == Outcome.COMPLIANT and "Close" not in r.note and not any("run" in e and e["run"] == "close" for e in r.evidence)
+
+
+def test_cookies_before_consent_still_decide_even_when_close_cookies_are_excused():
+    first = run(cons=consent(), cookies=["_ga"])  # a real violation before any click
+    accepted = run(A, cons=consent(action="close", click_ms=5000), events=[server_cookie(6000, "prefs")])
+    r = check(c.cn_02, scan(first, accept=accepted))
+    assert r.outcome == Outcome.NON_COMPLIANT and close_rows(r)[0]["excused_if_implied"] is True and close_rows(r)[0]["implied_outcome"] == "non_compliant"

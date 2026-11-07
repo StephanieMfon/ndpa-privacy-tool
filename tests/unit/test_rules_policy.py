@@ -124,3 +124,16 @@ def test_no_policy_fails_with_root_cause_and_uncertain_discovery_is_unable_to_de
     for fn in (p.pp_03, p.pp_04, p.pp_05, p.pp_06):
         assert check(fn, uncertain).outcome == Outcome.UNABLE_TO_DETERMINE, fn.__name__
     assert check(p.pp_03, scan(run())).outcome == Outcome.UNABLE_TO_DETERMINE  # policy never captured
+
+
+def test_pp06_recognises_the_right_to_ask_us_not_to_process_data_for_marketing():
+    text = "You have the right to ask us not to process your personal data for marketing purposes."  # a Nigerian news site's wording
+    r = check(p.pp_06, scan_with_policy(text))
+    assert r.evidence[0]["rights"]["objection"] == "disclosed" and r.instances_failed == 6
+    stop = check(p.pp_06, scan_with_policy("You are entitled to request that we stop processing your data."))
+    assert stop.evidence[0]["rights"]["objection"] == "disclosed"
+
+
+def test_pp06_does_not_count_a_promise_that_is_not_a_right():
+    r = check(p.pp_06, scan_with_policy("It is our policy not to process data without a legal basis."))
+    assert r.evidence[0]["rights"]["objection"] == "missing"

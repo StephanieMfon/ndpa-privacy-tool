@@ -20,7 +20,7 @@ LEXICON: dict[str, list[str]] = {
     "r_erase": ["erase*", "erasure", "delet*", "forgotten", "removal"],
     "r_restrict": ["restrict*"],
     "r_port": ["portab*", "portable", "machine - readable", "machine readable"],
-    "r_object": ["object*", "objection", "opt out", "opt - out"],
+    "r_object": ["object*", "objection", "opt out", "opt - out", "not to process", "stop processing", "prevent such processing"],
     "c_verb": ["complain*", "lodge*", "report*"],
     "c_authority": ["ndpc", "nigeria data protection commission", "supervisory authority", "regulator*",
                     "data protection authority", "data protection commission"],

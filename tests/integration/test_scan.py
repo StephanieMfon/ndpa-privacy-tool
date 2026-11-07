@@ -1,4 +1,5 @@
 """Whole scans against the fixture site. Needs a real browser."""
+import json
 import sqlite3
 
 import pytest
@@ -55,3 +56,15 @@ def test_an_unreachable_site_is_tried_twice_then_fails(tmp_path):
     assert s.status == ScanStatus.FAILED
     assert rows(tmp_path, "SELECT attempts, status FROM run") == [(2, "failed")]
     assert chain.verify(s.folder)[0] == []
+
+
+def test_a_close_only_banner_is_judged_strictly_and_the_implied_reading_is_reported(site, tmp_path):
+    scan(f"{site}/banner_close_only.html", tmp_path)
+    outcome, evidence = rows(tmp_path, "SELECT outcome, evidence_json FROM finding WHERE rule_id = 'CN-02'")[0]
+    after_close = [e for e in json.loads(evidence) if e["run"] == "close"]
+    assert outcome == "non_compliant" and after_close and {"excused_if_implied", "implied_outcome"} <= set(after_close[0])
+    other = tmp_path / "other"
+    other.mkdir()
+    scan(f"{site}/banner_simple.html", other)  # an Accept button: Close is not involved
+    evidence = rows(other, "SELECT evidence_json FROM finding WHERE rule_id = 'CN-02'")[0][0]
+    assert not any(e["run"] == "close" for e in json.loads(evidence))

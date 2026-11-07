@@ -24,3 +24,8 @@ def test_trackers_are_not_swallowed_by_the_patterns(name):
 
 def test_consent_state_group():
     assert NECESSARY.is_consent_state("wpca_consent") and not NECESSARY.is_consent_state("JSESSIONID")
+
+
+def test_the_google_consent_platform_record_is_necessary_but_its_other_cookie_is_not_assumed_to_be():
+    assert NECESSARY.is_necessary("FCCDCF") and NECESSARY.is_consent_state("FCCDCF")  # it stores the visitor's consent choice
+    assert not NECESSARY.is_necessary("FCNEC")  # what it stores is unclear, so it stays non-necessary until the pilot decides

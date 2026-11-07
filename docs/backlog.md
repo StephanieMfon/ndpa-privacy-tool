@@ -58,3 +58,9 @@
 - B-42 The report treats 'unable to determine' as an abstention. If many appear on one rule, investigate that rule before reporting.
 - B-43 Per-rule intervals with about 30 sites are wide. Chapter 4 should say so, and lean on the category and overall numbers.
 - B-44 Trial run first: python -m ndpa.evaluation.corpus --name trial --limit 3 --allow-unfrozen --vantage "...", then check the dashboard with --db data/eval.db. Delete the trial manifest in data/eval_runs/ afterwards.
+
+## Updated 7 Nov 2026 (pre-freeze calibration)
+- B-01 DONE (D-50). B-08 DONE (D-52). B-38 DONE for FCCDCF (D-51); FCNEC stays open for the pilot.
+- B-45 Ask the annotators which reading of Close their CN-02 label holds, and where the other goes (the notes column). The tool's CN-02 outcome is the strict one; the implied outcome is in the finding's evidence.
+- B-46 The SB rules (SB-01 to SB-03) still look only at the time before consent and after Reject. If the rulebook later says a Close click is not consent for them too, they need the same window as CN-02.
+- B-47 Remaining pre-freeze items: B-03 (PP-02, PP-04 and PP-05 word lists against the annotators), B-04 (contact forms for PP-03), B-10 and B-11 (confirm the necessary-cookie list and the cookie lifetime cap).

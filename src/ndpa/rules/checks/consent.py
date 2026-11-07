@@ -23,8 +23,35 @@ def cn_01(ev: ScanEvidence, ctx: Ctx):
     return result("CN-01", Outcome.NON_COMPLIANT, f"banner is {why} (position {g['position']})", evidence)
 
 
+def _after_close(ev: ScanEvidence, ctx: Ctx) -> list[dict]:
+    """Non-necessary cookies set after a Close click, each marked with whether the implied reading (R5) would excuse it.
+
+    R5: Close counts as implied consent only if the banner passed the obstruction test (CN-01), and only for first-party
+    cookies whose purpose is site functionality or first-party analytics. The tool cannot read a cookie's purpose, so the
+    implied reading excuses a cookie only when the site itself plainly set it (no third party and no tracker vendor was
+    involved) and the banner passed CN-01. A cookie of unknown origin is never excused."""
+    acc = ev.accept
+    if acc is None or acc.consent.action != "close" or acc.consent.click_ms is None:
+        return []
+    since = acc.consent.click_ms
+    geometry = ev.no_action.consent.banner_geometry
+    conspicuous = bool(geometry and geometry.get("passes_r4"))
+    plainly_first_party: dict[str, bool] = {}
+    for e in acc.events:
+        if e.t_ms < since:
+            continue
+        names = [e.detail.get("name")] if e.kind == "cookie_set_js" else e.detail.get("set_cookie_names", []) if e.kind == "response" else []
+        for name in names:
+            plainly_first_party[name] = plainly_first_party.get(name, True) and e.third_party is False and not e.vendor
+    return [{"cookie": name, "how": info["hows"], "t_ms": info["t_ms"], "excused_if_implied": conspicuous and plainly_first_party.get(name, False)}
+            for name, info in cookie_sets(acc, ctx.necessary, since).items()]
+
+
 def cn_02(ev: ScanEvidence, ctx: Ctx):
-    """No non-necessary cookie before consent (Run 1) or after Reject (Reject run). Strict reading of Close (R5)."""
+    """No non-necessary cookie before consent (Run 1) or after Reject (Reject run).
+
+    Strict reading of Close (R5): a Close click is not consent, so cookies set after it count too. The implied reading is
+    worked out alongside and stated in the note and on each Close row. The outcome, and so the score, is the strict one."""
     if not ctx.trigger:
         return result("CN-02", Outcome.NOT_APPLICABLE, NO_TRIGGER)
     evidence, total = [], set()
@@ -32,11 +59,21 @@ def cn_02(ev: ScanEvidence, ctx: Ctx):
         for name, info in cookie_sets(run, ctx.necessary, since).items():
             total.add(name)
             evidence.append({"run": label, "cookie": name, "how": info["hows"], "t_ms": info["t_ms"]})
+    closed = _after_close(ev, ctx)
+    counted_if_implied = {c["cookie"] for c in closed if not c["excused_if_implied"]} | {e["cookie"] for e in evidence}
+    implied = "non_compliant" if counted_if_implied else "compliant"
+    for c in closed:
+        total.add(c["cookie"])
+        evidence.append({"run": "close", "cookie": c["cookie"], "how": c["how"], "t_ms": c["t_ms"],
+                         "excused_if_implied": c["excused_if_implied"], "implied_outcome": implied})
     note = "" if ev.reject and ev.reject.consent.click_ms is not None else "no Reject run: only cookies before consent were assessed"
     if evidence:
         names = sorted({e["cookie"] for e in evidence})
-        return result("CN-02", Outcome.NON_COMPLIANT, f"{len(names)} non-necessary cookie(s) set without consent. {note}".strip(),
-                      evidence, failed=len(names), total=len(names))
+        text = f"{len(names)} non-necessary cookie(s) set without consent. {note}".strip()
+        if closed:
+            text += (f" {len(closed)} cookie(s) were set after a Close click, which is not consent (strict reading). "
+                     f"Under the implied reading (R5) this rule would be {implied}.")
+        return result("CN-02", Outcome.NON_COMPLIANT, text, evidence, failed=len(names), total=len(names))
     return result("CN-02", Outcome.COMPLIANT, f"no non-necessary cookie before consent or after Reject. {note}".strip())
 
 

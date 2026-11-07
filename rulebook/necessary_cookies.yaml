@@ -23,6 +23,7 @@ patterns:
     - "*consent*"
     - wpca_cc
     - sb-closed
+    - FCCDCF
   security:
     - __cf_bm
     - cf_clearance

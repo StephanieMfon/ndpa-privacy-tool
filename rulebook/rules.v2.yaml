@@ -113,16 +113,7 @@ rules:
         "GAID Sch 1 para 4(iii),(vii)",
         "GAID Art 49(3) (context only, not a cookie cap)",
       ]
-    # thresholds: { max_days: 365, register: R3 }
-
-    thresholds:
-      {
-        min_coverage: 0.111,
-        bottom_row_starts_at: 0.667,
-        register: R4,
-        positions_recorded:
-          [bottom, top, centre_modal, left, right, full_screen],
-      }
+    thresholds: { max_days: 365, register: R3 }
     decision:
       non_compliant: "A persistent cookie lasts longer than max_days and no justification appears in the disclosures"
       compliant: "No persistent cookie exceeds max_days, or each one that does is justified"
@@ -165,7 +156,9 @@ rules:
     legal: ["GAID Art 7(l)", "GAID Art 19(4), 19(7)(a)"]
     thresholds:
       {
-        coverage_measure: "OPEN (R4)",
+        min_coverage: 0.111,
+        bottom_row_starts_at: 0.667,
+        register: R4,
         positions_recorded:
           [bottom, top, centre_modal, left, right, full_screen],
       }

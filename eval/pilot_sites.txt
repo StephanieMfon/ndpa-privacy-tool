@@ -1,0 +1,5 @@
+# Sites for the rulebook pilot. They must NOT be in my_site_list.txt (the evaluation corpus).
+# kara.com.ng was used for earlier pilot evidence, but it is in the corpus, so it is not used here.
+https://oxymon.co
+https://tekedia.com
+# Add a third site that is not in my_site_list.txt, for example another online shop or a news site.

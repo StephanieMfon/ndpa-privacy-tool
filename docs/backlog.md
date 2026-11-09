@@ -64,3 +64,15 @@
 - B-45 Ask the annotators which reading of Close their CN-02 label holds, and where the other goes (the notes column). The tool's CN-02 outcome is the strict one; the implied outcome is in the finding's evidence.
 - B-46 The SB rules (SB-01 to SB-03) still look only at the time before consent and after Reject. If the rulebook later says a Close click is not consent for them too, they need the same window as CN-02.
 - B-47 Remaining pre-freeze items: B-03 (PP-02, PP-04 and PP-05 word lists against the annotators), B-04 (contact forms for PP-03), B-10 and B-11 (confirm the necessary-cookie list and the cookie lifetime cap).
+
+## Added 7 Nov 2026 (annotation, scope)
+- B-48 The LLM advisor is dropped from scope (D-53). If time allows after the defence: one paragraph of future work, nothing built.
+- B-49 Pilot sites: oxymon.co and tekedia.com are set; a third site that is not in my_site_list.txt is still to be chosen (eval/pilot_sites.txt).
+- B-50 After the pilot and the freeze, regenerate the workbooks (python -m ndpa.evaluation.workbook) before the real annotation begins, so annotators see the frozen rule wording and lists.
+
+## Added 9 Nov 2026 (pilot, chapters)
+- B-51 Add a sensitivity to the evaluation report: results for all sites and for the sites not seen during development (D-60).
+- B-52 Make capture date and Chrome version required: the sheet checker should warn when they are blank (register R6). The pilot left Chrome version blank.
+- B-53 A fourth pilot site outside the corpus with a full banner (Accept, Reject and settings), to test the Reject, Close and withdrawal wording before the freeze.
+- B-54 Cookiescanner feasibility test: does it install and run on a few sites, and does it check CN-01 and CN-03? Decide B-41 (the Cookiescanner comparison) from the result, before keeping Objective D as written.
+- B-55 Run the tool on the three pilot sites and compare with the pilot labels (a dry run of the whole evaluation).

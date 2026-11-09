@@ -68,7 +68,28 @@ def parse_label(raw: str) -> Outcome | None:
     return LABELS[cleaned]
 
 
+def _read_workbook(path: Path) -> list[dict]:
+    """The 'Labels' sheet of an annotator workbook (made by ndpa.evaluation.workbook), as rows keyed by the header."""
+    from openpyxl import load_workbook
+
+    book = load_workbook(path, read_only=True, data_only=True)
+    try:
+        names = {name.lower(): name for name in book.sheetnames}
+        sheet = book[names["labels"]] if "labels" in names else book.active
+        lines = sheet.iter_rows(values_only=True)
+        header = next(lines, None)
+        if header is None:
+            return []
+        keys = [str(h).strip().lower() if h is not None else "" for h in header]
+        return [{key: "" if value is None else str(value) for key, value in zip(keys, values, strict=False)}
+                for values in lines if any(v not in (None, "") for v in values)]
+    finally:
+        book.close()
+
+
 def _read_rows(path: Path) -> list[dict]:
+    if path.suffix.lower() in (".xlsx", ".xlsm"):  # Excel may save the workbook as .xlsm
+        return _read_workbook(path)
     text = path.read_text(encoding="utf-8-sig")  # spreadsheets often save a byte-order mark
     try:
         dialect = csv.Sniffer().sniff(text[:4096], delimiters=",;\t")

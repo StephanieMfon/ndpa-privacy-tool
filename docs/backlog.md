@@ -76,3 +76,8 @@
 - B-53 A fourth pilot site outside the corpus with a full banner (Accept, Reject and settings), to test the Reject, Close and withdrawal wording before the freeze.
 - B-54 Cookiescanner feasibility test: does it install and run on a few sites, and does it check CN-01 and CN-03? Decide B-41 (the Cookiescanner comparison) from the result, before keeping Objective D as written.
 - B-55 Run the tool on the three pilot sites and compare with the pilot labels (a dry run of the whole evaluation).
+
+## Added 9 Nov 2026 (comparison point)
+- B-56 Chapter wording: Objective D (Chapter 1) and step D3 (Chapter 3) name Cookiescanner. Change them to Blacklight after telling the supervisor, and cite The Markup's methodology page and OpenWPM (Englehardt & Narayanan, 2016). One sentence may say Cookiescanner was tried and could not be run without changes.
+- B-57 Comparison design: for each site, 'a tracker was contacted before consent' from the tool (SB-03), from Blacklight (at least one tracker request) and from the annotators (SB-03 label, the reference). Report precision and recall for both tools, and how many tracker domains each found.
+- B-58 After the freeze, run python -m ndpa.evaluation.blacklight corpus inside the same 72-hour window as the tool's corpus scan.

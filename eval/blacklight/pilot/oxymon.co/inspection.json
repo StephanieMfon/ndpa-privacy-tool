@@ -1,0 +1,96 @@
+{
+  "title": "Blacklight Inspection",
+  "page_title": "Home | Oxymon Solutions",
+  "uri_ins": "https://oxymon.co",
+  "uri_dest": "https://www.oxymon.co/",
+  "uri_redirects": [
+    "https://oxymon.co/"
+  ],
+  "secure_connection": {},
+  "host": "oxymon.co",
+  "config": {
+    "emulateDevice": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+    },
+    "cleareCache": true,
+    "captureHar": true,
+    "captureLinks": false,
+    "enableAdBlock": false,
+    "saveBrowserProfile": false,
+    "numPages": 0,
+    "defaultTimeout": 30000,
+    "defaultWaitUntil": "networkidle2",
+    "headless": false,
+    "headers": {},
+    "extraChromiumArgs": [
+      "--disable-features=TrackingProtection3pcd"
+    ],
+    "extraPuppeteerOptions": {}
+  },
+  "browser": {
+    "name": "Chromium",
+    "version": "Chrome/157.0.8103.50",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "platform": {
+      "name": "Darwin",
+      "version": "25.5.0"
+    }
+  },
+  "script": {
+    "host": "MacBook-Pro.local",
+    "version": {
+      "npm": "3.11.0",
+      "commit": "dev"
+    },
+    "node_version": "v22.23.4"
+  },
+  "start_time": "2026-11-10T10:39:13.342Z",
+  "end_time": "2026-11-10T10:39:25.330Z",
+  "location": "Port Harcourt, NG (home network)",
+  "browsing_history": [
+    "https://www.oxymon.co/"
+  ],
+  "hosts": {
+    "requests": {
+      "first_party": [
+        "oxymon.co",
+        "www.oxymon.co"
+      ],
+      "third_party": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    }
+  },
+  "reports": {
+    "behaviour_event_listeners": {
+      "MOUSE": {
+        "https://www.oxymon.co/assets/index-Dtxs-cxh.js": [
+          "scroll"
+        ]
+      }
+    },
+    "canvas_fingerprinters": {
+      "data_url": {},
+      "fingerprinters": [],
+      "styles": {},
+      "texts": {}
+    },
+    "canvas_font_fingerprinters": {
+      "canvas_font": {},
+      "text_measure": {}
+    },
+    "cookies": [],
+    "fb_pixel_events": [],
+    "tiktok_pixel_events": [],
+    "twitter_pixel_events": [],
+    "google_analytics_events": [],
+    "key_logging": {},
+    "session_recorders": {},
+    "third_party_trackers": []
+  }
+}

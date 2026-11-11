@@ -17,3 +17,10 @@ data/logs/
 
 # evaluation corpus evidence (large). The run manifests in data/eval_runs/ and the reports in data/eval_reports/ are kept in git.
 data/eval_evidence/
+
+# Blacklight comparison: the downloaded collector and the bulky files. The result JSON and summary.csv are kept.
+eval/blacklight/blacklight-collector/
+eval/blacklight/**/requests.har
+eval/blacklight/**/*.html
+eval/blacklight/**/*.jpeg
+eval/blacklight/**/inspection-log.ndjson

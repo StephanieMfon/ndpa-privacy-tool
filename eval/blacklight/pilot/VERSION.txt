@@ -1,0 +1,7 @@
+Blacklight collector fe046f914ba87b131b86dc1f8029fffa0b70de44 (version 3.11.0)
+Node v22.23.4
+Google Chrome 157.0.8103.50
+macOS-26.5.2-arm64-arm-64bit
+vantage: Port Harcourt, NG (home network)
+settings: homepage only (numPages 0), desktop window 1366 x 768, real Chrome with a window, defaults for everything else
+written: 2026-11-10 10:39 UTC

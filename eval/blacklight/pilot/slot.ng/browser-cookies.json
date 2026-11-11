@@ -1,0 +1,109 @@
+{
+  "browser_cookies": [
+    {
+      "name": "_fbp",
+      "value": "fb.1.1794307205694.698759068848516557",
+      "domain": "slot.ng",
+      "path": "/",
+      "expires": "2027-02-08T10:40:05.000Z",
+      "size": 41,
+      "httpOnly": false,
+      "secure": false,
+      "session": false,
+      "sameSite": "Lax",
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443
+    },
+    {
+      "name": "cf_clearance",
+      "value": "CiYAapbXkRSIPHYS6ZFZdzai50f3U28seRwxF6Cnet21v4Jpl0yYqfnacOJ81KvSK7_aK5Pvv5w3aLF5bSrW9SF4_vWxxBrfOYkqWKpUvGw200aZ1oq_ADE1aVLzgSITE_d5q0DAQm1KqjLwK8PUG-n4rJNRtqxXBpTcmvxoPvok7ICvLtzmYEfE785Hic70WYkHpDJmLH_bil-9NnjAE1Lad-m7hZhu83EjrGr20meEOerLSW5wFm2UVofr-qW03JcsJSIxGXEDSUEWNjPzUx5oJokL5RCpxA9_CvB-p4aeVfMb4AoPTIigs99IfvLOHdDLKUzIfaRGsoeBqtAS5Ocq2_9VBj3mdiKlcLSkGqxc2yasfvwR8uQqzpZs6kQQOn5smSxkODkHBy3mDspXqyY",
+      "domain": "slot.ng",
+      "path": "/",
+      "expires": "2027-11-10T10:40:05.874Z",
+      "size": 419,
+      "httpOnly": true,
+      "secure": true,
+      "session": false,
+      "sameSite": "None",
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443,
+      "partitionKey": {
+        "topLevelSite": "https://slot.ng",
+        "hasCrossSiteAncestor": false
+      }
+    },
+    {
+      "name": "fr",
+      "value": "001fMIBmtfLleiKqW..Bq8vSG...1.0.Bq8vSG.AWcMwwmtilfY5nU6DNZxumRsKoY",
+      "domain": "facebook.com",
+      "path": "/",
+      "expires": "2027-02-08T10:40:05.901Z",
+      "size": 68,
+      "httpOnly": true,
+      "secure": true,
+      "session": false,
+      "sameSite": "None",
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.610293247.1794307206",
+      "domain": "slot.ng",
+      "path": "/",
+      "expires": "2027-12-15T10:40:06.218Z",
+      "size": 29,
+      "httpOnly": false,
+      "secure": false,
+      "session": false,
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.1999446819.1794307206",
+      "domain": "slot.ng",
+      "path": "/",
+      "expires": "2027-02-08T10:40:06.000Z",
+      "size": 32,
+      "httpOnly": false,
+      "secure": false,
+      "session": false,
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443
+    },
+    {
+      "name": "_ga_WVWSENPWP2",
+      "value": "GS2.1.s1794307206$o1$g1$t1794307208$j58$l0$h1935142472",
+      "domain": "slot.ng",
+      "path": "/",
+      "expires": "2027-12-15T10:40:08.829Z",
+      "size": 68,
+      "httpOnly": false,
+      "secure": false,
+      "session": false,
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443
+    },
+    {
+      "name": "_ga_CQGTSVEBCK",
+      "value": "GS2.1.s1794307206$o1$g0$t1794307208$j58$l0$h965768773",
+      "domain": "slot.ng",
+      "path": "/",
+      "expires": "2027-12-15T10:40:08.832Z",
+      "size": 67,
+      "httpOnly": false,
+      "secure": false,
+      "session": false,
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 443
+    }
+  ]
+}

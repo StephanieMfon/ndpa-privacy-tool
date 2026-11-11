@@ -1,238 +1,498 @@
-"""Project memory files, the pilot results, and a loader fix. Paste this whole file into script.py and run:  python script.py
-(running it twice is harmless; files that already exist are kept, so your own edits are never overwritten)
+"""Installs Blacklight and scans your pilot sites (second version: fixes the Node 26 failure). Paste this whole file into script.py and run:  python script.py
+(running it again is harmless: finished sites are kept, failed ones are tried again)
 
-1. Writes docs/PROJECT_MEMORY.md, docs/thesis/SCHOOL_STRUCTURE.md, docs/thesis/THESIS_STATE.md and docs/pilot/PILOT_RESULTS.md.
-2. The annotation loader now reads .xlsm files too (Excel saved the pilot workbooks that way), with a test.
-3. Records the decisions and backlog items from the pilot.
+It writes the runner and its tests, adds slot.ng to your pilot list, records the decision, then downloads Blacklight (pinned to the
+version I tested), installs it, and scans the pilot sites in your real Chrome. A Chrome window opens for each scan: leave it alone.
+Add --no-run to only write the files.
 """
 import pathlib
+import py_compile
+import subprocess
+import sys
 
-DOCS = {
-    "docs/PROJECT_MEMORY.md": r'''# Project memory: read this first in any new conversation
+FILES = {
+    "src/ndpa/evaluation/blacklight.py": r'''"""Runs Blacklight's open-source collector (The Markup) on a list of sites, as the comparison point for the evaluation.
 
-Last updated: 9 Nov 2026. If this file and the code disagree, the code wins. Full detail: `decisions.md`, `backlog.md`, `thesis/THESIS_STATE.md`.
+    python -m ndpa.evaluation.blacklight pilot      the pilot sites (eval/pilot_sites.txt) into eval/blacklight/pilot
+    python -m ndpa.evaluation.blacklight corpus     the 30-site corpus (my_site_list.txt) into eval/blacklight/corpus
 
-## 1. The project
-- Student: Okpo-Mfon Stephanie Crispin, MIT (Master of Information Technology), MIVA Open University. Supervisor: Dr Abdulfatai Dare Adekale.
-- Title: "Development of a Privacy Tool for Assessing Nigeria Data Protection Act (NDPA) Compliance". Applied professional project, six-chapter report (structure and marking: `thesis/SCHOOL_STRUCTURE.md`).
-- The tool: a rule-based assessor of Nigerian websites against the NDPA 2023 and the GAID 2025. It visits a site three times in real Chrome (no interaction, Reject, Accept), records cookies, requests and script activity on one clock, applies 17 scored rules (plus TR-01, a descriptive tracker inventory), and shows the result in a local dashboard. No LLM is used (D-53).
-- Her setup: MacBook Pro, macOS (zsh), Python 3.11, real Chrome (156 at the last scan), Port Harcourt, Nigeria. Repo `ndpa-privacy-tool`, branch `fix-corrections`. Hardware details (chip, memory, macOS version) are still to be filled in for Chapter 3.6.1.
+The first run installs the collector (a pinned version) next to the results. A site that already has a result is skipped, so a
+run can be repeated safely. Settings are fixed in advance so the comparison is fair: homepage only, a 1366 x 768 desktop window,
+the real Chrome, run from this machine (see ndpa.capture for the same conditions in the main tool).
+"""
+import csv
+import json
+import os
+import platform
+import plistlib
+import re
+import shutil
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
 
-## 2. How to work with her (standing agreements)
-- Explain simply and briefly. Friendly tone. Analogies help. Ask a clarifying question before a detailed answer when it matters.
-- Code is delivered as ONE Python block to paste into `script.py` and run with `python script.py`. It must be safe to run twice, must check its own result, and must not use shell heredocs or several terminal blocks.
-- Every response ends with numbered "Your steps". Every step explains its aim and why in one sentence, lists considerations, and has "Decisions I made (tell me only if you disagree)". Mark facts that are not verified as UNVERIFIED. Be decisive. Do not reopen approved decisions.
-- Explain every code (B-n, D-n, R-n) in brackets the first time it appears in a response.
-- Do not make a new zip for every problem. Match the size of the delivery to the size of the fix, batch fixes, and test the way she will really use it (real Chrome, a real form). Say what differs in her environment and what could not be tested. A fix gets one pass. If it fails, it goes to the backlog.
-- Chapters 1 to 3 are mostly approved by the supervisor: change only what is strictly necessary and leave sections that still hold. Chapters 4 to 6 are written afresh from what we built.
-- Anything not needed to finish the outline goes to `backlog.md` and waits.
+from ndpa.analyse.trackers import registrable_domain
+from ndpa.evaluation.corpus import read_sites
+from ndpa.urls import host_of
 
-## 3. Where the truth lives
-- Rules: `rulebook/rules.v2.yaml` (18 rules, registers R1 to R13), `rulebook/necessary_cookies.yaml`, `data/lists/tds-snapshot.json` (frozen DuckDuckGo blocklist), `rulebook/FREEZE.json` (hashes, made at the freeze).
-- Code: `src/ndpa/` (capture, rules, scoring, evidence, storage, web, evaluation). Tests: `tests/unit`, `tests/integration`. CI: `.github/workflows/ci.yml`.
-- Annotation: `eval/pilot/` (pilot), `eval/annotations/` (real), made by `python -m ndpa.evaluation.workbook`.
-- Rulebook PDF (the human-readable source of truth): `Annotation_Rulebook_v2_0_no_interpretive_extensions.pdf`.
-- Thesis: her Word chapters (she keeps these), `thesis/THESIS_STATE.md`, `thesis/SCHOOL_STRUCTURE.md`.
+COLLECTOR_REPO = "https://github.com/the-markup/blacklight-collector.git"
+PINNED_COMMIT = "fe046f914ba87b131b86dc1f8029fffa0b70de44"  # version 3.11.0, the one this was tested with
+BASE = Path("eval/blacklight")
+MODES = {"pilot": (Path("eval/pilot_sites.txt"), BASE / "pilot"), "corpus": (Path("my_site_list.txt"), BASE / "corpus")}
+VANTAGE = "Port Harcourt, NG (home network)"
+PAUSE_S = float(os.environ.get("BLACKLIGHT_PAUSE", "10"))
+SITE_TIMEOUT_S = 240
+MIN_NODE = 20
 
-## 4. Decisions that matter most
-- Rulebook v2: 17 scored rules plus TR-01; no interpretive extensions (criteria that go beyond what the NDPA or GAID state were removed). Fixed in advance, frozen before the evaluation, never tuned.
-- Scoring (D-02 to D-06, D-39): tier-weighted. Critical rules 1.5 points, Major 2, Minor 1, total 28. Overlapping rules share points (CN-02 with SB-02, SB-01 with SB-03). Risk band High/Moderate/Low. Coverage under 70% hides the score. An equal-weight score (total 15) is shown beside it. Blocked or failed scans get no score (D-35).
-- Capture: three runs in fresh browser contexts, real headed Chrome by default, viewport 1366 x 768, English (Nigeria), Africa/Lagos time zone, 10 seconds observation (R6, R7).
-- Trackers (D-29, R8): the frozen DuckDuckGo blocklist (1,001 entries: 365 default block, 636 default ignore), used by the tool and the annotators alike.
-- Text rules: spaCy blank pipeline with a sentence splitter and word-list matching; no trained model. The LLM advisor is dropped (D-53).
-- Storage: SQLite (7 tables) plus evidence folders sealed in a SHA-256 hash chain with a stand-alone `verify.py`.
-- Dashboard (D-36 to D-38): FastAPI and Jinja2, hand-written CSS, server-drawn SVG, strict CSP, listens on 127.0.0.1. Scans run one at a time from a queue, each in its own process with a 15-minute limit.
-- Calibration (D-50 to D-52): PP-06 recognises "not to process" wording; FCCDCF is a necessary cookie; CN-02 treats Close as not consent (strict) and reports the implied reading alongside.
-- Annotation (D-54 to D-56): workbook with dropdowns; CN-02 labelled strict with the implied reading in the notes; pilot sites must be outside the corpus.
-- Evaluation (D-45 to D-49): Non-Compliant is the positive class; the tool's "unable to determine" is an abstention reported separately; reference labels are annotator 1 overridden by adjudication; blocked and failed sites are left out of the rule metrics and counted in the block rate; weights are never tuned.
+# The scan settings, fixed in advance. numPages is the number of EXTRA pages after the homepage, so 0 means homepage only.
+RUNNER_JS = """// Scans one site with Blacklight. usage: node run_scan.js <url> <outDir> <chromePath> <chromeMajor> <vantage>
+// The collector empties outDir first, so every site gets its own folder.
+(async () => {
+  let collect;
+  try {
+    ({ collect } = require('./blacklight-collector/build'));
+  } catch (e) {
+    console.log('RESULT ' + JSON.stringify({ status: 'failed', page_response: 'Could not load Blacklight: ' + String((e && e.message) || e).split('\\n')[0] }));
+    process.exit(0);
+  }
+  const [url, outDir, chromePath, major, vantage] = process.argv.slice(2);
+  const result = await collect(url, {
+    numPages: 0,
+    headless: false,
+    outDir,
+    puppeteerExecutablePath: chromePath,
+    emulateDevice: {
+      viewport: { width: 1366, height: 768 },
+      userAgent: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${major}.0.0.0 Safari/537.36`,
+    },
+    captureHar: true,
+    saveScreenshots: true,
+    clearCache: true,
+    defaultTimeout: 30000,
+    quiet: true,
+    location: vantage,
+  });
+  console.log('RESULT ' + JSON.stringify({ status: result.status, page_response: result.page_response ? String(result.page_response) : '' }));
+  process.exit(0);
+})().catch((e) => {
+  console.log('RESULT ' + JSON.stringify({ status: 'failed', page_response: String(e.message || e) }));
+  process.exit(0);
+});
+"""
 
-## 5. Where we are (9 Nov 2026)
-Done: rulebook v2, capture, 17 rules, scoring, evidence chain, SQLite, dashboard (checked on real scans), CI (392 tests), evaluation harness, calibration, annotation workbook, pilot annotation (two annotators, three sites, full agreement).
-Next, in this order:
-1. Apply the Chapter 1 to 3 patches (drafted 9 Nov; status in `thesis/THESIS_STATE.md`).
-2. Decide the Cookiescanner comparison (B-41) after a feasibility test, and fix Objective D accordingly.
-3. Compare the tool with the pilot labels (a dry run of the evaluation), add a fourth pilot site that has a full banner (Accept, Reject, settings), and calibrate if needed.
-4. Freeze the rulebook, regenerate the workbooks, scan the 30 sites inside one 72-hour window, annotate (annotator 1: 30 sites, annotator 2: 10), adjudicate, run the report.
-5. Then write Chapters 4 to 6 and finish Chapters 1 to 3. The build book (B-36) can be written at any time.
+COLUMNS = ["site", "status", "note", "final_url", "tracker_requests", "tracker_domains", "tracker_domain_list", "cookies", "third_party_cookies",
+           "key_logging", "session_recorders", "canvas_fingerprinting", "facebook_pixel_events", "google_analytics_events", "browser", "scanned_at"]
 
-## 6. What an assistant may not have seen (known gaps)
-- The original handoff document from the first conversation (its decisions are recorded in `decisions.md`, but the original wording is not available).
-- The supervisor's "changes file" (a list of requested changes, referred to by item number in earlier notes).
-- Her citation-check notes for Table 2.1 (`docs/citation_check.md` is not in the repository).
-- The full reference list, the figure files (3.1 to 3.3), the abstract and the front matter.
-- Her real `data/` folder (only a snapshot from 5 Nov was seen).
 
-## 7. Starting a new conversation
-Upload: the repository zip, this file, `thesis/THESIS_STATE.md`, her current Chapters 1 to 6 (Word), the reference list, the annotated pilot and real workbooks, and the latest evaluation report folder. Then say: "Read docs/PROJECT_MEMORY.md first, then tell me what you understood and what you could not see."
+def node_major(version_text: str) -> int | None:
+    m = re.match(r"v?(\d+)\.", version_text.strip())
+    return int(m.group(1)) if m else None
 
-## 8. Reading the codes
-- D-n: a decision, written in `decisions.md`.
-- B-n: a backlog item (work that waits), in `backlog.md`.
-- R1 to R13: the rulebook's "decide in advance" registers (for example R4 is the 3 x 3 grid banner test, R8 is the tracker definition).
-- CK, CN, TR, SB, PP: rule groups: Cookies, Consent, Trackers, Script behaviour, Privacy policy. CN-02 is the second rule in the Consent group.
+
+def find_chrome() -> Path | None:
+    """The real Chrome: BLACKLIGHT_CHROME if set, else the usual places."""
+    candidates = [os.environ.get("BLACKLIGHT_CHROME", ""), "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"]
+    candidates += [shutil.which(n) or "" for n in ("google-chrome", "google-chrome-stable", "chromium")]
+    return next((Path(c) for c in candidates if c and Path(c).exists()), None)
+
+
+def chrome_major(chrome: Path) -> tuple[int, str]:
+    """The Chrome version, read from the app's own metadata on a Mac (instant), otherwise by asking Chrome."""
+    text = ""
+    plist = next((p / "Contents" / "Info.plist" for p in chrome.parents if p.suffix == ".app"), None)
+    if plist and plist.exists():
+        with open(plist, "rb") as f:
+            text = f"Google Chrome {plistlib.load(f).get('CFBundleShortVersionString', '')}"
+    else:
+        try:
+            text = subprocess.run([str(chrome), "--version"], capture_output=True, text=True, timeout=30).stdout.strip()
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+    m = re.search(r"(\d+)\.\d+\.\d+\.\d+", text)
+    if not m:
+        raise RuntimeError(f"Could not read the version of {chrome}. Is it a working Chrome?")
+    return int(m.group(1)), text
+
+
+NODE_PRIVATE = ["npx", "--yes", "node@22"]  # a private Node 22, fetched on demand; your own Node is not changed
+LOAD_CHECK = "require('./blacklight-collector/build'); console.log('loads')"
+
+
+def first_line(text: str) -> str:
+    """The start of an error message (the useful part), not the tail of a stack trace."""
+    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+    named = next((ln for ln in lines if re.match(r"[A-Za-z]*Error\b", ln)), None)  # a line that STARTS with 'Error:' or 'TypeError:'
+    return (named or (lines[0] if lines else "no message"))[:300]
+
+
+def node_command(base: Path) -> tuple[list[str] | None, str]:
+    """A way to start Node that can really load Blacklight. Blacklight is built for Node 22; some newer Node versions cannot load its
+    libraries (Node 26 fails inside yargs), so if yours cannot, a private Node 22 is used. Returns (command, what to tell the user)."""
+    candidates = ([[os.environ["BLACKLIGHT_NODE"]]] if os.environ.get("BLACKLIGHT_NODE") else []) + [["node"], NODE_PRIVATE]
+    last = "nothing worked"
+    for cmd in candidates:
+        try:
+            result = subprocess.run(cmd + ["-e", LOAD_CHECK], cwd=base, capture_output=True, text=True, timeout=300)
+        except (OSError, subprocess.TimeoutExpired) as error:
+            last = f"{cmd[0]}: {error}"
+            continue
+        if result.returncode == 0 and "loads" in result.stdout:
+            return cmd, ("using your Node" if cmd == ["node"] else "using a private Node 22 (your Node cannot load Blacklight's libraries)" if cmd == NODE_PRIVATE else f"using {cmd[0]}")
+        last = f"{' '.join(cmd)}: {first_line(result.stderr or result.stdout)}"
+    return None, last
+
+
+def problems_with_tools() -> list[str]:
+    out = []
+    for tool in ("git", "node", "npm"):
+        if not shutil.which(tool):
+            out.append(f"'{tool}' is not installed." + (" Install Node 22 from https://nodejs.org (the LTS installer is fine), then open a new terminal." if tool != "git" else ""))
+    if shutil.which("node"):
+        major = node_major(subprocess.run(["node", "-v"], capture_output=True, text=True).stdout)
+        if major is None or major < MIN_NODE:
+            out.append(f"Node {MIN_NODE} or newer is needed (found {major}). Install Node 22 from https://nodejs.org.")
+    if not find_chrome():
+        out.append("Google Chrome was not found. Install it, or set BLACKLIGHT_CHROME to its full path.")
+    return out
+
+
+def run(cmd: list[str], cwd: Path, env: dict | None = None, timeout: int = 900) -> None:
+    result = subprocess.run(cmd, cwd=cwd, env={**os.environ, **(env or {})}, capture_output=True, text=True, timeout=timeout)
+    if result.returncode != 0:
+        raise RuntimeError(f"'{' '.join(cmd)}' failed:\n{(result.stderr or result.stdout)[-1500:]}")
+
+
+def setup(base: Path = BASE) -> Path:
+    """Installs the pinned collector next to the results. Safe to repeat."""
+    base.mkdir(parents=True, exist_ok=True)
+    collector = base / "blacklight-collector"
+    if not collector.exists():
+        print("  downloading the Blacklight collector ...")
+        run(["git", "clone", "--quiet", COLLECTOR_REPO, collector.name], base)
+        run(["git", "checkout", "--quiet", PINNED_COMMIT], collector)
+    if not (collector / "node_modules").exists():
+        print("  installing its libraries (a few minutes the first time) ...")
+        run(["npm", "install", "--no-audit", "--no-fund"], collector, env={"PUPPETEER_SKIP_DOWNLOAD": "1"})  # it uses your Chrome, not its own
+    if not (collector / "build" / "index.js").exists():
+        print("  building it ...")
+        run(["npm", "run", "build"], collector)
+    (base / "run_scan.js").write_text(RUNNER_JS, encoding="utf-8")
+    return collector
+
+
+def count(value) -> int:
+    return len(value) if hasattr(value, "__len__") else 0
+
+
+def summarise(site_dir: Path) -> dict:
+    """One row of numbers from a site's inspection.json. A missing or unreadable file is a failed scan."""
+    path = site_dir / "inspection.json"
+    if not path.exists():
+        reason = site_dir / "error.txt"  # written when a scan fails, so the summary can say why
+        return {"status": "failed", "note": reason.read_text(encoding="utf-8").splitlines()[0] if reason.exists() and reason.read_text(encoding="utf-8").strip() else "no result file"}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:
+        return {"status": "failed", "note": "unreadable result file"}
+    reports = data.get("reports") or {}
+    trackers = reports.get("third_party_trackers") or []
+    domains = sorted({registrable_domain(e["url"]) for e in trackers if isinstance(e, dict) and e.get("url")} - {""})
+    cookies = reports.get("cookies") or []
+    browser = data.get("browser") or {}
+    return {
+        "status": "done", "note": "", "final_url": data.get("uri_dest", ""),
+        "tracker_requests": count(trackers), "tracker_domains": len(domains), "tracker_domain_list": " ".join(domains),
+        "cookies": count(cookies), "third_party_cookies": sum(1 for c in cookies if isinstance(c, dict) and c.get("third_party")),
+        "key_logging": "yes" if count(reports.get("key_logging")) else "no", "session_recorders": "yes" if count(reports.get("session_recorders")) else "no",
+        "canvas_fingerprinting": "yes" if count(reports.get("canvas_fingerprinters")) else "no",
+        "facebook_pixel_events": count(reports.get("fb_pixel_events")), "google_analytics_events": count(reports.get("google_analytics_events")),
+        "browser": browser.get("version", ""), "scanned_at": data.get("end_time", ""),
+    }
+
+
+def failed(site_dir: Path, note: str, full: str = "") -> dict:
+    (site_dir / "error.txt").write_text(note + "\n" + (full[-3000:] if full else ""), encoding="utf-8")
+    return {"status": "failed", "note": note}
+
+
+def scan_site(url: str, site_dir: Path, base: Path, chrome: Path, major: int, node: list[str] | None = None) -> dict:
+    site_dir.mkdir(parents=True, exist_ok=True)
+    cmd = [*(node or ["node"]), str((base / "run_scan.js").resolve()), url, str(site_dir.resolve()), str(chrome), str(major), VANTAGE]
+    try:
+        result = subprocess.run(cmd, cwd=base, capture_output=True, text=True, timeout=SITE_TIMEOUT_S)
+    except subprocess.TimeoutExpired:
+        return failed(site_dir, f"no answer after {SITE_TIMEOUT_S} s")
+    line = next((ln for ln in result.stdout.splitlines() if ln.startswith("RESULT ")), "")
+    outcome = json.loads(line[7:]) if line else {"status": "failed", "page_response": first_line(result.stderr or "no answer")}
+    if outcome.get("status") != "success":
+        return failed(site_dir, (outcome.get("page_response") or "the scan failed").replace("\n", " ")[:300], result.stderr)
+    (site_dir / "error.txt").unlink(missing_ok=True)
+    return summarise(site_dir)
+
+
+def write_summary(out_dir: Path, sites: list[str]) -> list[dict]:
+    rows = []
+    for url in sites:
+        row = {"site": url, **summarise(out_dir / host_of(url))}
+        rows.append(row)
+    with open(out_dir / "summary.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", restval="")
+        writer.writeheader()
+        writer.writerows(rows)
+    return rows
+
+
+def write_version_record(out_dir: Path, chrome: Path, chrome_text: str, node: list[str] | None = None) -> None:
+    node = subprocess.run([*(node or ["node"]), "-v"], capture_output=True, text=True).stdout.strip()
+    (out_dir / "VERSION.txt").write_text(
+        f"Blacklight collector {PINNED_COMMIT} (version 3.11.0)\nNode {node}\n{chrome_text}\n{platform.platform()}\nvantage: {VANTAGE}\n"
+        f"settings: homepage only (numPages 0), desktop window 1366 x 768, real Chrome with a window, defaults for everything else\n"
+        f"written: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}\n", encoding="utf-8")
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = sys.argv[1:] if argv is None else argv
+    mode = args[0] if args else "pilot"
+    if mode not in MODES:
+        print(f"Say which sites: {' or '.join(MODES)}.  Example: python -m ndpa.evaluation.blacklight pilot")
+        return 2
+    sites_file, out_dir = MODES[mode]
+    problems = problems_with_tools()
+    if problems:
+        print("Not ready yet:\n  - " + "\n  - ".join(problems))
+        return 1
+    sites = read_sites(sites_file)
+    if not sites:
+        print(f"No sites in {sites_file}.")
+        return 1
+    setup()
+    chrome = find_chrome()
+    try:
+        major, chrome_text = chrome_major(chrome)
+    except RuntimeError as error:
+        print(error)
+        return 1
+    node, how = node_command(BASE)
+    if node is None:
+        print(f"Blacklight could not be started with any Node: {how}\n"
+              "Install Node 22 (for example 'brew install node@22'), then run again with its path, e.g.\n"
+              "  BLACKLIGHT_NODE=/opt/homebrew/opt/node@22/bin/node python script.py")
+        return 1
+    print(f"  {how}")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    write_version_record(out_dir, chrome, chrome_text, node)
+    print(f"\n{len(sites)} site(s) from {sites_file}, with {chrome_text}. A Chrome window opens for each scan; leave it alone.")
+    scanned = 0
+    for i, url in enumerate(sites, start=1):
+        site_dir = out_dir / host_of(url)
+        if (site_dir / "inspection.json").exists():
+            print(f"[{i}/{len(sites)}] {url}\n    -> already scanned (kept)")
+            continue
+        if scanned:
+            time.sleep(PAUSE_S)  # polite pause between sites
+        print(f"[{i}/{len(sites)}] {url}")
+        row = scan_site(url, site_dir, BASE, chrome, major, node)
+        scanned += 1
+        print("    -> " + (f"done ({row['tracker_requests']} tracker requests, {row['third_party_cookies']} third-party cookies)" if row["status"] == "done" else f"FAILED: {row['note']}"))
+    rows = write_summary(out_dir, sites)
+    done = sum(r["status"] == "done" for r in rows)
+    print(f"\nfinished: {done} done, {len(rows) - done} failed or missing. Summary: {out_dir / 'summary.csv'}")
+    return 0 if done else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ''',
-    "docs/thesis/SCHOOL_STRUCTURE.md": r'''# School structure for the report (MIVA Open University, Professional Master's Project)
+    "tests/unit/test_blacklight.py": r'''import csv
+import json
+import shutil
+import subprocess
+from pathlib import Path
 
-Source: the school's template and guide, and the project brief. The report has front matter, six chapters, references and appendices.
+import pytest
 
-## Front matter
-Title page, declaration, certification and approval page, dedication, acknowledgements, abstract (300 to 500 words), table of contents, list of figures, list of tables, list of abbreviations.
+from ndpa.evaluation import blacklight as bl
 
-## Chapter One: Introduction (sets the professional and technical context)
-1.1 Background to the Project: industry context; technology gap or problem space; relevance to Nigeria and Africa.
-1.2 Statement of the Problem: a clear, practical problem; organisational, sectoral or societal impact.
-1.3 Aim and Objectives: one broad aim; 4 to 5 specific, measurable objectives.
-1.4 Scope of the Project: what is covered; what is excluded.
-1.5 Significance of the Project: to industry, organisations, policy or society, and professional practice.
 
-## Chapter Two: Literature Review and Technology Context (applied and technical, not theory-heavy)
-2.1 Conceptual Review: core IT concepts related to the project.
-2.2 Review of Existing Systems or Solutions: local and international; strengths and weaknesses.
-2.3 Review of Relevant Technologies, Tools and Frameworks: languages, platforms, architectures, standards (ISO, IEEE, ITIL, COBIT if relevant).
-2.4 Gap Analysis: what existing solutions fail to address; justification for the proposed solution.
-(Her approved draft numbers these differently: 2.1 Introduction, 2.2 Conceptual Review, 2.3 Review of Related Work, 2.4 Gap Analysis, 2.5 Technologies. The supervisor approved it, so the numbering stays.)
+def write_result(site_dir: Path, reports: dict, **extra) -> None:
+    site_dir.mkdir(parents=True, exist_ok=True)
+    (site_dir / "inspection.json").write_text(json.dumps({"uri_dest": "https://shop.example/", "browser": {"version": "Chrome/156"}, "end_time": "2026-11-09T10:00:00Z", "reports": reports, **extra}))
 
-## Chapter Three: Methodology and System Design (professional and implementation-focused)
-3.1 Project Methodology: Agile, Waterfall, Hybrid, DevOps, Design Thinking, and so on; justification for the choice.
-3.2 Requirements Analysis: functional and non-functional requirements.
-3.3 System Architecture: high-level architecture diagram; description of components.
-3.4 System Design: database design (ER diagrams); UML diagrams (use-case, sequence, class); workflow diagrams.
-3.5 Tools and Technologies Used: hardware, software, frameworks, programming languages.
 
-## Chapter Four: System Implementation (this is where professional depth shows)
-4.1 Development Environment: tools, platforms, configurations.
-4.2 Implementation Details: core modules; key algorithms or logic; code structure (high level, not a full code dump).
-4.3 Security, Performance and Scalability Considerations: authentication; data protection; optimisation.
-4.4 Challenges Encountered: technical challenges; resource limitations; mitigation strategies.
+REPORTS = {
+    "third_party_trackers": [{"url": "https://www.google-analytics.com/collect?x=1"}, {"url": "https://stats.g.doubleclick.net/j/collect"}, {"url": "https://connect.facebook.net/en_US/fbevents.js"},
+                             {"url": "https://www.google-analytics.com/g/collect"}],
+    "cookies": [{"name": "_ga", "domain": ".shop.example", "third_party": False}, {"name": "IDE", "domain": ".doubleclick.net", "third_party": True}, {"name": "fr", "domain": ".facebook.com", "third_party": True}],
+    "key_logging": {}, "session_recorders": [], "canvas_fingerprinters": [{"script": "x"}], "fb_pixel_events": [{}], "google_analytics_events": [],
+}
 
-## Chapter Five: Testing, Results and Evaluation (compulsory; may continue from Chapter 4 if the supervisor wishes)
-5.1 Testing Strategy: unit testing; integration testing; user acceptance testing.
-5.2 Test Results: tables or screenshots; performance metrics.
-5.3 Evaluation of Objectives: objective-versus-outcome table; evidence of achievement.
-5.4 Discussion of Results: what worked; what did not; comparison with existing systems.
 
-## Chapter Six: Summary, Conclusion and Recommendations (professional reflection)
-6.1 Summary of the Project. 6.2 Conclusion. 6.3 Professional Contributions (to industry practice, IT implementation, digital transformation). 6.4 Recommendations for Future Work (system enhancement, further research, policy or organisational adoption).
+def test_a_result_is_summarised_into_counts_and_domains(tmp_path):
+    write_result(tmp_path / "shop.example", REPORTS)
+    row = bl.summarise(tmp_path / "shop.example")
+    assert row["status"] == "done" and row["final_url"] == "https://shop.example/" and row["browser"] == "Chrome/156"
+    assert row["tracker_requests"] == 4 and row["tracker_domains"] == 3 and row["tracker_domain_list"] == "doubleclick.net facebook.net google-analytics.com"
+    assert row["cookies"] == 3 and row["third_party_cookies"] == 2
+    assert (row["key_logging"], row["session_recorders"], row["canvas_fingerprinting"]) == ("no", "no", "yes")
+    assert row["facebook_pixel_events"] == 1 and row["google_analytics_events"] == 0
 
-## References and appendices
-References: APA or IEEE style; at least 30 to 50 quality sources: journals, industry reports, standards, technical documentation.
-Appendices: screenshots, sample code snippets, user manuals, questionnaires (if any).
 
-## Marking (Table 7.1 of the brief): proposal 40 marks, defence 60 marks
-- Problem definition and relevance: clarity of background and problem statement 4+4; relevance to industry, society, Nigeria 4+4; justification of project choice 2+2.
-- Aim, objectives and scope (proposal only): clear and achievable aim 3; well-stated, measurable objectives 3; defined scope and limitations 2.
-- Literature review and technology context: understanding of concepts and technologies 4+4; review of existing systems and gap analysis 4+4.
-- Methodology and system design: appropriateness of methodology 4+4; quality of architecture and design models 4+6.
-- Implementation and technical depth (defence only): quality of implementation 6; appropriate use of tools and technologies 4; security, performance or scalability considerations 2.
-- Testing, results and evaluation (defence only): adequacy of testing strategy 4; evaluation of objectives and system performance 4.
-- Presentation and oral defence (defence only): clarity of presentation 3; ability to respond to questions 4.
-- Professionalism and documentation: quality of documentation 3+3; ethical compliance and referencing 3+2.
-''',
-    "docs/thesis/THESIS_STATE.md": r'''# Thesis state (9 Nov 2026)
+def test_a_missing_or_broken_result_counts_as_failed(tmp_path):
+    assert bl.summarise(tmp_path / "nothing")["status"] == "failed"
+    (tmp_path / "broken").mkdir()
+    (tmp_path / "broken" / "inspection.json").write_text("{not json")
+    assert bl.summarise(tmp_path / "broken") == {"status": "failed", "note": "unreadable result file"}
+    write_result(tmp_path / "empty", {})
+    assert bl.summarise(tmp_path / "empty")["tracker_requests"] == 0  # a clean site is a real result, not a failure
 
-Her Word chapters are the source of truth for wording. This file records their structure, the claims that no longer match the build, and the status of each patch. Chapters 1 to 3 were mostly approved by the supervisor, so only strictly necessary changes are made.
 
-## 1. Structure of the approved drafts
-- Chapter 1: 1.1 Background, 1.2 Statement of the Problem, 1.3 Aim and Objectives (A to D), 1.4 Scope, 1.5 Significance.
-- Chapter 2: 2.1 Introduction, 2.2 Conceptual Review (2.2.1 to 2.2.7), 2.3 Review of Related Work, 2.4 Gap Analysis, 2.5 Technologies (2.5.1 Python, 2.5.2 Playwright, 2.5.3 BeautifulSoup4, 2.5.4 spaCy, 2.5.5 Tracker and Script Identification, 2.5.6 Performance Metrics, 2.5.6.1 Justification). Tables 2.1 (computational observability) and 2.2 (metrics).
-- Chapter 3: 3.1 Introduction, 3.2 Methodology (Agile; the numbered list of steps A to D), 3.3 Requirements (Table 3.1), 3.4 Architecture (Figure 3.1), 3.5 Design (3.5.1 Data, 3.5.2 Browser Automation, 3.5.3 Privacy Assessment, 3.5.4 Policy Analyser, 3.5.5 Rule Evaluation and Scoring with Equation 3.1 and Figures 3.2 and 3.3, 3.5.6 Report Generator, 3.5.7 Evaluation Dataset and Annotation Protocol), 3.6 Tools (hardware, languages, libraries, version control).
-- Objectives: A design the rule-based framework; B develop the tool; C develop the reporting component; D evaluate against a manually annotated dataset and Cookiescanner (Gundelach et al., 2023) with precision, recall and F1.
+def test_the_scan_settings_are_the_ones_fixed_in_advance():
+    js = bl.RUNNER_JS
+    for fixed in ("numPages: 0", "headless: false", "width: 1366", "height: 768", "captureHar: true", "clearCache: true", "puppeteerExecutablePath: chromePath"):
+        assert fixed in js, fixed  # changing any of these changes what the comparison means
+    assert "iPhone" not in js
 
-## 2. What the build now says (use these facts)
-- 18 rules, 17 scored: CK-01 to CK-02, CN-01 to CN-05, TR-01 (descriptive, not scored) and TR-02, SB-01 to SB-03, PP-01 to PP-06. 13 registers (R1 to R13). No interpretive extensions.
-- Score = 100 x (sum of weights of Compliant rules) / (sum of weights of Compliant and Non-Compliant rules). Weights: Critical 1.5 (CN-02, SB-01, SB-02, SB-03), Major 2 (CK-02, CN-01, CN-03, CN-05, TR-02, PP-01, PP-02, PP-04, PP-06), Minor 1 (CK-01, CN-04, PP-03, PP-05). Total 28. Equal-weight score (total 15) shown beside it. Risk band by tier. Coverage under 70% hides the score. Blocked or failed scans get no score.
-- Capture: Playwright driving real Chrome, three runs (no interaction, Reject, Accept), each in a fresh context; 10 s observation; viewport 1366 x 768; en-NG; Africa/Lagos. Script attribution by wrapping the cookie and storage setters. Blocked scans are detected and recorded.
-- Trackers: frozen DuckDuckGo blocklist snapshot, 1,001 entries (365 block, 636 ignore).
-- Policy: found within two clicks; spaCy blank pipeline plus sentence splitter; word-list Matcher; no trained model. The text analyser serves CK-01, CK-02, TR-02 and the PP rules.
-- Storage: SQLite, 7 tables (scan, run, event, finding, score, artifact, progress); evidence folder per scan (run.json, DOM snapshot and screenshots per run, policy pages, results.json, manifest.json, verify.py) sealed by a SHA-256 hash chain.
-- Application: FastAPI, Jinja2, uvicorn, server-drawn SVG; queue with one scan at a time, one process per scan, 15-minute limit; listens on 127.0.0.1. Pydantic models, PyYAML, tldextract, openpyxl. pytest, ruff, GitHub Actions.
-- Evaluation: 30 sites (6 Banking/Fintech, 5 Telecom, 5 E-commerce, 5 Government, 5 News, 4 Health); annotator 1 labels all, annotator 2 labels a sector-balanced 10; Cohen's kappa; adjudication; Wilson 95% intervals; micro and macro F1; abstentions reported separately; block rate reported.
-- Not true any more: 24 rules; "equal-weight scoring"; headless Chromium single session; "no anti-bot obstruction"; nine named tracker vendors; fingerprinting (SB-04); BeautifulSoup4, Requests, ReportLab and PhraseMatcher; "no relational database" and plain-dictionary data structures; AMD Ryzen and Ubuntu; deployment on Railway; "sole annotator"; "five sites per sector".
 
-## 3. Patch status (drafted 9 Nov 2026; mark each as applied in Word)
-Chapter 1: C1-1 Objective D (decision on Cookiescanner needed); C1-2 Scope.
-Chapter 2: C2-1 "24 rules" in 2.4; C2-2 anti-bot sentence in 2.5.2; C2-3 replace 2.5.3; C2-4 PhraseMatcher in 2.5.4; C2-5 replace 2.5.5; C2-6 add 2.5.6.2 and three references; C2-7 Table 2.1 new column and note. Optional: "five sections" should read "four" in 2.1.
-Chapter 3: C3-1 and C3-2 methodology paragraphs; C3-3 the numbered list; C3-4 Table 3.1; C3-5 architecture text; C3-6 data design; C3-7 browser automation; C3-8 privacy assessment; C3-9 policy analyser; C3-10 scoring and Equation 3.1; C3-11 report generator; C3-12 dataset and annotation protocol; C3-13 hardware (needs her machine details); C3-14 languages, libraries and version control. Figures 3.1, 3.2 and 3.3 to be redrawn.
-New references: Cohen (1960); Landis and Koch (1977); Wilson (1927).
+@pytest.mark.skipif(not shutil.which("node"), reason="Node is not installed here")
+def test_the_runner_is_valid_javascript(tmp_path):
+    (tmp_path / "run_scan.js").write_text(bl.RUNNER_JS)
+    assert subprocess.run(["node", "--check", str(tmp_path / "run_scan.js")], capture_output=True).returncode == 0
 
-## 4. Open decisions and facts needed
-- Cookiescanner comparison (B-41): feasibility test first; Objective D wording depends on it.
-- Hardware details for 3.6.1 (chip, memory, macOS version).
-- Development-exposed corpus sites: gtbank.com, jumia.com.ng, mtn.ng, jamb.gov.ng, punchng.com and kara.com.ng appear in the project's data; konga.com was scanned by her. To be confirmed. They are reported separately in the evaluation (B-51).
-- Tell the supervisor that the score is now tier-weighted (the approved draft said equal weights), with an equal-weight score reported beside it.
 
-## 5. Plan for Chapters 4 to 6 (from the build)
-- Ch 4.1 environment (machine, Python, Chrome, Playwright versions, CI). 4.2 core modules (capture, rules, scoring, evidence chain, storage, dashboard, evaluation harness), with key logic: three-run timeline, script attribution, tracker definition (R8), CN-02 windows and the Close reading, the scoring formula, the hash chain. 4.3 security (SSRF guard, same-origin check, CSP, whitelist of evidence files, loopback only), data protection (hashes not raw cookie values), performance (queue, timeouts), scalability. 4.4 challenges (blocked sites, CSP and Origin bug, SQLite threads, race conditions in the live stream, delivery failures, interpretive extensions removed).
-- Ch 5.1 testing strategy (unit, integration with controlled fixture sites, browser tests, CI; counts from the latest run). 5.2 results (evaluation report folder). 5.3 objective-versus-outcome table. 5.4 discussion (block rate, error analysis, abstentions, development exposure, limits).
-- Ch 6 summary, conclusion, professional contributions, future work (LLM advisor, mobile, crawl, CNAME cloaking, dark patterns, containers, Cookiescanner comparison if not done).
-''',
-    "docs/pilot/PILOT_RESULTS.md": r'''# Pilot annotation results (9 Nov 2026)
+def test_node_versions_are_read_and_chrome_can_be_named(tmp_path, monkeypatch):
+    assert bl.node_major("v22.22.2\n") == 22 and bl.node_major("v18.0.0") == 18 and bl.node_major("nonsense") is None
+    fake = tmp_path / "my-chrome"
+    fake.write_text("x")
+    monkeypatch.setenv("BLACKLIGHT_CHROME", str(fake))
+    assert bl.find_chrome() == fake
 
-Purpose: test whether the rulebook wording is clear before it is frozen. Sites (all outside the 30-site corpus): oxymon.co, tekedia.com, slot.ng. Annotators: Stephanie (annotator 1) and Monalisa (annotator 2). Both used the pilot workbook (17 rules per site, 51 labels each). Capture date on the sheet: 8 Nov 2026.
 
-## Result
-- Both labelled all 51 items. Identical labels on all 51 (Cohen's kappa 1.0; Wilson 95% interval for 51 of 51: 0.930 to 1.000). Their notes and evidence references were written separately (no identical notes).
-- Label counts for each annotator: 24 Non-Compliant, 14 Not Applicable, 13 Compliant.
+def test_scan_site_records_each_kind_of_failure_and_a_success(tmp_path, monkeypatch):
+    def fake_run(stdout="", stderr="", raises=None):
+        def run(*a, **k):
+            if raises:
+                raise raises
+            return subprocess.CompletedProcess(a, 0, stdout, stderr)
+        return run
 
-| Rule | oxymon.co | slot.ng | tekedia.com |
-|---|---|---|---|
-| CK-01 | NA | NC | NC |
-| CK-02 | NA | NA | NC |
-| CN-01 | NA | NC | NC |
-| CN-02 | NA | NC | NC |
-| CN-03 | NA | NC | NC |
-| CN-04 | NA | C | NA |
-| CN-05 | NA | NC | NA |
-| TR-02 | NA | NC | NC |
-| SB-01 | NA | NC | NC |
-| SB-02 | NA | NC | NC |
-| SB-03 | NA | NC | NC |
-| PP-01 | C | C | C |
-| PP-02 | C | C | C |
-| PP-03 | C | C | NC |
-| PP-04 | C | C | C |
-| PP-05 | NC | NC | C |
-| PP-06 | NC | NC | NC |
+    base, chrome = tmp_path, tmp_path / "chrome"
+    monkeypatch.setattr(bl.subprocess, "run", fake_run('RESULT {"status": "failed", "page_response": "Timed out while waiting"}\n'))
+    assert bl.scan_site("https://a.example", tmp_path / "a", base, chrome, 156) == {"status": "failed", "note": "Timed out while waiting"}
+    assert bl.summarise(tmp_path / "a") == {"status": "failed", "note": "Timed out while waiting"}  # the reason is kept for the summary file
+    monkeypatch.setattr(bl.subprocess, "run", fake_run("", "boom"))
+    assert "boom" in bl.scan_site("https://a.example", tmp_path / "a", base, chrome, 156)["note"]
+    monkeypatch.setattr(bl.subprocess, "run", fake_run(raises=subprocess.TimeoutExpired("node", 1)))
+    assert "no answer" in bl.scan_site("https://a.example", tmp_path / "a", base, chrome, 156)["note"]
+    write_result(tmp_path / "ok", REPORTS)
+    monkeypatch.setattr(bl.subprocess, "run", fake_run('noise\nRESULT {"status": "success"}\n'))
+    assert bl.scan_site("https://ok.example", tmp_path / "ok", base, chrome, 156)["status"] == "done"
 
-(C Compliant, NC Non-Compliant, NA Not Applicable.)
 
-## What the three sites were
-- oxymon.co: no banner, no cookies and no tracker, so no consent trigger. The consent and script rules are Not Applicable.
-- slot.ng: a bottom banner with an Accept button only. A consent flag was already set to true before any click, and Meta and Google measurement cookies were present before the click. Both annotators judged CN-02 Non-Compliant ("a pre-existing consent=true cannot substitute for affirmative action") and CN-04 Compliant.
-- tekedia.com: no banner and no settings, with Google advertising trackers contacted before any choice.
+def test_a_run_skips_finished_sites_records_failures_and_writes_the_summary(tmp_path, monkeypatch, capsys):
+    sites = tmp_path / "sites.txt"
+    sites.write_text("# comment\nhttps://done.example\nhttps://bad.example\nhttps://good.example\n")
+    out = tmp_path / "out"
+    write_result(out / "done.example", REPORTS)  # scanned on an earlier run
+    called = []
 
-## What it does and does not show
-- No disagreement, so the pilot did not expose unclear rule wording. No rule text is changed because of it.
-- Three sites and 51 items are few. The lower bound of agreement is 0.93, not 1.0.
-- None of the three sites had a Reject button or a Close-only banner, so the wording for the Reject run, the Close reading and CN-05 withdrawal is untested. A fourth pilot site with a full banner (Accept, Reject, settings) is planned (B-53).
-- Chrome version was not recorded on any site and the capture date is missing for oxymon.co. Register R6 requires both (B-52).
-- Notes and Site context show the annotators used the frozen lists (R8, R10 and R1 are cited in their notes).
+    def fake_scan(url, site_dir, base, chrome, major, node):
+        called.append(url)
+        if "bad" in url:
+            return {"status": "failed", "note": "Chrome crashed"}
+        write_result(site_dir, {"third_party_trackers": [], "cookies": []})
+        return bl.summarise(site_dir)
 
-## Next
-Run the tool on the three pilot sites and compare with these labels. That is a dry run of the whole evaluation and will show the first real tool-versus-human differences before the freeze.
+    monkeypatch.setitem(bl.MODES, "pilot", (sites, out))
+    monkeypatch.setattr(bl, "problems_with_tools", lambda: [])
+    monkeypatch.setattr(bl, "node_command", lambda base: (["node"], "using your Node"))
+    monkeypatch.setattr(bl, "setup", lambda *a: tmp_path)
+    monkeypatch.setattr(bl, "find_chrome", lambda: tmp_path / "chrome")
+    monkeypatch.setattr(bl, "chrome_major", lambda c: (156, "Google Chrome 156.0.8078.80"))
+    monkeypatch.setattr(bl, "write_version_record", lambda *a: None)
+    monkeypatch.setattr(bl, "scan_site", fake_scan)
+    monkeypatch.setattr(bl, "PAUSE_S", 0)
+    assert bl.main(["pilot"]) == 0
+    said = capsys.readouterr().out
+    assert called == ["https://bad.example", "https://good.example"] and "already scanned (kept)" in said and "FAILED: Chrome crashed" in said
+    rows = list(csv.DictReader(open(out / "summary.csv")))
+    assert [(r["site"], r["status"]) for r in rows] == [("https://done.example", "done"), ("https://bad.example", "failed"), ("https://good.example", "done")]
+    assert bl.main(["pilot"]) == 0 and called == ["https://bad.example", "https://good.example", "https://bad.example"]  # only the failed one is tried again
+
+
+def test_a_run_explains_what_is_missing_and_rejects_an_unknown_mode(monkeypatch, capsys):
+    monkeypatch.setattr(bl, "problems_with_tools", lambda: ["'node' is not installed."])
+    assert bl.main(["pilot"]) == 1 and "'node' is not installed." in capsys.readouterr().out
+    assert bl.main(["nonsense"]) == 2
+
+
+def test_pilot_and_corpus_results_go_to_separate_folders():
+    assert bl.MODES["pilot"][1] != bl.MODES["corpus"][1] and str(bl.MODES["corpus"][0]) == "my_site_list.txt"
+
+
+def test_the_chrome_version_comes_from_the_app_file_on_a_mac_and_a_bad_chrome_is_explained(tmp_path):
+    import plistlib
+
+    app = tmp_path / "Google Chrome.app" / "Contents"
+    (app / "MacOS").mkdir(parents=True)
+    (app / "Info.plist").write_bytes(plistlib.dumps({"CFBundleShortVersionString": "156.0.8078.80"}))
+    binary = app / "MacOS" / "Google Chrome"
+    binary.write_text("not run")
+    assert bl.chrome_major(binary) == (156, "Google Chrome 156.0.8078.80")  # no process is started
+    broken = tmp_path / "broken-chrome"
+    broken.write_text("#!/bin/sh\necho nonsense\n")
+    broken.chmod(0o755)
+    with pytest.raises(RuntimeError, match="Could not read the version"):
+        bl.chrome_major(broken)
+
+
+def test_a_node_that_cannot_load_blacklight_is_replaced_by_a_private_node_22(monkeypatch, tmp_path):
+    calls = []
+    node26 = "node:internal/modules/cjs/loader:1569\n  const err = new Error(message);\nError: Cannot find module './build/index.cjs'\n    at Module._resolveFilename\n"
+
+    def fake_run(cmd, **kw):
+        calls.append(list(cmd[:3]))
+        if cmd[0] == "node":  # the situation on a Mac with Node 26: a library inside Blacklight cannot be loaded
+            return subprocess.CompletedProcess(cmd, 1, "", node26)
+        return subprocess.CompletedProcess(cmd, 0, "loads\n", "")
+
+    monkeypatch.delenv("BLACKLIGHT_NODE", raising=False)
+    monkeypatch.setattr(bl.subprocess, "run", fake_run)
+    command, how = bl.node_command(tmp_path)
+    assert command == bl.NODE_PRIVATE and "private Node 22" in how and calls[0][0] == "node" and calls[1] == ["npx", "--yes", "node@22"]
+    monkeypatch.setattr(bl.subprocess, "run", lambda cmd, **kw: subprocess.CompletedProcess(cmd, 1, "", "Error: boom\n    at x"))
+    command, why = bl.node_command(tmp_path)
+    assert command is None and "Error: boom" in why  # nothing works: the reason is explained
+    monkeypatch.setattr(bl.subprocess, "run", lambda cmd, **kw: subprocess.CompletedProcess(cmd, 0, "loads\n", ""))
+    assert bl.node_command(tmp_path)[0] == ["node"]  # your own Node is used when it works
+    monkeypatch.setenv("BLACKLIGHT_NODE", "/x/node22")
+    assert bl.node_command(tmp_path)[0] == ["/x/node22"]  # and one you name wins
+
+
+def test_an_error_is_reported_by_its_first_line_and_kept_in_full(tmp_path):
+    trace = "node:internal/modules/cjs/loader:1569\n  const err = new Error(message);\n  ^\n\nError: Cannot find module './build/index.cjs'\n    at Module._resolveFilename\n" + "    at x\n" * 50
+    assert bl.first_line(trace) == "Error: Cannot find module './build/index.cjs'" and bl.first_line("") == "no message"
+    row = bl.failed(tmp_path, "short note", trace)
+    assert row["note"] == "short note" and "Module._resolveFilename" in (tmp_path / "error.txt").read_text()
+    assert bl.summarise(tmp_path) == {"status": "failed", "note": "short note"}  # the summary shows only the first line
+
+
+def test_the_runner_reports_a_loading_failure_instead_of_crashing():
+    js = bl.RUNNER_JS
+    assert "const { collect } = require" not in js and "Could not load Blacklight" in js
+    assert js.index("require('./blacklight-collector/build')") < js.index("RESULT")
 ''',
 }
 
 EXPECTED_LINES = {
-    "docs/PROJECT_MEMORY.md": 62,
-    "docs/thesis/SCHOOL_STRUCTURE.md": 56,
-    "docs/thesis/THESIS_STATE.md": 37,
-    "docs/pilot/PILOT_RESULTS.md": 44,
+    "src/ndpa/evaluation/blacklight.py": 293,
+    "tests/unit/test_blacklight.py": 177,
 }
 
 
 def read(path):
     return pathlib.Path(path).read_text(encoding="utf-8")
-
-
-def patch(path, old, new):
-    s = read(path)
-    if new in s and old not in s:
-        print("  already applied:", path)
-        return
-    assert s.count(old) == 1, f"{path}: the expected text was not found exactly once. Paste me the lines around '{old[:40]}'."
-    pathlib.Path(path).write_text(s.replace(old, new), encoding="utf-8")
-    print("  patched:", path)
 
 
 def append_once(path, marker, text):
@@ -244,51 +504,64 @@ def append_once(path, marker, text):
     print("  added to:", path, "|", marker)
 
 
-# 1. The memory and thesis files (kept if they already exist)
+# 1. The runner and its tests
 problems = []
-for name, text in DOCS.items():
+for name, text in FILES.items():
     target = pathlib.Path(name)
-    if target.exists():
-        print("  already there (yours is kept):", name)
-        continue
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text, encoding="utf-8")
-    got = len(read(name).splitlines())
-    if got != EXPECTED_LINES[name]:
-        problems.append(f"{name}: {got} lines, expected {EXPECTED_LINES[name]}")
-    print("  wrote:", name)
-assert not problems, "The paste was not complete:\n  " + "\n  ".join(problems) + "\nDelete those files and paste the whole script again."
+    if len(read(name).splitlines()) != EXPECTED_LINES[name]:
+        problems.append(f"{name}: {len(read(name).splitlines())} lines, expected {EXPECTED_LINES[name]}")
+    try:
+        py_compile.compile(name, doraise=True)
+    except py_compile.PyCompileError as error:
+        problems.append(f"{name}: does not compile ({error.msg.splitlines()[-1]})")
+assert not problems, "The paste was not complete:\n  " + "\n  ".join(problems) + "\nPaste the whole script again."
+print(f"wrote {len(FILES)} files, all complete and compiling")
 
-# 2. The loader reads .xlsm as well as .xlsx
-patch("src/ndpa/evaluation/labels.py", '''    if path.suffix.lower() == ".xlsx":
-        return _read_workbook(path)''', '''    if path.suffix.lower() in (".xlsx", ".xlsm"):  # Excel may save the workbook as .xlsm
-        return _read_workbook(path)''')
-append_once("tests/unit/test_eval_workbook.py", "test_a_workbook_saved_as_xlsm_is_read_too", r'''
+# 2. slot.ng is the third pilot site (it is not in the evaluation corpus)
+pilot = pathlib.Path("eval/pilot_sites.txt")
+text = read(pilot)
+if "slot.ng" in text:
+    print("  already there: slot.ng in", pilot)
+else:
+    old = "# Add a third site that is not in my_site_list.txt, for example another online shop or a news site.\n"
+    text = text.replace(old, "") if old in text else text
+    pilot.write_text(text.rstrip("\n") + "\nhttps://slot.ng\n", encoding="utf-8")
+    print("  added: https://slot.ng to", pilot)
 
-def test_a_workbook_saved_as_xlsm_is_read_too(tmp_path):
-    path = make(tmp_path)
-    fill(path, {("https://mtn.ng", "CN-02"): ("Non-Compliant", None)})
-    renamed = path.with_suffix(".xlsm")  # Excel offers this extension; the Labels sheet is the same
-    path.rename(renamed)
-    ann = load_annotations(renamed, IDS, {normalise_site(s) for s in SITES})
-    assert ann.labels[("mtn.ng", "CN-02")].outcome == Outcome.NON_COMPLIANT and ann.blank_rows == 50
-''')
-
-# 3. Decisions and backlog
-append_once("docs/decisions.md", "D-58", """
-## Update 9 Nov 2026 (pilot, chapters)
-
-- D-58 Pilot: two annotators labelled three sites outside the corpus (oxymon.co, tekedia.com, slot.ng). All 51 labels were identical (Cohen's kappa 1.0; Wilson lower bound 0.93), so no rule wording is changed because of the pilot. The pilot had no Reject button and no Close-only banner, so the wording for those cases is untested.
-- D-59 The annotation loader reads .xlsm as well as .xlsx, because Excel saved the pilot workbooks as .xlsm.
-- D-60 Corpus sites that were scanned during development (gtbank.com, jumia.com.ng, mtn.ng, jamb.gov.ng, punchng.com, kara.com.ng; konga.com to be confirmed) are reported separately in the evaluation, because some rule wording was refined while examining them.
-- D-61 Chapters 1 to 3 change only where the text no longer matches the build. The score is described as tier-weighted, with the equal-weight score reported beside it.
+# 3. Keep the downloaded collector and the bulky files out of git (the result JSON and the summary stay)
+append_once(".gitignore", "eval/blacklight/blacklight-collector/", """
+# Blacklight comparison: the downloaded collector and the bulky files. The result JSON and summary.csv are kept.
+eval/blacklight/blacklight-collector/
+eval/blacklight/**/requests.har
+eval/blacklight/**/*.html
+eval/blacklight/**/*.jpeg
+eval/blacklight/**/inspection-log.ndjson
 """)
-append_once("docs/backlog.md", "B-51", """
-## Added 9 Nov 2026 (pilot, chapters)
-- B-51 Add a sensitivity to the evaluation report: results for all sites and for the sites not seen during development (D-60).
-- B-52 Make capture date and Chrome version required: the sheet checker should warn when they are blank (register R6). The pilot left Chrome version blank.
-- B-53 A fourth pilot site outside the corpus with a full banner (Accept, Reject and settings), to test the Reject, Close and withdrawal wording before the freeze.
-- B-54 Cookiescanner feasibility test: does it install and run on a few sites, and does it check CN-01 and CN-03? Decide B-41 (the Cookiescanner comparison) from the result, before keeping Objective D as written.
-- B-55 Run the tool on the three pilot sites and compare with the pilot labels (a dry run of the whole evaluation).
+
+# 4. Decisions and backlog
+append_once("docs/decisions.md", "D-62", """
+## Update 9 Nov 2026 (comparison point)
+
+- D-62 The comparison point is Blacklight's open-source collector (The Markup, version 3.11.0, commit fe046f9), which replaces Cookiescanner (B-41 is closed). Cookiescanner needs Debian, PostgreSQL and Docker, needed a code change to run (NumPy 2 removed numpy.Infinity), and its authors say it may no longer work. Blacklight installs and builds unchanged, is maintained (last release June 2026), and covers the pre-consent tracker and cookie rules (TR-01, SB-03, parts of CN-02 and SB-02) instead of only two banner rules. The collector decides what a tracker is with EasyList and EasyPrivacy, so its tracker definition is independent of ours (the DuckDuckGo list). Limits to state: it never clicks a banner, so it is compared with the no-interaction run only; it types test text into form fields but never submits; it has no peer-reviewed paper of its own (a published methodology, built on OpenWPM).
+- D-63 Blacklight scan settings, fixed in advance: homepage only (numPages 0), a 1366 x 768 desktop window, the real Chrome with a window, run from the home network, collector defaults for everything else, one site at a time with a 10 second pause. The corpus run happens inside the same 72-hour window as the tool's scans.
 """)
-print("\nDone. Now run:  python -m ruff check src tests eval   and   python -m pytest tests/unit -q")
+append_once("docs/decisions.md", "D-64", """
+- D-64 Blacklight is started with a private Node 22 (fetched with npx, nothing installed on the system) when the installed Node cannot load it. Found on 9 Nov 2026: with Node 26.6.0, a library inside Blacklight (Puppeteer's yargs) fails to load, while Node 22, the version Blacklight targets, works. The Node version used is recorded in eval/blacklight/pilot/VERSION.txt.
+""")
+append_once("docs/backlog.md", "B-56", """
+## Added 9 Nov 2026 (comparison point)
+- B-56 Chapter wording: Objective D (Chapter 1) and step D3 (Chapter 3) name Cookiescanner. Change them to Blacklight after telling the supervisor, and cite The Markup's methodology page and OpenWPM (Englehardt & Narayanan, 2016). One sentence may say Cookiescanner was tried and could not be run without changes.
+- B-57 Comparison design: for each site, 'a tracker was contacted before consent' from the tool (SB-03), from Blacklight (at least one tracker request) and from the annotators (SB-03 label, the reference). Report precision and recall for both tools, and how many tracker domains each found.
+- B-58 After the freeze, run python -m ndpa.evaluation.blacklight corpus inside the same 72-hour window as the tool's corpus scan.
+""")
+
+# 5. Install Blacklight and scan the pilot sites
+if "--no-run" in sys.argv:
+    print("\nDone (files only). To install and scan:  python -m ndpa.evaluation.blacklight pilot")
+    sys.exit(0)
+print("\nNow installing Blacklight and scanning the pilot sites. Chrome windows will open: leave them alone.\n")
+code = subprocess.run([sys.executable, "-m", "ndpa.evaluation.blacklight", "pilot"]).returncode
+print("\nResults: eval/blacklight/pilot/summary.csv" if code == 0 else "\nSomething needs attention, see above. Fix it and run  python script.py  again.")
+sys.exit(code)

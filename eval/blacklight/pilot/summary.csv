@@ -1,0 +1,4 @@
+site,status,note,final_url,tracker_requests,tracker_domains,tracker_domain_list,cookies,third_party_cookies,key_logging,session_recorders,canvas_fingerprinting,facebook_pixel_events,google_analytics_events,browser,scanned_at
+https://oxymon.co,done,,https://www.oxymon.co/,0,0,,0,0,no,no,yes,0,0,Chrome/157.0.8103.50,2026-11-10T10:39:25.330Z
+https://tekedia.com,done,,https://www.tekedia.com/,19,3,doubleclick.net googlesyndication.com wp.com,13,1,no,no,yes,0,0,Chrome/157.0.8103.50,2026-11-10T10:39:50.355Z
+https://slot.ng,done,,https://slot.ng/,19,6,cloudflareinsights.com facebook.com facebook.net google.com google.com.ng googletagmanager.com,7,1,no,no,yes,0,2,Chrome/157.0.8103.50,2026-11-10T10:40:09.627Z

@@ -1,0 +1,1719 @@
+{
+  "title": "Blacklight Inspection",
+  "page_title": "Home - Tekedia",
+  "uri_ins": "https://tekedia.com",
+  "uri_dest": "https://www.tekedia.com/",
+  "uri_redirects": [
+    "https://tekedia.com/"
+  ],
+  "secure_connection": {},
+  "host": "tekedia.com",
+  "config": {
+    "emulateDevice": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+    },
+    "cleareCache": true,
+    "captureHar": true,
+    "captureLinks": false,
+    "enableAdBlock": false,
+    "saveBrowserProfile": false,
+    "numPages": 0,
+    "defaultTimeout": 30000,
+    "defaultWaitUntil": "networkidle2",
+    "headless": false,
+    "headers": {},
+    "extraChromiumArgs": [
+      "--disable-features=TrackingProtection3pcd"
+    ],
+    "extraPuppeteerOptions": {}
+  },
+  "browser": {
+    "name": "Chromium",
+    "version": "Chrome/157.0.8103.50",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "platform": {
+      "name": "Darwin",
+      "version": "25.5.0"
+    }
+  },
+  "script": {
+    "host": "MacBook-Pro.local",
+    "version": {
+      "npm": "3.11.0",
+      "commit": "dev"
+    },
+    "node_version": "v22.23.4"
+  },
+  "start_time": "2026-11-10T10:39:37.174Z",
+  "end_time": "2026-11-10T10:39:50.355Z",
+  "location": "Port Harcourt, NG (home network)",
+  "browsing_history": [
+    "https://www.tekedia.com/"
+  ],
+  "hosts": {
+    "requests": {
+      "first_party": [
+        "tekedia.com",
+        "www.tekedia.com"
+      ],
+      "third_party": [
+        "c0.wp.com",
+        "fonts.googleapis.com",
+        "stats.wp.com",
+        "secure.gravatar.com",
+        "pagead2.googlesyndication.com",
+        "fonts.gstatic.com",
+        "googleads.g.doubleclick.net",
+        "pixel.wp.com",
+        "fundingchoicesmessages.google.com",
+        "ep1.adtrafficquality.google"
+      ]
+    }
+  },
+  "reports": {
+    "behaviour_event_listeners": {
+      "TOUCH": {
+        "https://www.tekedia.com/wp-content/plugins/td-cloud-library/assets/js/tdbMenu.js?ver=43473a7fc489321d36f8d15a34d1be14": [
+          "touchstart",
+          "touchmove"
+        ],
+        "https://www.tekedia.com/wp-content/plugins/td-composer/legacy/Newspaper/js/tagdiv_theme.min.js?ver=12.7.9": [
+          "touchmove"
+        ]
+      },
+      "KEYBOARD": {
+        "https://www.tekedia.com/wp-content/plugins/td-cloud-library/assets/js/tdbMenu.js?ver=43473a7fc489321d36f8d15a34d1be14": [
+          "keydown"
+        ]
+      },
+      "MOUSE": {
+        "https://www.tekedia.com/wp-content/plugins/td-cloud-library/assets/js/tdbMenu.js?ver=43473a7fc489321d36f8d15a34d1be14": [
+          "click"
+        ],
+        "https://www.tekedia.com/wp-content/themes/newspaper-child/js/jquery.js": [
+          "click",
+          "scroll"
+        ]
+      }
+    },
+    "canvas_fingerprinters": {
+      "data_url": {},
+      "fingerprinters": [],
+      "styles": {},
+      "texts": {}
+    },
+    "canvas_font_fingerprinters": {
+      "canvas_font": {},
+      "text_measure": {}
+    },
+    "cookies": [
+      {
+        "name": "sbjs_migrations",
+        "value": "1418474375998%3D1",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": -1,
+        "size": 32,
+        "httpOnly": false,
+        "secure": false,
+        "session": true,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "sbjs_current_add",
+        "value": "fd%3D2026-11-10%2010%3A39%3A43%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.tekedia.com%2F%7C%7C%7Crf%3D%28none%29",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": -1,
+        "size": 116,
+        "httpOnly": false,
+        "secure": false,
+        "session": true,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "sbjs_first_add",
+        "value": "fd%3D2026-11-10%2010%3A39%3A43%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.tekedia.com%2F%7C%7C%7Crf%3D%28none%29",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": -1,
+        "size": 114,
+        "httpOnly": false,
+        "secure": false,
+        "session": true,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "sbjs_current",
+        "value": "typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": -1,
+        "size": 250,
+        "httpOnly": false,
+        "secure": false,
+        "session": true,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "sbjs_first",
+        "value": "typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": -1,
+        "size": 248,
+        "httpOnly": false,
+        "secure": false,
+        "session": true,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "sbjs_udata",
+        "value": "vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Macintosh%3B%20Intel%20Mac%20OS%20X%2010_15_7%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F157.0.0.0%20Safari%2F537.36",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": -1,
+        "size": 218,
+        "httpOnly": false,
+        "secure": false,
+        "session": true,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "tk_or",
+        "value": "%22%22",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": "2027-12-15T10:39:48.703Z",
+        "size": 11,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "tk_r3d",
+        "value": "%22%22",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": "2026-11-13T10:39:48.000Z",
+        "size": 12,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "tk_lr",
+        "value": "%22%22",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": "2027-11-10T10:39:48.000Z",
+        "size": 11,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "IDE",
+        "value": "AHWqTUmdF3-PZUtFgWintAbNlF3VVh_DiVC3AlE5QlWWd1Nsvt0PsEbe6SHqVpoqVeg",
+        "domain": "doubleclick.net",
+        "path": "/",
+        "expires": "2027-12-15T10:39:47.769Z",
+        "size": 70,
+        "httpOnly": true,
+        "secure": true,
+        "session": false,
+        "sameSite": "None",
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "unknown",
+        "third_party": true
+      },
+      {
+        "name": "tk_ai",
+        "value": "bY/KuoBFKrgxLEImilrMPKNW",
+        "domain": "www.tekedia.com",
+        "path": "/",
+        "expires": "2027-11-10T10:39:48.000Z",
+        "size": 29,
+        "httpOnly": false,
+        "secure": true,
+        "session": false,
+        "sameSite": "Strict",
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "unknown",
+        "third_party": false
+      },
+      {
+        "name": "sbjs_session",
+        "value": "pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.tekedia.com%2F",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": "2026-11-10T11:09:48.000Z",
+        "size": 66,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "FCCDCF",
+        "value": "%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B32%2C%22%5B%5C%227de4b3a2-eb08-4902-a74e-2b507b1ad474%5C%22%2C%5B1794307188%2C357000000%5D%5D%22%5D%5D%5D",
+        "domain": "tekedia.com",
+        "path": "/",
+        "expires": "2027-12-05T10:39:49.000Z",
+        "size": 162,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      }
+    ],
+    "fb_pixel_events": [],
+    "tiktok_pixel_events": [],
+    "twitter_pixel_events": [],
+    "google_analytics_events": [],
+    "key_logging": {},
+    "session_recorders": {},
+    "third_party_trackers": [
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {
+            "abgtt": 9,
+            "abl": "CS",
+            "abxe": 1,
+            "adf": 1345073778,
+            "adk": 410773547,
+            "adx": 889,
+            "ady": 3159,
+            "aicrs": 1,
+            "aieuf": 1,
+            "aimartd": 4,
+            "aiof": 14,
+            "asro": 0,
+            "bc": 31,
+            "bdt": 65,
+            "bih": 768,
+            "biw": 1366,
+            "bpp": 1,
+            "brdim": "22,56,22,56,1512,0,1200,842,1366,768",
+            "btvi": 2,
+            "bz": 0.88,
+            "client": "ca-pub-7309126806619532",
+            "cookie_enabled": 1,
+            "correlator": 17862268381,
+            "dmc": 32,
+            "dt": 1794307188714,
+            "dtd": 1021,
+            "eid": "95404664,95407882,95409066,122882054,122882143,95405499",
+            "eoidce": 1,
+            "fc": 896,
+            "format": "324x250",
+            "frm": 20,
+            "fsb": 1,
+            "fu": 128,
+            "fwr": 0,
+            "fwrn": 4,
+            "fwrnh": 100,
+            "gdpr": 0,
+            "h": 250,
+            "idt": 21,
+            "ifi": 2,
+            "lmt": 1794307189,
+            "mjsv": "m202611050101",
+            "nras": 1,
+            "nvt": 1,
+            "oid": 2,
+            "output": "html",
+            "pfx": 0,
+            "pgls": "CAEaBTcuMS40~CAA.",
+            "pi": "t.ma~as.7764308804",
+            "prev_fmts": "323x250,0x0",
+            "ptt": 9,
+            "pv": 1,
+            "pvsid": 6968742383435187,
+            "rafmt": 1,
+            "resp_fmts": 3,
+            "rpe": 1,
+            "rsz": "||oeEbr|",
+            "saldr": "aa",
+            "scr_x": 0,
+            "scr_y": 150,
+            "shv": "r20261109",
+            "slotname": 7764308804,
+            "tmod": 670315013,
+            "u_ah": 982,
+            "u_aw": 1512,
+            "u_cd": 30,
+            "u_h": 982,
+            "u_his": 3,
+            "u_sd": 1,
+            "u_tz": 60,
+            "u_w": 1512,
+            "uach": "WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.",
+            "uas": 3,
+            "uci": "a!2",
+            "url": "https://www.tekedia.com/",
+            "vis": 1,
+            "w": 324
+          }
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/ads?gdpr=0&client=ca-pub-7309126806619532&output=html&h=250&slotname=7764308804&adk=410773547&adf=1345073778&pi=t.ma~as.7764308804&abgtt=9&w=324&fwrn=4&fwrnh=100&lmt=1794307189&rafmt=1&format=324x250&url=https%3A%2F%2Fwww.tekedia.com%2F&fwr=0&rpe=1&resp_fmts=3&aiof=14&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.&dt=1794307188714&bpp=1&bdt=65&idt=21&shv=r20261109&mjsv=m202611050101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&prev_fmts=323x250%2C0x0&nras=1&correlator=17862268381&frm=20&pv=1&u_tz=60&u_his=3&u_h=982&u_w=1512&u_ah=982&u_aw=1512&u_cd=30&u_sd=1&dmc=32&adx=889&ady=3159&biw=1366&bih=768&scr_x=0&scr_y=150&eid=95404664%2C95407882%2C95409066%2C122882054%2C122882143%2C95405499&oid=2&pvsid=6968742383435187&tmod=670315013&uas=3&nvt=1&fc=896&brdim=22%2C56%2C22%2C56%2C1512%2C0%2C1200%2C842%2C1366%2C768&vis=1&rsz=%7C%7CoeEbr%7C&abl=CS&pfx=0&fu=128&bc=31&bz=0.88&pgls=CAEaBTcuMS40~CAA.&ifi=2&uci=a!2&btvi=2&fsb=1&dtd=1021"
+      },
+      {
+        "data": {
+          "body": [
+            [
+              [
+                {
+                  "7": [
+                    6968742383435187,
+                    "ca-pub-7309126806619532",
+                    1,
+                    null,
+                    null,
+                    [
+                      1,
+                      1,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      [
+                        null,
+                        6,
+                        [
+                          42,
+                          20222162,
+                          20226651,
+                          20226653,
+                          20234644,
+                          20234646,
+                          20235079,
+                          20239257,
+                          20239259,
+                          21066571,
+                          21066579,
+                          44712487,
+                          44712488,
+                          44712489,
+                          44735360,
+                          44735361,
+                          44735362,
+                          95344073,
+                          95353371,
+                          95366157,
+                          95371201,
+                          95380133,
+                          95384509,
+                          95399519,
+                          95404664,
+                          95405499,
+                          95407564,
+                          95407882,
+                          95408311,
+                          95409066,
+                          122882054,
+                          122882143,
+                          123604936
+                        ]
+                      ],
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      1,
+                      null,
+                      null,
+                      null,
+                      [
+                        [
+                          "https://www.tekedia.com/",
+                          "www.tekedia.com"
+                        ],
+                        [
+                          27,
+                          27,
+                          27,
+                          0,
+                          0,
+                          0,
+                          27
+                        ],
+                        [
+                          null,
+                          "en",
+                          ".google.com.ng"
+                        ],
+                        [
+                          null,
+                          [
+                            [
+                              4,
+                              null,
+                              null,
+                              "Business School Courses",
+                              null,
+                              null,
+                              null,
+                              null,
+                              null,
+                              1
+                            ],
+                            [
+                              4,
+                              null,
+                              null,
+                              "Online Learning Platform",
+                              null,
+                              null,
+                              null,
+                              null,
+                              null,
+                              2
+                            ],
+                            [
+                              4,
+                              null,
+                              null,
+                              "Business Forum Access",
+                              null,
+                              null,
+                              null,
+                              null,
+                              null,
+                              3
+                            ]
+                          ]
+                        ],
+                        1
+                      ]
+                    ],
+                    1576
+                  ]
+                }
+              ]
+            ],
+            [
+              2,
+              "m202611050101",
+              [
+                95404664,
+                95407882,
+                95409066,
+                122882054,
+                122882143,
+                95405499
+              ]
+            ],
+            [
+              [
+                {
+                  "1": [
+                    "U2cYzb",
+                    null,
+                    [
+                      null,
+                      1
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ],
+                      [
+                        null,
+                        1
+                      ],
+                      [
+                        null,
+                        null,
+                        1
+                      ]
+                    ]
+                  ]
+                }
+              ],
+              [
+                {
+                  "1": [
+                    "vkypFe",
+                    null,
+                    [
+                      null,
+                      null,
+                      null,
+                      1
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ],
+                      [
+                        null,
+                        1
+                      ],
+                      [
+                        null,
+                        null,
+                        1
+                      ]
+                    ]
+                  ]
+                }
+              ],
+              [
+                {
+                  "1": [
+                    "OyfJgf",
+                    null,
+                    [
+                      null,
+                      1
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ]
+                    ]
+                  ]
+                }
+              ],
+              [
+                {
+                  "1": [
+                    "PsAR8b",
+                    null,
+                    [
+                      null,
+                      3
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ],
+                      [
+                        null,
+                        4
+                      ]
+                    ]
+                  ]
+                }
+              ]
+            ]
+          ],
+          "filter": "||pagead2.googlesyndication.com^",
+          "listName": "easylist.txt",
+          "query": {
+            "e": 1
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pagead2.googlesyndication.com/pagead/ping?e=1"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {
+            "abgtt": 9,
+            "abl": "NS",
+            "abxe": 1,
+            "adf": 3025194257,
+            "adk": 1812271804,
+            "adx": -12245933,
+            "ady": -12245933,
+            "aicrs": 1,
+            "aieuf": 1,
+            "aimartd": 4,
+            "aiof": 14,
+            "asro": 0,
+            "bc": 31,
+            "bdt": 67,
+            "bih": 768,
+            "biw": 1366,
+            "bpp": 1,
+            "brdim": "22,56,22,56,1512,0,1200,842,1366,768",
+            "bz": 0.88,
+            "client": "ca-pub-7309126806619532",
+            "cookie_enabled": 1,
+            "correlator": 17862268381,
+            "dmc": 32,
+            "dt": 1794307188715,
+            "dtd": 29,
+            "eid": "95404664,95407882,95409066,122882054,122882143,95405499",
+            "eoidce": 1,
+            "fc": 896,
+            "format": "0x0",
+            "frm": 20,
+            "fsapi": 1,
+            "fsb": 1,
+            "fu": 32768,
+            "idt": 23,
+            "ifi": 3,
+            "lmt": 1794307188,
+            "mjsv": "m202611050101",
+            "nras": 1,
+            "nvt": 1,
+            "oid": 2,
+            "output": "html",
+            "pgls": "CAEaBTcuMS40~CAA.",
+            "plaf": "1:2,2:2,7:2",
+            "plat": "1:128,2:128,3:128,4:128,8:128,9:32776,16:8388608,17:32,24:32,25:32,30:1081344,32:32,41:32,42:32,43:32,44:32",
+            "pra": 7,
+            "prev_fmts": "323x250",
+            "ptt": 9,
+            "pv": 1,
+            "pvsid": 6968742383435187,
+            "rsz": "||s|",
+            "saldr": "aa",
+            "scr_x": 0,
+            "scr_y": 0,
+            "shv": "r20261109",
+            "tmod": 670315013,
+            "u_ah": 982,
+            "u_aw": 1512,
+            "u_cd": 30,
+            "u_h": 982,
+            "u_his": 3,
+            "u_sd": 1,
+            "u_tz": 60,
+            "u_w": 1512,
+            "uach": "WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.",
+            "uas": 3,
+            "uci": "a!3",
+            "url": "https://www.tekedia.com/",
+            "vis": 1
+          }
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7309126806619532&output=html&adk=1812271804&adf=3025194257&abgtt=9&lmt=1794307188&plaf=1%3A2%2C2%3A2%2C7%3A2&plat=1%3A128%2C2%3A128%2C3%3A128%2C4%3A128%2C8%3A128%2C9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2Fwww.tekedia.com%2F&pra=7&aiof=14&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.&dt=1794307188715&bpp=1&bdt=67&idt=23&shv=r20261109&mjsv=m202611050101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&prev_fmts=323x250&nras=1&correlator=17862268381&frm=20&pv=1&u_tz=60&u_his=3&u_h=982&u_w=1512&u_ah=982&u_aw=1512&u_cd=30&u_sd=1&dmc=32&adx=-12245933&ady=-12245933&biw=1366&bih=768&scr_x=0&scr_y=0&eid=95404664%2C95407882%2C95409066%2C122882054%2C122882143%2C95405499&oid=2&pvsid=6968742383435187&tmod=670315013&uas=3&nvt=1&fsapi=1&fc=896&brdim=22%2C56%2C22%2C56%2C1512%2C0%2C1200%2C842%2C1366%2C768&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&bz=0.88&pgls=CAEaBTcuMS40~CAA.&ifi=3&uci=a!3&fsb=1&dtd=29"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {
+            "abgtt": 9,
+            "abl": "CS",
+            "abxe": 1,
+            "adf": 1907614125,
+            "adk": 365634021,
+            "adx": 517,
+            "ady": 2294,
+            "aicrs": 1,
+            "aieuf": 1,
+            "aimartd": 4,
+            "aiof": 14,
+            "asro": 0,
+            "bc": 31,
+            "bdt": 66,
+            "bih": 768,
+            "biw": 1366,
+            "bpp": 1,
+            "brdim": "22,56,22,56,1512,0,1200,842,1366,768",
+            "btvi": 1,
+            "bz": 0.88,
+            "client": "ca-pub-7309126806619532",
+            "cookie_enabled": 1,
+            "correlator": 17862268381,
+            "dmc": 32,
+            "dt": 1794307188714,
+            "dtd": 8,
+            "eid": "95404664,95407882,95409066,122882054,122882143,95405499",
+            "eoidce": 1,
+            "fc": 896,
+            "format": "323x250",
+            "frm": 20,
+            "fsb": 1,
+            "fu": 128,
+            "fwr": 0,
+            "fwrn": 4,
+            "fwrnh": 100,
+            "h": 250,
+            "idt": 3,
+            "ifi": 1,
+            "lmt": 1794307188,
+            "mjsv": "m202611050101",
+            "nvt": 1,
+            "oid": 2,
+            "output": "html",
+            "pfx": 0,
+            "pgls": "CAEaBTcuMS40~CAA.",
+            "pi": "t.ma~as.7764308804",
+            "ptt": 9,
+            "pv": 2,
+            "pvsid": 6968742383435187,
+            "rafmt": 1,
+            "resp_fmts": 3,
+            "rpe": 1,
+            "rsz": "||oeEbr|",
+            "saldr": "aa",
+            "scr_x": 0,
+            "scr_y": 0,
+            "shv": "r20261109",
+            "slotname": 7764308804,
+            "tmod": 670315013,
+            "u_ah": 982,
+            "u_aw": 1512,
+            "u_cd": 30,
+            "u_h": 982,
+            "u_his": 3,
+            "u_sd": 1,
+            "u_tz": 60,
+            "u_w": 1512,
+            "uach": "WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.",
+            "uas": 3,
+            "uci": "a!1",
+            "url": "https://www.tekedia.com/",
+            "vis": 1,
+            "w": 323
+          }
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7309126806619532&output=html&h=250&slotname=7764308804&adk=365634021&adf=1907614125&pi=t.ma~as.7764308804&abgtt=9&w=323&fwrn=4&fwrnh=100&lmt=1794307188&rafmt=1&format=323x250&url=https%3A%2F%2Fwww.tekedia.com%2F&fwr=0&rpe=1&resp_fmts=3&aiof=14&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.&dt=1794307188714&bpp=1&bdt=66&idt=3&shv=r20261109&mjsv=m202611050101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&correlator=17862268381&frm=20&pv=2&u_tz=60&u_his=3&u_h=982&u_w=1512&u_ah=982&u_aw=1512&u_cd=30&u_sd=1&dmc=32&adx=517&ady=2294&biw=1366&bih=768&scr_x=0&scr_y=0&eid=95404664%2C95407882%2C95409066%2C122882054%2C122882143%2C95405499&oid=2&pvsid=6968742383435187&tmod=670315013&uas=3&nvt=1&fc=896&brdim=22%2C56%2C22%2C56%2C1512%2C0%2C1200%2C842%2C1366%2C768&vis=1&rsz=%7C%7CoeEbr%7C&abl=CS&pfx=0&fu=128&bc=31&bz=0.88&pgls=CAEaBTcuMS40~CAA.&ifi=1&uci=a!1&btvi=1&fsb=1&dtd=8"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/html/r20261109/r20190131/zrt_lookup_fy2021.html"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||pagead2.googlesyndication.com^",
+          "listName": "easylist.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202611050101/show_ads_impl_fy2021.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||pixel.wp.com^",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "blog": 21826448,
+            "fcp": 0,
+            "host": "www.tekedia.com",
+            "j": "1:16.3.1",
+            "post": 199211,
+            "rand": 0.2584938606789108,
+            "ref": "",
+            "srv": "www.tekedia.com",
+            "tz": -5,
+            "v": "ext"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pixel.wp.com/g.gif?v=ext&blog=21826448&post=199211&tz=-5&srv=www.tekedia.com&j=1%3A16.3.1&host=www.tekedia.com&ref=&fcp=0&rand=0.2584938606789108"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||stats.wp.com^",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://stats.wp.com/e-202646.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||pagead2.googlesyndication.com^",
+          "listName": "easylist.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||stats.wp.com^",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://stats.wp.com/s-202646.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {
+            "abgtt": 9,
+            "abl": "NS",
+            "abxe": 1,
+            "adf": 3025194257,
+            "adk": 1812271804,
+            "adx": -12245933,
+            "ady": -12245933,
+            "aicrs": 1,
+            "aieuf": 1,
+            "aimartd": 4,
+            "aiof": 14,
+            "asro": 0,
+            "bc": 31,
+            "bdt": 6257,
+            "bih": 768,
+            "biw": 1366,
+            "bpp": 2,
+            "brdim": "22,56,22,56,1512,0,1200,842,1366,768",
+            "bz": 0.88,
+            "client": "ca-pub-7309126806619532",
+            "cookie_enabled": 1,
+            "correlator": 743611267944,
+            "dmc": 32,
+            "dt": 1794307187510,
+            "dtd": 12,
+            "eid": "95404665,95407882,95409065,42533293",
+            "eoidce": 1,
+            "fc": 896,
+            "format": "0x0",
+            "frm": 20,
+            "fsapi": 1,
+            "fsb": 1,
+            "fu": 32768,
+            "idt": 2,
+            "ifi": 3,
+            "lmt": 1794307187,
+            "mjsv": "m202611050101",
+            "nras": 1,
+            "nvt": 1,
+            "oid": 2,
+            "output": "html",
+            "pgls": "CAEaBTcuMS40~CAA.",
+            "plaf": "1:2,2:2,7:2",
+            "plat": "1:128,2:128,3:128,4:128,8:128,9:32776,16:8388608,17:32,24:32,25:32,30:1081344,32:32,41:32,42:32,43:32,44:32",
+            "pra": 7,
+            "prev_fmts": "323x250",
+            "ptt": 9,
+            "pv": 1,
+            "pvsid": 4171312055314782,
+            "rsz": "||s|",
+            "saldr": "aa",
+            "scr_x": 0,
+            "scr_y": 0,
+            "shv": "r20261109",
+            "tmod": 670315013,
+            "u_ah": 982,
+            "u_aw": 1512,
+            "u_cd": 30,
+            "u_h": 982,
+            "u_his": 2,
+            "u_sd": 1,
+            "u_tz": 60,
+            "u_w": 1512,
+            "uach": "WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.",
+            "uas": 3,
+            "uci": "a!3",
+            "url": "https://www.tekedia.com/",
+            "vis": 1
+          }
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7309126806619532&output=html&adk=1812271804&adf=3025194257&abgtt=9&lmt=1794307187&plaf=1%3A2%2C2%3A2%2C7%3A2&plat=1%3A128%2C2%3A128%2C3%3A128%2C4%3A128%2C8%3A128%2C9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2Fwww.tekedia.com%2F&pra=7&aiof=14&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.&dt=1794307187510&bpp=2&bdt=6257&idt=2&shv=r20261109&mjsv=m202611050101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&prev_fmts=323x250&nras=1&correlator=743611267944&frm=20&pv=1&u_tz=60&u_his=2&u_h=982&u_w=1512&u_ah=982&u_aw=1512&u_cd=30&u_sd=1&dmc=32&adx=-12245933&ady=-12245933&biw=1366&bih=768&scr_x=0&scr_y=0&eid=95404665%2C95407882%2C95409065%2C42533293&oid=2&pvsid=4171312055314782&tmod=670315013&uas=3&nvt=1&fsapi=1&fc=896&brdim=22%2C56%2C22%2C56%2C1512%2C0%2C1200%2C842%2C1366%2C768&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&bz=0.88&pgls=CAEaBTcuMS40~CAA.&ifi=3&uci=a!3&fsb=1&dtd=12"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||pixel.wp.com^",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "blog": 21826448,
+            "fcp": 4716,
+            "host": "www.tekedia.com",
+            "j": "1:16.3.1",
+            "post": 199211,
+            "rand": 0.8839637897513626,
+            "ref": "",
+            "srv": "www.tekedia.com",
+            "tz": -5,
+            "v": "ext"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pixel.wp.com/g.gif?v=ext&blog=21826448&post=199211&tz=-5&srv=www.tekedia.com&j=1%3A16.3.1&host=www.tekedia.com&ref=&fcp=4716&rand=0.8839637897513626"
+      },
+      {
+        "data": {
+          "body": [
+            [
+              [
+                {
+                  "7": [
+                    4171312055314782,
+                    "ca-pub-7309126806619532",
+                    1,
+                    null,
+                    null,
+                    [
+                      1,
+                      4,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      [
+                        null,
+                        4,
+                        [
+                          42,
+                          11802457,
+                          11804428,
+                          11804432,
+                          15127610,
+                          20222162,
+                          20226651,
+                          20226653,
+                          20237241,
+                          20237245,
+                          20238521,
+                          20238523,
+                          20238644,
+                          20238646,
+                          20239184,
+                          20240307,
+                          20241027,
+                          21066571,
+                          21066579,
+                          39591520,
+                          39691000,
+                          42533293,
+                          44712487,
+                          44712488,
+                          44712987,
+                          44713749,
+                          44735360,
+                          44735361,
+                          44735362,
+                          44759150,
+                          44766259,
+                          44770337,
+                          44779026,
+                          44808485,
+                          50720308,
+                          50720343,
+                          83321934,
+                          83323896,
+                          83323970,
+                          83323987,
+                          83324115,
+                          83324281,
+                          83324325,
+                          83324336,
+                          83324385,
+                          95321663,
+                          95322860,
+                          95324645,
+                          95333342,
+                          95339499,
+                          95341611,
+                          95343563,
+                          95353371,
+                          95354131,
+                          95360745,
+                          95366156,
+                          95367183,
+                          95371201,
+                          95374019,
+                          95374483,
+                          95375663,
+                          95377966,
+                          95380470,
+                          95380957,
+                          95381763,
+                          95381920,
+                          95384509,
+                          95384606,
+                          95387784,
+                          95389928,
+                          95389955,
+                          95391304,
+                          95392160,
+                          95392995,
+                          95393455,
+                          95393747,
+                          95393807,
+                          95394232,
+                          95395352,
+                          95396930,
+                          95396939,
+                          95396976,
+                          95397476,
+                          95397528,
+                          95398083,
+                          95398682,
+                          95399468,
+                          95399471,
+                          95399682,
+                          95399844,
+                          95400560,
+                          95400742,
+                          95400870,
+                          95400951,
+                          95401427,
+                          95401533,
+                          95401654,
+                          95401663,
+                          95401744,
+                          95401846,
+                          95401927,
+                          95402056,
+                          95402523,
+                          95403028,
+                          95403762,
+                          95403776,
+                          95403831,
+                          95403880,
+                          95403994,
+                          95404340,
+                          95404629,
+                          95404665,
+                          95404703,
+                          95404737,
+                          95404785,
+                          95404790,
+                          95404850,
+                          95404936,
+                          95404941,
+                          95404982,
+                          95405162,
+                          95405270,
+                          95405402,
+                          95405541,
+                          95405586,
+                          95405602,
+                          95405913,
+                          95405963,
+                          95405967,
+                          95406069,
+                          95406256,
+                          95406290,
+                          95406491,
+                          95406607,
+                          95406635,
+                          95406833,
+                          95406921,
+                          95406974,
+                          95407044,
+                          95407056,
+                          95407241,
+                          95407343,
+                          95407442,
+                          95407531,
+                          95407762,
+                          95407834,
+                          95407876,
+                          95407882,
+                          95408027,
+                          95408085,
+                          95408147,
+                          95408311,
+                          95408361,
+                          95408460,
+                          95408801,
+                          95408825,
+                          95409009,
+                          95409065,
+                          95409114,
+                          95409194,
+                          95409199,
+                          95409226,
+                          95409252,
+                          95409263,
+                          95409427,
+                          95409632,
+                          95409640,
+                          95409719,
+                          95409731,
+                          95409779,
+                          95409951,
+                          96843145,
+                          98953634,
+                          100940042,
+                          100940064,
+                          100940072,
+                          118355101,
+                          123324520,
+                          123337924,
+                          124054677,
+                          318472654,
+                          318520226,
+                          318524930,
+                          318526370,
+                          318526865,
+                          318527024,
+                          318527067,
+                          318528371,
+                          318529147,
+                          318529240,
+                          318530476,
+                          318530864,
+                          318530952,
+                          318531062,
+                          318531130,
+                          318531243,
+                          318531304,
+                          318531388,
+                          318531396,
+                          318531451,
+                          318531525,
+                          318531633,
+                          318531666,
+                          350921312
+                        ]
+                      ],
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      null,
+                      1,
+                      null,
+                      null,
+                      null,
+                      [
+                        [
+                          "https://www.tekedia.com/",
+                          "www.tekedia.com"
+                        ],
+                        [
+                          27,
+                          27,
+                          27,
+                          0,
+                          0,
+                          0,
+                          27
+                        ],
+                        [
+                          null,
+                          "en",
+                          ".google.com.ng"
+                        ],
+                        [
+                          null,
+                          [
+                            [
+                              4,
+                              null,
+                              null,
+                              "Business School Courses",
+                              null,
+                              null,
+                              null,
+                              null,
+                              null,
+                              1
+                            ],
+                            [
+                              4,
+                              null,
+                              null,
+                              "Online Learning Platform",
+                              null,
+                              null,
+                              null,
+                              null,
+                              null,
+                              2
+                            ],
+                            [
+                              4,
+                              null,
+                              null,
+                              "Business Forum Access",
+                              null,
+                              null,
+                              null,
+                              null,
+                              null,
+                              3
+                            ]
+                          ]
+                        ],
+                        3
+                      ]
+                    ],
+                    6146
+                  ]
+                }
+              ]
+            ],
+            [
+              2,
+              "m202611050101",
+              [
+                95404665,
+                95407882,
+                95409065,
+                42533293
+              ]
+            ],
+            [
+              [
+                {
+                  "1": [
+                    "U2cYzb",
+                    null,
+                    [
+                      null,
+                      1
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ],
+                      [
+                        null,
+                        1
+                      ],
+                      [
+                        null,
+                        null,
+                        1
+                      ]
+                    ]
+                  ]
+                }
+              ],
+              [
+                {
+                  "1": [
+                    "vkypFe",
+                    null,
+                    [
+                      null,
+                      null,
+                      null,
+                      3
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ],
+                      [
+                        null,
+                        1
+                      ],
+                      [
+                        null,
+                        null,
+                        1
+                      ]
+                    ]
+                  ]
+                }
+              ],
+              [
+                {
+                  "1": [
+                    "OyfJgf",
+                    null,
+                    [
+                      null,
+                      1
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ]
+                    ]
+                  ]
+                }
+              ],
+              [
+                {
+                  "1": [
+                    "PsAR8b",
+                    null,
+                    [
+                      null,
+                      3
+                    ],
+                    [
+                      [
+                        "en"
+                      ],
+                      [
+                        null,
+                        2
+                      ],
+                      [
+                        null,
+                        4
+                      ]
+                    ]
+                  ]
+                }
+              ]
+            ]
+          ],
+          "filter": "||pagead2.googlesyndication.com^",
+          "listName": "easylist.txt",
+          "query": {
+            "e": 1
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pagead2.googlesyndication.com/pagead/ping?e=1"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {
+            "abgtt": 9,
+            "abl": "CS",
+            "abxe": 1,
+            "adf": 1907614125,
+            "adk": 365634021,
+            "adx": 517,
+            "ady": 2351,
+            "aicrs": 1,
+            "aieuf": 1,
+            "aimartd": 4,
+            "aiof": 14,
+            "asro": 0,
+            "bc": 31,
+            "bdt": 1669,
+            "bih": 768,
+            "biw": 1366,
+            "bpp": 2,
+            "brdim": "22,56,22,56,1512,0,1200,842,1366,768",
+            "btvi": 1,
+            "bz": 0.88,
+            "client": "ca-pub-7309126806619532",
+            "cookie_enabled": 1,
+            "correlator": 743611267944,
+            "dmc": 32,
+            "dt": 1794307182921,
+            "dtd": 171,
+            "eid": "95404665,95407882,95409065,42533293",
+            "eoidce": 1,
+            "fc": 640,
+            "format": "323x250",
+            "frm": 20,
+            "fsb": 1,
+            "fu": 128,
+            "fwr": 0,
+            "fwrn": 4,
+            "fwrnh": 100,
+            "h": 250,
+            "idt": 157,
+            "ifi": 1,
+            "lmt": 1794307183,
+            "mjsv": "m202611050101",
+            "nvt": 1,
+            "oid": 2,
+            "output": "html",
+            "pfx": 0,
+            "pgls": "CAEaBTcuMS40~CAA.",
+            "pi": "t.ma~as.7764308804",
+            "ptt": 9,
+            "pv": 2,
+            "pvsid": 4171312055314782,
+            "rafmt": 1,
+            "resp_fmts": 3,
+            "rpe": 1,
+            "rsz": "||oeEbr|",
+            "saldr": "aa",
+            "scr_x": 0,
+            "scr_y": 0,
+            "shv": "r20261109",
+            "slotname": 7764308804,
+            "tmod": 670315013,
+            "u_ah": 982,
+            "u_aw": 1512,
+            "u_cd": 30,
+            "u_h": 982,
+            "u_his": 2,
+            "u_sd": 1,
+            "u_tz": 60,
+            "u_w": 1512,
+            "uach": "WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.",
+            "uas": 3,
+            "uci": "a!1",
+            "url": "https://www.tekedia.com/",
+            "vis": 1,
+            "w": 323
+          }
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7309126806619532&output=html&h=250&slotname=7764308804&adk=365634021&adf=1907614125&pi=t.ma~as.7764308804&abgtt=9&w=323&fwrn=4&fwrnh=100&lmt=1794307183&rafmt=1&format=323x250&url=https%3A%2F%2Fwww.tekedia.com%2F&fwr=0&rpe=1&resp_fmts=3&aiof=14&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyIiLCIiLCIiLCIiLCIiLG51bGwsMCxudWxsLCIiLG51bGwsMF0.&dt=1794307182921&bpp=2&bdt=1669&idt=157&shv=r20261109&mjsv=m202611050101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&correlator=743611267944&frm=20&pv=2&u_tz=60&u_his=2&u_h=982&u_w=1512&u_ah=982&u_aw=1512&u_cd=30&u_sd=1&dmc=32&adx=517&ady=2351&biw=1366&bih=768&scr_x=0&scr_y=0&eid=95404665%2C95407882%2C95409065%2C42533293&oid=2&pvsid=4171312055314782&tmod=670315013&uas=3&nvt=1&fc=640&brdim=22%2C56%2C22%2C56%2C1512%2C0%2C1200%2C842%2C1366%2C768&vis=1&rsz=%7C%7CoeEbr%7C&abl=CS&pfx=0&fu=128&bc=31&bz=0.88&pgls=CAEaBTcuMS40~CAA.&ifi=1&uci=a!1&btvi=1&fsb=1&dtd=171"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||doubleclick.net^",
+          "listName": "easylist.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://googleads.g.doubleclick.net/pagead/html/r20261109/r20190131/zrt_lookup_fy2021.html"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||pagead2.googlesyndication.com^",
+          "listName": "easylist.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202611050101/show_ads_impl_fy2021.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||stats.wp.com^",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://stats.wp.com/e-202646.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||pagead2.googlesyndication.com^",
+          "listName": "easylist.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||stats.wp.com^",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://www.tekedia.com/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://stats.wp.com/s-202646.js"
+      }
+    ]
+  }
+}

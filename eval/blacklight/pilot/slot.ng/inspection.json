@@ -1,0 +1,989 @@
+{
+  "title": "Blacklight Inspection",
+  "page_title": "SLOT - Nigeria's #1 Electronics & Phone Store",
+  "uri_ins": "https://slot.ng",
+  "uri_dest": "https://slot.ng/",
+  "uri_redirects": [],
+  "secure_connection": {},
+  "host": "slot.ng",
+  "config": {
+    "emulateDevice": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+    },
+    "cleareCache": true,
+    "captureHar": true,
+    "captureLinks": false,
+    "enableAdBlock": false,
+    "saveBrowserProfile": false,
+    "numPages": 0,
+    "defaultTimeout": 30000,
+    "defaultWaitUntil": "networkidle2",
+    "headless": false,
+    "headers": {},
+    "extraChromiumArgs": [
+      "--disable-features=TrackingProtection3pcd"
+    ],
+    "extraPuppeteerOptions": {}
+  },
+  "browser": {
+    "name": "Chromium",
+    "version": "Chrome/157.0.8103.50",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "platform": {
+      "name": "Darwin",
+      "version": "25.5.0"
+    }
+  },
+  "script": {
+    "host": "MacBook-Pro.local",
+    "version": {
+      "npm": "3.11.0",
+      "commit": "dev"
+    },
+    "node_version": "v22.23.4"
+  },
+  "start_time": "2026-11-10T10:40:03.024Z",
+  "end_time": "2026-11-10T10:40:09.627Z",
+  "location": "Port Harcourt, NG (home network)",
+  "browsing_history": [
+    "https://slot.ng/"
+  ],
+  "hosts": {
+    "requests": {
+      "first_party": [
+        "slot.ng",
+        "api-prod.slot.ng"
+      ],
+      "third_party": [
+        "static.cloudflareinsights.com",
+        "hiraassist.com",
+        "www.googletagmanager.com",
+        "connect.facebook.net",
+        "mpc2-prod-28-is5qnl632q-ue.a.run.app",
+        "www.facebook.com",
+        "analytics.google.com",
+        "stats.g.doubleclick.net",
+        "www.google.com",
+        "www.google.com.ng",
+        "backend.hiraassist.com"
+      ]
+    }
+  },
+  "reports": {
+    "behaviour_event_listeners": {
+      "MOUSE": {
+        "https://www.googletagmanager.com/gtag/js?id=G-WVWSENPWP2": [
+          "click"
+        ],
+        "https://www.googletagmanager.com/gtm.js?id=GTM-W42GMP8T": [
+          "click"
+        ],
+        "https://connect.facebook.net/signals/config/1539059994080790?v=2.9.439&r=stable&domain=slot.ng&hme=1f127d11ce7bba675ee077e129c6ec7e07038113ad3e920301e60f2f865dc776&ex_m=119%2C243%2C172%2C27%2C82%2C83%2C163%2C78%2C77%2C11%2C182%2C102%2C20%2C154%2C142%2C46%2C85%2C90%2C184%2C111%2C150%2C177%2C8%2C4%2C5%2C7%2C6%2C3%2C103%2C116%2C162%2C72%2C186%2C110%2C185%2C212%2C264%2C37%2C84%2C284%2C283%2C282%2C14%2C25%2C28%2C40%2C62%2C118%2C68%2C10%2C73%2C112%2C113%2C114%2C120%2C145%2C38%2C36%2C147%2C148%2C149%2C144%2C143%2C173%2C86%2C176%2C174%2C175%2C57%2C69%2C67%2C138%2C19%2C180%2C52%2C334%2C335%2C336%2C333%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C55%2C164%2C87%2C127%2C22%2C24%2C51%2C47%2C49%2C48%2C95%2C104%2C108%2C125%2C161%2C165%2C53%2C126%2C29%2C26%2C134%2C79%2C43%2C167%2C166%2C168%2C158%2C156%2C30%2C42%2C66%2C124%2C179%2C80%2C21%2C129%2C93%2C76%2C23%2C97%2C98%2C131%2C96%2C152%2C151%2C155%2C109%2C178%2C181%2C41%2C350%2C372%2C257%2C239%2C70%2C240%2C238%2C375%2C366%2C59%2C258%2C122%2C146%2C92%2C136%2C61%2C54%2C56%2C128%2C135%2C141%2C140%2C65%2C74%2C169%2C88%2C89%2C130%2C44%2C39%2C60%2C63%2C115%2C183%2C1%2C139%2C16%2C137%2C12%2C2%2C64%2C105%2C15%2C75%2C71%2C133%2C101%2C100%2C188%2C189%2C106%2C107%2C9%2C117%2C187%2C58%2C159%2C99%2C91%2C81%2C132%2C121%2C170%2C50%2C160%2C0%2C94%2C153%2C157%2C171%2C45%2C123%2C13%2C190": [
+          "click"
+        ],
+        "https://slot.ng/_next/static/chunks/17thzdrenesvp.js": [
+          "mousedown"
+        ],
+        "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092": [
+          "click"
+        ],
+        "https://slot.ng/_next/static/chunks/1730vs4gemvr9.js": [
+          "mousedown"
+        ],
+        "https://slot.ng/_next/static/chunks/0wj8l4fwydekq.js": [
+          "dblclick",
+          "scroll",
+          "mouseup",
+          "mousemove",
+          "mousedown",
+          "click"
+        ]
+      },
+      "KEYBOARD": {
+        "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092": [
+          "keydown"
+        ],
+        "https://slot.ng/_next/static/chunks/0vb91tye6y189.js": [
+          "keydown"
+        ],
+        "https://slot.ng/_next/static/chunks/0r9pxn.gxei...js": [
+          "keydown"
+        ],
+        "https://slot.ng/_next/static/chunks/0wj8l4fwydekq.js": [
+          "keyup",
+          "keypress",
+          "keydown",
+          "input"
+        ]
+      },
+      "TOUCH": {
+        "https://slot.ng/_next/static/chunks/0wj8l4fwydekq.js": [
+          "touchmove",
+          "touchstart",
+          "touchend",
+          "touchcancel"
+        ]
+      }
+    },
+    "canvas_fingerprinters": {
+      "data_url": {},
+      "fingerprinters": [],
+      "styles": {},
+      "texts": {}
+    },
+    "canvas_font_fingerprinters": {
+      "canvas_font": {},
+      "text_measure": {}
+    },
+    "cookies": [
+      {
+        "name": "_fbp",
+        "value": "fb.1.1794307205694.698759068848516557",
+        "domain": "slot.ng",
+        "path": "/",
+        "expires": "2027-02-08T10:40:05.000Z",
+        "size": 41,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "sameSite": "Lax",
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "cf_clearance",
+        "value": "CiYAapbXkRSIPHYS6ZFZdzai50f3U28seRwxF6Cnet21v4Jpl0yYqfnacOJ81KvSK7_aK5Pvv5w3aLF5bSrW9SF4_vWxxBrfOYkqWKpUvGw200aZ1oq_ADE1aVLzgSITE_d5q0DAQm1KqjLwK8PUG-n4rJNRtqxXBpTcmvxoPvok7ICvLtzmYEfE785Hic70WYkHpDJmLH_bil-9NnjAE1Lad-m7hZhu83EjrGr20meEOerLSW5wFm2UVofr-qW03JcsJSIxGXEDSUEWNjPzUx5oJokL5RCpxA9_CvB-p4aeVfMb4AoPTIigs99IfvLOHdDLKUzIfaRGsoeBqtAS5Ocq2_9VBj3mdiKlcLSkGqxc2yasfvwR8uQqzpZs6kQQOn5smSxkODkHBy3mDspXqyY",
+        "domain": "slot.ng",
+        "path": "/",
+        "expires": "2027-11-10T10:40:05.874Z",
+        "size": 419,
+        "httpOnly": true,
+        "secure": true,
+        "session": false,
+        "sameSite": "None",
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "partitionKey": {
+          "topLevelSite": "https://slot.ng",
+          "hasCrossSiteAncestor": false
+        },
+        "type": "unknown",
+        "third_party": false
+      },
+      {
+        "name": "fr",
+        "value": "001fMIBmtfLleiKqW..Bq8vSG...1.0.Bq8vSG.AWcMwwmtilfY5nU6DNZxumRsKoY",
+        "domain": "facebook.com",
+        "path": "/",
+        "expires": "2027-02-08T10:40:05.901Z",
+        "size": 68,
+        "httpOnly": true,
+        "secure": true,
+        "session": false,
+        "sameSite": "None",
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "unknown",
+        "third_party": true
+      },
+      {
+        "name": "_ga",
+        "value": "GA1.1.610293247.1794307206",
+        "domain": "slot.ng",
+        "path": "/",
+        "expires": "2027-12-15T10:40:06.218Z",
+        "size": 29,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "_gcl_au",
+        "value": "1.1.1999446819.1794307206",
+        "domain": "slot.ng",
+        "path": "/",
+        "expires": "2027-02-08T10:40:06.000Z",
+        "size": 32,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "_ga_WVWSENPWP2",
+        "value": "GS2.1.s1794307206$o1$g1$t1794307208$j58$l0$h1935142472",
+        "domain": "slot.ng",
+        "path": "/",
+        "expires": "2027-12-15T10:40:08.829Z",
+        "size": 68,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      },
+      {
+        "name": "_ga_CQGTSVEBCK",
+        "value": "GS2.1.s1794307206$o1$g0$t1794307208$j58$l0$h965768773",
+        "domain": "slot.ng",
+        "path": "/",
+        "expires": "2027-12-15T10:40:08.832Z",
+        "size": 67,
+        "httpOnly": false,
+        "secure": false,
+        "session": false,
+        "priority": "Medium",
+        "sourceScheme": "Secure",
+        "sourcePort": 443,
+        "type": "js",
+        "third_party": false
+      }
+    ],
+    "fb_pixel_events": [],
+    "tiktok_pixel_events": [],
+    "twitter_pixel_events": [],
+    "google_analytics_events": [
+      {
+        "data": {
+          "body": {},
+          "filter": "$ping,third-party",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "aip": 1,
+            "cid": 610293247.1794307,
+            "dma": 0,
+            "frm": 0,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20ozb9255644131zd9255644131xf1",
+            "npa": 0,
+            "rcb": 7,
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tid": "G-CQGTSVEBCK",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "raw": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-CQGTSVEBCK&cid=610293247.1794307206&gtm=45je6b61v9249484967za20ozb9255644131zd9255644131xf1&rcb=7&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "$ping,third-party",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "aip": 1,
+            "cid": 610293247.1794307,
+            "dma": 0,
+            "frm": 0,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "rcb": 7,
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123814185",
+            "tid": "G-WVWSENPWP2",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "raw": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-WVWSENPWP2&cid=610293247.1794307206&gtm=45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1&rcb=7&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123814185"
+      }
+    ],
+    "key_logging": {},
+    "session_recorders": {},
+    "third_party_trackers": [
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_et": 120,
+            "_eu": "AEAAAGQC",
+            "_p": 1794307205181,
+            "_s": 3,
+            "ae": "a",
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ecid": 965768773,
+            "en": "scroll",
+            "epn.percent_scrolled": 90,
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 0,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 6135,
+            "tid": "G-CQGTSVEBCK",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-CQGTSVEBCK&gtm=45je6b61v9249484967za20gzb9255644131zd9255644131xf1&_p=1794307205181&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=965768773&_eu=AEAAAGQC&ae=a&cid=610293247.1794307206&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=3&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=0&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=scroll&epn.percent_scrolled=90&_et=120&tfd=6135"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_et": 120,
+            "_eu": "AEAAAGQC",
+            "_p": 1794307205181,
+            "_s": 5,
+            "ae": "a",
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ecid": 1935142472,
+            "en": "scroll",
+            "epn.percent_scrolled": 90,
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 1,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 6135,
+            "tid": "G-WVWSENPWP2",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-WVWSENPWP2&gtm=45je6b61v9249484967za20gzb9255644131zd9255644131xf1&_p=1794307205181&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1935142472&_eu=AEAAAGQC&ae=a&cid=610293247.1794307206&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=5&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=1&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=scroll&epn.percent_scrolled=90&_et=120&tfd=6135"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_et": 519,
+            "_eu": "AEEAAGQC",
+            "_p": 1794307205181,
+            "_s": 2,
+            "ae": "a",
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ecid": 965768773,
+            "en": "form_start",
+            "ep.first_field_id": "searchproduct",
+            "ep.first_field_type": "search",
+            "ep.form_destination": "https://slot.ng/",
+            "ep.form_id": "",
+            "epn.first_field_position": 1,
+            "epn.form_length": 2,
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 0,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 5383,
+            "tid": "G-CQGTSVEBCK",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-CQGTSVEBCK&gtm=45je6b61v9249484967za20gzb9255644131zd9255644131xf1&_p=1794307205181&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=965768773&_eu=AEEAAGQC&ae=a&cid=610293247.1794307206&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=2&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=0&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=form_start&ep.form_id=&ep.form_destination=https%3A%2F%2Fslot.ng%2F&epn.form_length=2&ep.first_field_id=searchproduct&ep.first_field_type=search&epn.first_field_position=1&_et=519&tfd=5383"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_et": 516,
+            "_eu": "AEEAAGQC",
+            "_p": 1794307205181,
+            "_s": 4,
+            "ae": "a",
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ecid": 1935142472,
+            "en": "form_start",
+            "ep.first_field_id": "searchproduct",
+            "ep.first_field_type": "search",
+            "ep.form_destination": "https://slot.ng/",
+            "ep.form_id": "",
+            "epn.first_field_position": 1,
+            "epn.form_length": 2,
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 1,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 5380,
+            "tid": "G-WVWSENPWP2",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-WVWSENPWP2&gtm=45je6b61v9249484967za20gzb9255644131zd9255644131xf1&_p=1794307205181&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1935142472&_eu=AEEAAGQC&ae=a&cid=610293247.1794307206&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=4&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=1&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=form_start&ep.form_id=&ep.form_destination=https%3A%2F%2Fslot.ng%2F&epn.form_length=2&ep.first_field_id=searchproduct&ep.first_field_type=search&epn.first_field_position=1&_et=516&tfd=5380"
+      },
+      {
+        "data": {
+          "body": "en=slot-main-tag\r\nen=slot-main-tag",
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_eu": "AAAAAGQC",
+            "_p": 1794307205181,
+            "_s": 3,
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ecid": 1935142472,
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 1,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 5258,
+            "tid": "G-WVWSENPWP2",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-WVWSENPWP2&gtm=45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1&_p=1794307205181&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1935142472&_eu=AAAAAGQC&cid=610293247.1794307206&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=1&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&_s=3&tfd=5258"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "/ga-audiences?",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_r": 4,
+            "aip": 1,
+            "cid": 610293247.1794307,
+            "dma": 0,
+            "frm": 0,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20ozb9255644131zd9255644131xf1",
+            "npa": 0,
+            "rcb": 7,
+            "slf_rd": 1,
+            "t": "sr",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tid": "G-CQGTSVEBCK",
+            "v": 1,
+            "z": 743469641
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.google.com.ng/ads/ga-audiences?v=1&t=sr&slf_rd=1&_r=4&tid=G-CQGTSVEBCK&cid=610293247.1794307206&gtm=45je6b61v9249484967za20ozb9255644131zd9255644131xf1&rcb=7&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&z=743469641"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "/ga-audiences?",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_r": 4,
+            "aip": 1,
+            "cid": 610293247.1794307,
+            "dma": 0,
+            "frm": 0,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "rcb": 7,
+            "slf_rd": 1,
+            "t": "sr",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123814185",
+            "tid": "G-WVWSENPWP2",
+            "v": 1,
+            "z": 1305652448
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.google.com.ng/ads/ga-audiences?v=1&t=sr&slf_rd=1&_r=4&tid=G-WVWSENPWP2&cid=610293247.1794307206&gtm=45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1&rcb=7&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123814185&z=1305652448"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_eu": "AAAAAGAC",
+            "_fv": 1,
+            "_gaz": 1,
+            "_p": 1794307205181,
+            "_s": 1,
+            "_ss": 1,
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ec_mode": "a",
+            "ecid": 965768773,
+            "en": "page_view",
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20ozb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 0,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 2769,
+            "tid": "G-CQGTSVEBCK",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-CQGTSVEBCK&gtm=45je6b61v9249484967za20ozb9255644131zd9255644131xf1&_p=1794307205181&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=965768773&_eu=AAAAAGAC&cid=610293247.1794307206&ec_mode=a&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=1&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=0&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=page_view&_fv=1&_ss=1&tfd=2769"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_c": 1,
+            "_eu": "AAAAAGQC",
+            "_p": 1794307205181,
+            "_prs": "ok",
+            "_s": 2,
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ec_mode": "a",
+            "ecid": 1935142472,
+            "en": "page_view",
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967za20ozb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 1,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185",
+            "tfd": 2766,
+            "tid": "G-WVWSENPWP2",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-WVWSENPWP2&gtm=45je6b61v9249484967za20ozb9255644131zd9255644131xf1&_p=1794307205181&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1935142472&_eu=AAAAAGQC&_prs=ok&cid=610293247.1794307206&ec_mode=a&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=2&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=1&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=page_view&_c=1&tfd=2766"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "://analytics.*/collect",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "_eu": "AAAAAGAC",
+            "_fv": 1,
+            "_gaz": 1,
+            "_nsi": 1,
+            "_p": 1794307205181,
+            "_s": 1,
+            "_ss": 1,
+            "cid": 610293247.1794307,
+            "dl": "https://slot.ng/",
+            "dma": 0,
+            "dt": "SLOT - Nigeria's #1 Electronics & Phone Store",
+            "ecid": 1935142472,
+            "en": "slot-main-tag",
+            "frm": 0,
+            "gaf": 2,
+            "gcd": "13l3l3l3l1l1",
+            "gtm": "45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1",
+            "npa": 0,
+            "pscdl": "noapi",
+            "rcb": 7,
+            "sct": 1,
+            "seg": 0,
+            "sid": 1794307206,
+            "sr": "1512x982",
+            "tag_exp": "115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123814185",
+            "tfd": 2751,
+            "tid": "G-WVWSENPWP2",
+            "uaa": "",
+            "uab": "",
+            "uafvl": "",
+            "uam": "",
+            "uamb": 0,
+            "uap": "",
+            "uapv": "",
+            "uaw": 0,
+            "ul": "en-gb",
+            "v": 2
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-WVWSENPWP2&gtm=45je6b61v9249484967z89255644131za20gzb9255644131zd9255644131xf1&_p=1794307205181&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1935142472&_eu=AAAAAGAC&cid=610293247.1794307206&frm=0&pscdl=noapi&rcb=7&sr=1512x982&uaa=&uab=&uafvl=&uam=&uamb=0&uap=&uapv=&uaw=0&ul=en-gb&gaf=2&_s=1&tag_exp=115938466~115938468~118012007~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123814185&sid=1794307206&sct=1&seg=0&dl=https%3A%2F%2Fslot.ng%2F&dt=SLOT%20-%20Nigeria%27s%20%231%20Electronics%20%26%20Phone%20Store&en=slot-main-tag&_fv=1&_nsi=1&_ss=1&tfd=2751"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||googletagmanager.com^",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "cx": "c",
+            "gtm": "4e6b61",
+            "id": "G-WVWSENPWP2"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.googletagmanager.com/gtag/js?id=G-WVWSENPWP2&cx=c&gtm=4e6b61"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||googletagmanager.com^",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "cx": "c",
+            "gtm": "4e6b61",
+            "id": "G-WVWSENPWP2"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.googletagmanager.com/gtag/destination?id=G-WVWSENPWP2&cx=c&gtm=4e6b61"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||facebook.com/tr/",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "redirect": 0
+          }
+        },
+        "stack": [
+          {
+            "fileName": "about:blank",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.facebook.com/tr/?redirect=0"
+      },
+      {
+        "data": {
+          "body": "id=1539059994080790&ev=PageView&dl=https%3A%2F%2Fslot.ng%2F&rl=&if=false&ts=1794307205704&iw=false&sw=1512&sh=982&v=2.9.439&r=stable&ec=0&o=69662&aems=0%3B0&fbp=fb.1.1794307205694.698759068848516557&eid=ob3_plugin-set_8480527a416a33179e0047f83b7f4f733fc901b550a5c605fcbae1c342e63afc&ler=empty&cdl=API_unavailable&pmd%5Btitle%5D=SLOT+-+Nigeria%27s+%231+Electronics+%26+Phone+Store&pmd%5Blocale%5D=en&pmd%5Bdescription%5D=Shop+the+latest+phones%2C+laptops%2C+tablets%2C+gadgets%2C+and+accessories+online+at+SLOT+Nigeria.+Best+prices%2C+genuine+products%2C+fast+delivery+nationwide.&pmd%5Bkeywords%5D=phones%2Celectronics%2Claptops%2Ctablets%2CSLOT+Nigeria%2Cbuy+phones+online+Nigeria%2Cgadgets+Nigeria&plt=1743.5&iss=1&imft=1&tz=60&it=1794307205501&coo=false&ss=%7B%22page_title%22%3A%5B%7B%22rid%22%3A%221039793259093828%22%2C%22v%22%3A%5B%22Black+Friday+Deals%22%5D%7D%5D%2C%22price%22%3A%5B%7B%22rid%22%3A%221786914075930929%22%2C%22v%22%3A%5B%22%E2%82%A6600%2C000%22%5D%7D%5D%2C%22image_url%22%3A%5B%7B%22rid%22%3A%221384552423819662%22%2C%22v%22%3A%5B%22https%3A%2F%2Fslot.ng%2F_next%2Fimage%3Furl%3Dhttps%253A%252F%252Fapi-prod.slot.ng%252Fstorage%252Fimages%252F1793945695_6aed705fc89a8_phones-bf-Cat-tagged%25403x.png%26w%3D3840%26q%3D75%22%5D%7D%2C%7B%22rid%22%3A%221987661918593425%22%2C%22v%22%3A%5B%22https%3A%2F%2Fslot.ng%2F_next%2Fimage%3Furl%3D%252Frexpay_long_logo_25828bad52.png%26w%3D256%26q%3D75%22%5D%7D%5D%2C%22availability%22%3A%5B%7B%22rid%22%3A%221431852205069339%22%2C%22v%22%3A%5B%22in+stock%22%5D%7D%5D%2C%22variant_presence%22%3A%5B%7B%22rid%22%3A%221664951801875717%22%2C%22v%22%3A%5B%22has_variant%22%5D%7D%5D%2C%22pricing_promotion%22%3A%5B%7B%22rid%22%3A%221097023562820706%22%2C%22v%22%3A%5B%22In+stock%5Cn%5CnAPPLE+IPHONE+18+PRO+512GB+%28SS%29%22%2C%22In+stock%5Cn%5CnPRE-OWNED+APPLE+IPHONE+11+128GB%22%2C%22In+stock%5Cn%5CnSlim+smart+door+lock+camera+version+%28SSL1%29%22%2C%22In+stock%5Cn%5CnA50+Ubox+Dual+Lens+Solar+4G+PTZ+Camera%22%2C%22Request%5Cn%5CnAPPLE+IPHONE+16+PRO+1TB+SS+CH%22%2C%22In+stock%5Cn%5CnSAMSUNG+GALAXY+BUDS+CORE%22%2C%22In+stock%5Cn%5CnAI+Dual-Lens+Solar+WIFI+PTZ+Camera+with+Floodlight%22%2C%22In+stock%5Cn%5CnXIAOMI+REDMI+NOTE+17+6GB+%2B+128GB%22%5D%7D%5D%2C%22entity_brand%22%3A%5B%7B%22rid%22%3A%221310815221031776%22%2C%22v%22%3A%5B%22What+payment+options+are+available+at+Slot+Systems+Limited%3F%22%2C%22Can+I+return+a+product+purchased+from+Slot%3F%22%2C%22Does+Slot+provide+after-sales+support%3F%22%2C%22Where+are+Slot+Systems+Limited+stores+located%3F%22%2C%22Is+free+delivery+available+on+Slot.ng%3F%22%2C%22Does+Slot+sell+original+products%3F%22%5D%7D%5D%2C%22author_article_name%22%3A%5B%7B%22rid%22%3A%222318677102286458%22%2C%22v%22%3A%5B%22Black+Friday+Deals%22%5D%7D%5D%2C%22page_bread_crumbs%22%3A%5B%7B%22rid%22%3A%2228387161080953781%22%2C%22v%22%3A%5B%22Black+Friday+Deals%22%5D%7D%5D%2C%22entity_name%22%3A%5B%7B%22rid%22%3A%221144240151724174%22%2C%22v%22%3A%5B%22Slot+Systems+Limited+%E2%80%93+Nigeria%27s+Most+Trusted+Store+for+Original+Phones%2C+Electronics+%26+Smart+Living%22%5D%7D%5D%7D&ss_rks=%7B%22currency%22%3A%7B%22tv%22%3A1%2C%22rules%22%3A%7B%221793178381882340%22%3A1%7D%7D%7D&cf=1&expv2%5B0%5D=mr0&expv2%5B1%5D=pl1&expv2%5B2%5D=el2&expv2%5B3%5D=bc1&expv2%5B4%5D=ra2&expv2%5B5%5D=rp2&expv2%5B6%5D=ct2&expv2%5B7%5D=hf1&expv2%5B8%5D=ot1&expv2%5B9%5D=hv1&expv2%5B10%5D=rh0&expv2%5B11%5D=ah0&expv2%5B12%5D=nv1&expv2%5B13%5D=oq0&rqm=formPOST",
+          "filter": "||facebook.com/tr/",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "about:blank",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.facebook.com/tr/"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||connect.facebook.net/signals/$third-party",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "domain": "slot.ng",
+            "ex_m": "119,243,172,27,82,83,163,78,77,11,182,102,20,154,142,46,85,90,184,111,150,177,8,4,5,7,6,3,103,116,162,72,186,110,185,212,264,37,84,284,283,282,14,25,28,40,62,118,68,10,73,112,113,114,120,145,38,36,147,148,149,144,143,173,86,176,174,175,57,69,67,138,19,180,52,334,335,336,333,32,17,31,18,33,34,35,55,164,87,127,22,24,51,47,49,48,95,104,108,125,161,165,53,126,29,26,134,79,43,167,166,168,158,156,30,42,66,124,179,80,21,129,93,76,23,97,98,131,96,152,151,155,109,178,181,41,350,372,257,239,70,240,238,375,366,59,258,122,146,92,136,61,54,56,128,135,141,140,65,74,169,88,89,130,44,39,60,63,115,183,1,139,16,137,12,2,64,105,15,75,71,133,101,100,188,189,106,107,9,117,187,58,159,99,91,81,132,121,170,50,160,0,94,153,157,171,45,123,13,190",
+            "hme": "1f127d11ce7bba675ee077e129c6ec7e07038113ad3e920301e60f2f865dc776",
+            "r": "stable",
+            "v": "2.9.439"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://connect.facebook.net/signals/config/1539059994080790?v=2.9.439&r=stable&domain=slot.ng&hme=1f127d11ce7bba675ee077e129c6ec7e07038113ad3e920301e60f2f865dc776&ex_m=119%2C243%2C172%2C27%2C82%2C83%2C163%2C78%2C77%2C11%2C182%2C102%2C20%2C154%2C142%2C46%2C85%2C90%2C184%2C111%2C150%2C177%2C8%2C4%2C5%2C7%2C6%2C3%2C103%2C116%2C162%2C72%2C186%2C110%2C185%2C212%2C264%2C37%2C84%2C284%2C283%2C282%2C14%2C25%2C28%2C40%2C62%2C118%2C68%2C10%2C73%2C112%2C113%2C114%2C120%2C145%2C38%2C36%2C147%2C148%2C149%2C144%2C143%2C173%2C86%2C176%2C174%2C175%2C57%2C69%2C67%2C138%2C19%2C180%2C52%2C334%2C335%2C336%2C333%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C55%2C164%2C87%2C127%2C22%2C24%2C51%2C47%2C49%2C48%2C95%2C104%2C108%2C125%2C161%2C165%2C53%2C126%2C29%2C26%2C134%2C79%2C43%2C167%2C166%2C168%2C158%2C156%2C30%2C42%2C66%2C124%2C179%2C80%2C21%2C129%2C93%2C76%2C23%2C97%2C98%2C131%2C96%2C152%2C151%2C155%2C109%2C178%2C181%2C41%2C350%2C372%2C257%2C239%2C70%2C240%2C238%2C375%2C366%2C59%2C258%2C122%2C146%2C92%2C136%2C61%2C54%2C56%2C128%2C135%2C141%2C140%2C65%2C74%2C169%2C88%2C89%2C130%2C44%2C39%2C60%2C63%2C115%2C183%2C1%2C139%2C16%2C137%2C12%2C2%2C64%2C105%2C15%2C75%2C71%2C133%2C101%2C100%2C188%2C189%2C106%2C107%2C9%2C117%2C187%2C58%2C159%2C99%2C91%2C81%2C132%2C121%2C170%2C50%2C160%2C0%2C94%2C153%2C157%2C171%2C45%2C123%2C13%2C190"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "/fbevents.js",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://connect.facebook.net/en_US/fbevents.js"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||googletagmanager.com^",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "id": "GTM-W42GMP8T"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.googletagmanager.com/gtm.js?id=GTM-W42GMP8T"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||googletagmanager.com^",
+          "listName": "easyprivacy.txt",
+          "query": {
+            "id": "G-WVWSENPWP2"
+          }
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://www.googletagmanager.com/gtag/js?id=G-WVWSENPWP2"
+      },
+      {
+        "data": {
+          "body": {},
+          "filter": "||cloudflareinsights.com^$third-party",
+          "listName": "easyprivacy.txt",
+          "query": {}
+        },
+        "stack": [
+          {
+            "fileName": "https://slot.ng/",
+            "source": "ThirdPartyTracker RequestHandler"
+          }
+        ],
+        "type": "TrackingRequest",
+        "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+      }
+    ]
+  }
+}
